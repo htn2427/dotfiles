@@ -1,0 +1,5 @@
+~/.config/nvim
+~/.config/mpv
+~/.wezterm.lua
+~/.tmux.conf
+/etc/keyd/

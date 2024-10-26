@@ -20,3 +20,8 @@ autocmd("BufEnter", {
 	end,
 	desc = "Fix auto-commenting new line when entering insert mode e.g. with 'o'",
 })
+
+autocmd({ "BufEnter", "CursorHold", "CursorHoldI", "FocusGained" }, {
+	command = "if mode() != 'c' | checktime | endif",
+	pattern = { "*" },
+})

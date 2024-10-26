@@ -16,24 +16,24 @@ return {
 	config = function()
 		local lsp_zero = require("lsp-zero")
 		lsp_zero.extend_cmp()
-
 		local cmp = require("cmp")
 		local cmp_action = lsp_zero.cmp_action()
 		local cmp_select_opts = { behavior = cmp.SelectBehavior.Select }
 
 		require("luasnip.loaders.from_vscode").lazy_load()
-		-- load_snippets.lazy_load({
-		--     paths = "~/.config/nvim/my_snippets",
-		-- })
-		-- load_snippets.lazy_load({
-		-- 	exclude = { "c", "cpp" },
-		-- })
-
+		local kind_icons = {
+			ellipsis_char = "...",
+			Copilot = "",
+			Supermaven = "",
+			Codeium = "",
+			Cody = "",
+			cmp_r = "R",
+		}
 		local preferred_sources = {
-			{ name = "luasnip" },
 			{ name = "nvim_lsp" },
 			{ name = "nvim_lua" },
 			{ name = "path" },
+			{ name = "luasnip" },
 			{
 				name = "lazydev",
 				group_index = 0, -- set group index to 0 to skip loading LuaLS completions
@@ -66,9 +66,9 @@ return {
 			mapping = {
 				["<C-p>"] = cmp.mapping.select_prev_item(cmp_select_opts),
 				["<C-n>"] = cmp.mapping.select_next_item(cmp_select_opts),
+				["<C-y>"] = cmp.mapping.confirm({ select = true }),
 				["<tab>"] = cmp.mapping.confirm({ select = true }),
-				["<cr>"] = cmp.mapping.confirm({ select = true }),
-				["<C-space>"] = cmp.mapping.complete({}),
+				["<C-Space>"] = cmp.mapping.complete({}),
 				["<C-e>"] = cmp.mapping.abort(),
 				["<C-u>"] = cmp.mapping.scroll_docs(-4),
 				["<C-d>"] = cmp.mapping.scroll_docs(4),
@@ -79,15 +79,39 @@ return {
 			completion = {
 				completeopt = "menu,menuone,noinsert",
 			},
-
-			-- TODO: add tailwind
 			formatting = {
 				fields = { "abbr", "kind", "menu" },
-				format = require("lspkind").cmp_format({
-					mode = "symbol_text",
-					maxwidth = 50,
-					ellipsis_char = "...",
-				}),
+				format = function(entry, vim_item)
+					local icon, hl, is_default = require("mini.icons").get("lsp", vim_item.kind)
+					local color_item = require("nvim-highlight-colors").format(entry, { kind = vim_item.kind })
+
+					if is_default then
+						icon = kind_icons[vim_item.kind] or "󰞋"
+						hl = "CmpItemKind" .. vim_item.kind
+					end
+					vim_item.kind = icon .. " " .. vim_item.kind
+					vim_item.kind_hl_group = hl
+
+					if vim.tbl_contains({ "nvim_lsp" }, entry.source.name) then
+						local duplicates = {
+							buffer = 1,
+							path = 1,
+							nvim_lsp = nil,
+							luasnip = 1,
+						}
+
+						local duplicates_default = nil
+
+						vim_item.dup = duplicates[entry.source.name] or duplicates_default
+					end
+
+					if color_item.abbr_hl_group then
+						vim_item.kind_hl_group = color_item.abbr_hl_group
+						vim_item.kind = color_item.abbr .. " " .. vim_item.kind
+					end
+
+					return vim_item
+				end,
 				expandable_indicator = true,
 			},
 			window = {
@@ -100,9 +124,9 @@ return {
 			sources = cmp.config.sources({
 				{ name = "nvim_lsp" },
 				{ name = "nvim_lua" },
-				{ name = "luasnip" },
 				{ name = "path" },
-				{ name = "buffer", keyword_length = 4 },
+				{ name = "luasnip", keyword_length = 3 },
+				{ name = "buffer", keyword_length = 3 },
 			}),
 		})
 
@@ -129,5 +153,12 @@ return {
 				completion = cmp.config.window.bordered(),
 			},
 		})
+		-- cmp.event:on("menu_opened", function()
+		--     vim.b.copilot_suggestion_hidden = true
+		-- end)
+		--
+		-- cmp.event:on("menu_closed", function()
+		--     vim.b.copilot_suggestion_hidden = false
+		-- end)
 	end,
 }

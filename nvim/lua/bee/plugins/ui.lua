@@ -1,40 +1,58 @@
 return {
 	{
-		"echasnovski/mini.base16",
-		version = false,
+		"stevearc/dressing.nvim",
+		event = "VeryLazy",
+		opts = {
+			input = {
+				relative = "editor",
+				title_pos = "center",
+			},
+		},
+	},
+	{
+		"utilyre/barbecue.nvim",
+		name = "barbecue",
+		version = "*",
+		dependencies = {
+			"SmiteshP/nvim-navic",
+		},
+		opts = {},
 		config = function()
-			require("mini.base16").setup({
-				palette = {
-					base00 = "#151820",
-					base01 = "#191C25",
-					base02 = "#2d3343",
-					base03 = "#343e4f",
-					base04 = "#C8C093",
-					base05 = "#b1b5b1",
-					base06 = "#E46876",
-					base07 = "#6d607d",
-					base08 = "#b04d4d", -- return, field
-					base09 = "#b35b79", -- variable
-					base0A = "#b3745b", -- className
-					base0B = "#6f8256",
-					base0C = "#7E9CD8", -- console.log
-					base0D = "#4e8ca2", -- function name
-					base0E = "#a28aa9", -- system
-					base0F = "#658594",
-				},
+			require("barbecue").setup({
+				create_autocmd = false,
+			})
+
+			vim.api.nvim_create_autocmd({
+				"WinScrolled",
+				"BufWinEnter",
+				"CursorHold",
+				"InsertLeave",
+			}, {
+				group = vim.api.nvim_create_augroup("barbecue.updater", {}),
+				callback = function()
+					require("barbecue.ui").update()
+				end,
+			})
+		end,
+	},
+
+	{
+		"j-hui/fidget.nvim",
+		branch = "legacy",
+		config = function()
+			require("fidget").setup({
+				window = { blend = 0 },
 			})
 		end,
 	},
 	{
+
 		"rcarriga/nvim-notify",
 		event = "VeryLazy",
 		config = function()
 			local notify = require("notify")
 			notify.setup()
-			-- use notify as a default way of showing notifications
 			vim.notify = notify
-
-			-- redirect print (lua func) to notify
 			print = function(...)
 				local print_safe_args = {}
 				local _ = { ... }
@@ -43,69 +61,88 @@ return {
 				end
 				notify(table.concat(print_safe_args, " "), "info")
 			end
+			vim.keymap.set("n", "<leader><leader>o", function()
+				---@diagnostic disable-next-line: missing-fields
+				require("notify").dismiss({ silent = true })
+			end, { desc = "Notify: Close All Notifications" })
 		end,
 	},
 	{
-		"nvim-lualine/lualine.nvim",
-		event = "VeryLazy",
-		dependencies = { "nvim-tree/nvim-web-devicons" },
-		opts = {
-			options = {
-				icons_enabled = true,
-				theme = "auto",
-				component_separators = { left = "", right = "" },
-				section_separators = { left = "", right = "" },
-				disabled_filetypes = {
-					statusline = {
-						"NvimTree",
-						"TelescopePrompt",
-						"dashboard",
+		"goolord/alpha-nvim",
+		event = "VimEnter",
+		lazy = true,
+		opts = function()
+			local dashboard = require("alpha.themes.dashboard")
+			dashboard.section.header.val = {
+				[[                               __                ]],
+				[[  ___     ___    ___   __  __ /\_\    ___ ___    ]],
+				[[ / _ `\  / __`\ / __`\/\ \/\ \\/\ \  / __` __`\  ]],
+				[[/\ \/\ \/\  __//\ \_\ \ \ \_/ |\ \ \/\ \/\ \/\ \ ]],
+				[[\ \_\ \_\ \____\ \____/\ \___/  \ \_\ \_\ \_\ \_\]],
+				[[ \/_/\/_/\/____/\/___/  \/__/    \/_/\/_/\/_/\/_/]],
+			}
+			dashboard.section.buttons.val = {
+				dashboard.button("ff", " " .. " Find file", "<cmd>FzfLua files<cr>"),
+				dashboard.button("<leader>q", " " .. " Quit", "<cmd>qa<cr>"),
+			}
+			for _, button in ipairs(dashboard.section.buttons.val) do
+				button.opts.hl = "AlphaButtons"
+				button.opts.hl_shortcut = "AlphaShortcut"
+			end
+			dashboard.section.header.opts.hl = "AlphaHeader"
+			dashboard.section.buttons.opts.hl = "AlphaButtons"
+			dashboard.section.footer.opts.hl = "AlphaFooter"
+			dashboard.opts.layout[1].val = 8
+			return dashboard
+		end,
+		config = function(_, dashboard)
+			require("alpha").setup(dashboard.opts)
+		end,
+	},
+
+	{
+		"lukas-reineke/indent-blankline.nvim",
+		---@diagnostic disable-next-line: unused-local
+		config = function(_, opts)
+			local highlight = {
+				"RainbowRed",
+				"RainbowYellow",
+				"RainbowBlue",
+				"RainbowOrange",
+				"RainbowGreen",
+				"RainbowViolet",
+				"RainbowCyan",
+			}
+
+			local hooks = require("ibl.hooks")
+			hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
+				vim.api.nvim_set_hl(0, "RainbowRed", { fg = "#b04d4d" })
+				vim.api.nvim_set_hl(0, "RainbowYellow", { fg = "#ada058" })
+				vim.api.nvim_set_hl(0, "RainbowBlue", { fg = "#7E9CD8" })
+				vim.api.nvim_set_hl(0, "RainbowOrange", { fg = "#b98d7b" })
+				vim.api.nvim_set_hl(0, "RainbowGreen", { fg = "#6f8256" })
+				vim.api.nvim_set_hl(0, "RainbowViolet", { fg = "#a28aa9" })
+				vim.api.nvim_set_hl(0, "RainbowCyan", { fg = "#658594" })
+			end)
+
+			require("ibl").setup({
+				indent = { highlight = highlight, char = "│", tab_char = "│" },
+				exclude = {
+					filetypes = {
 						"lspinfo",
-						"mason",
-						"checkhealth",
+						"packer",
 						"help",
-						"man",
-						"toggleterm",
+						"alpha",
+						"dashboard",
+						"neo-tree",
+						"Trouble",
 						"lazy",
+						"checkhealth",
+						"man",
+						"starter",
 					},
-					winbar = {},
 				},
-				ignore_focus = {},
-				always_divide_middle = false,
-				globalstatus = false,
-				refresh = {
-					statusline = 1000,
-				},
-			},
-			sections = {
-				lualine_a = { "mode" },
-				lualine_b = { "branch", "diff", "diagnostics" },
-				lualine_c = {
-					"filename",
-					"filesize",
-					function()
-						return require("screenkey").get_keys()
-					end,
-				},
-				lualine_x = { "filetype" },
-				lualine_y = { "searchcount", "progress" },
-				lualine_z = { "location" },
-			},
-			inactive_sections = {
-				lualine_a = {},
-				lualine_b = {},
-				lualine_c = { "filename" },
-				lualine_x = {},
-				lualine_y = {},
-				lualine_z = {},
-			},
-			tabline = {},
-			winbar = {},
-			inactive_winbar = {},
-			extensions = {
-				"quickfix",
-				"aerial",
-			},
-		},
+			})
+		end,
 	},
 }

@@ -1,21 +1,17 @@
 local map = vim.keymap.set
 
--- better up/down
+-- Better up/down
 map({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true, silent = true })
 map({ "n", "x" }, "<Down>", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true, silent = true })
 map({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { desc = "Up", expr = true, silent = true })
 map({ "n", "x" }, "<Up>", "v:count == 0 ? 'gk' : 'k'", { desc = "Up", expr = true, silent = true })
 
--- https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n
 map("n", "n", "'Nn'[v:searchforward].'zv'", { expr = true, desc = "Next Search Result" })
 map("x", "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next Search Result" })
 map("o", "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next Search Result" })
 map("n", "N", "'nN'[v:searchforward].'zv'", { expr = true, desc = "Prev Search Result" })
 map("x", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev Search Result" })
 map("o", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev Search Result" })
-
-map({ "v", "n" }, "<S-h>", "^")
-map({ "v", "n" }, "<S-l>", "$")
 
 -- Save
 map({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save File" })
@@ -52,7 +48,31 @@ map("n", "<C-Right>", "<C-w>>")
 map("n", "<C-Up>", "<C-w>+")
 map("n", "<C-Down>", "<C-w>-")
 
--- Nvim-tree
+map("n", "M", vim.diagnostic.open_float, { desc = "Open Floating window" })
+map("n", "]d", function()
+	vim.diagnostic.goto_next()
+	vim.cmd("normal zz")
+end, { desc = "Next diagnostic" })
+map("n", "[d", function()
+	vim.diagnostic.goto_prev()
+	vim.cmd("normal zz")
+end, { desc = "Previous diagnostic" })
+map("n", "]e", function()
+	vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.ERROR })
+	vim.cmd("normal zz")
+end, { desc = "Next error" })
+map("n", "[e", function()
+	vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.ERROR })
+	vim.cmd("normal zz")
+end, { desc = "Previous error" })
+map("n", "]w", function()
+	vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.WARN })
+	vim.cmd("normal zz")
+end, { desc = "Next warning" })
+map("n", "[w", function()
+	vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.WARN })
+	vim.cmd("normal zz")
+end, { desc = "Previous warning" })
 
 -- Add empty lines before and after cursor line
 map(
@@ -68,7 +88,7 @@ map(
 	{ desc = "Add empty lines after cursor line" }
 )
 
--- copy pasta stuff
+-- Copy paste stuff
 map(
 	"n",
 	"<leader>yy",
@@ -83,16 +103,8 @@ map(
 )
 map({ "n", "v" }, "<leader>d", [["_d]], { desc = "Delete without yanking" })
 map({ "n", "v" }, "<leader>c", [["_c]], { desc = "Change without yanking" })
-
--- Scroll up or down
--- map("n", "<C-d>", "<C-d>zz")
--- map("n", "<C-u>", "<C-u>zz")
-
--- Window Navigation (tmux navigator)
--- map({ "n" }, "<C-h>", "<C-w>h")
--- map({ "n" }, "<C-l>", "<C-w>l")
--- map({ "n" }, "<C-j>", "<C-w>j")
--- map({ "n" }, "<C-k>", "<C-w>k")
+map("n", "<C-q>", "q", { desc = "Record Macro" })
 
 -- Unmap
 map({ "i", "v", "n", "s" }, "<C-z>", "<nop>")
+map({ "n", "v", "s" }, "q", "<nop>")

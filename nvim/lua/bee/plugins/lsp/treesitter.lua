@@ -1,11 +1,11 @@
 return {
 	{
 		"nvim-treesitter/nvim-treesitter",
-		version = false,
 		build = ":TSUpdate",
-		event = { "BufReadPost", "BufNewFile" },
 		dependencies = {
 			"nvim-treesitter/nvim-treesitter-textobjects",
+			-- "romgrk/nvim-treesitter-context",
+			"RRethy/nvim-treesitter-textsubjects",
 		},
 		config = function()
 			require("nvim-treesitter.configs").setup({
@@ -19,39 +19,55 @@ return {
 				indent = { enable = true },
 				auto_install = true,
 				ensure_installed = {
+					"bash",
+					"bibtex",
 					"c",
-					"html",
+					"comment",
+					"css",
+					"diff",
+					"dockerfile",
+					"git_rebase",
+					"gitattributes",
+					"gitcommit",
+					"gitignore",
+					"go",
+					"gomod",
+					"gowork",
+					"graphql",
+					"hcl",
+					"hjson",
+					"http",
+					"ini",
+					"java",
 					"javascript",
+					"jsdoc",
 					"json",
+					"json5",
+					"jsonc",
 					"lua",
 					"luadoc",
-					"luap",
+					"make",
 					"markdown",
 					"markdown_inline",
+					"nix",
+					"prisma",
 					"python",
 					"query",
 					"regex",
+					"rust",
+					"scss",
+					"ssh_config",
+					"styled",
+					"svelte",
+					"terraform",
+					"tmux",
+					"toml",
 					"tsx",
 					"typescript",
 					"vim",
 					"vimdoc",
+					"vue",
 					"yaml",
-					"rust",
-					"go",
-					"gomod",
-					"gowork",
-					"gosum",
-					"terraform",
-					"proto",
-				},
-				incremental_selection = {
-					enable = true,
-					keymaps = {
-						init_selection = "<leader>vv",
-						node_incremental = "+",
-						scope_incremental = false,
-						node_decremental = "_",
-					},
 				},
 				textobjects = {
 					select = {
@@ -59,7 +75,6 @@ return {
 						lookahead = true,
 
 						keymaps = {
-							-- You can use the capture groups defined in textobjects.scm
 							["af"] = { query = "@function.outer", desc = "around a function" },
 							["if"] = { query = "@function.inner", desc = "inner part of a function" },
 							["ac"] = { query = "@class.outer", desc = "around a class" },
@@ -72,18 +87,18 @@ return {
 							["ip"] = { query = "@parameter.inner", desc = "inside a parameter" },
 						},
 						selection_modes = {
-							["@parameter.outer"] = "v", -- charwise
-							["@parameter.inner"] = "v", -- charwise
-							["@function.outer"] = "v", -- charwise
-							["@conditional.outer"] = "V", -- linewise
-							["@loop.outer"] = "V", -- linewise
-							["@class.outer"] = "<c-v>", -- blockwise
+							["@parameter.outer"] = "v",
+							["@parameter.inner"] = "v",
+							["@function.outer"] = "v",
+							["@conditional.outer"] = "V",
+							["@loop.outer"] = "V",
+							["@class.outer"] = "<c-v>",
 						},
 						include_surrounding_whitespace = false,
 					},
 					move = {
 						enable = true,
-						set_jumps = true, -- whether to set jumps in the jumplist
+						set_jumps = true,
 						goto_previous_start = {
 							["[f"] = { query = "@function.outer", desc = "Previous function" },
 							["[c"] = { query = "@class.outer", desc = "Previous class" },
@@ -98,14 +113,32 @@ return {
 					swap = {
 						enable = true,
 						swap_next = {
-							["<leader><leader>a"] = "@parameter.inner",
+							["<leader>w"] = "@parameter.inner",
 						},
 						swap_previous = {
-							["<leader><leader>A"] = "@parameter.inner",
+							["<leader>W"] = "@parameter.inner",
 						},
 					},
 				},
 			})
 		end,
+	},
+	{
+		"JoosepAlviste/nvim-ts-context-commentstring",
+	},
+	{
+		"ziontee113/syntax-tree-surfer",
+		dependencies = { "nvim-treesitter" },
+		keys = {
+			{ "L", "<cmd>STSSelectNextSiblingNode<CR>", mode = "x", desc = "Surf to next node" },
+			{ "H", "<cmd>STSSelectPrevSiblingNode<CR>", mode = "x", desc = "Surf to previous node" },
+			{ "K", "<cmd>STSSelectParentNode<CR>", mode = "x", desc = "Surf to parent node" },
+			{ "J", "<cmd>STSSelectChildNode<CR>", mode = "x", desc = "Surf to child node" },
+			{ "]s", "<cmd>STSSwapNextVisual<CR>", mode = "x", desc = "Replace with next node" },
+			{ "[s", "<cmd>STSSwapPrevVisual<CR>", mode = "x", desc = "Replace with previous node" },
+			{ "]s", "<cmd>STSSwapCurrentNodeNextNormal<CR>", mode = "n", desc = "Replace with next node" },
+			{ "[s", "<cmd>STSSwapCurrentNodePrevNormal<CR>", mode = "n", desc = "Replace with previous node" },
+		},
+		config = true,
 	},
 }

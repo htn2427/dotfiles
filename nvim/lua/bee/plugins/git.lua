@@ -1,86 +1,119 @@
 return {
 	{
 		"lewis6991/gitsigns.nvim",
-		event = "VeryLazy",
+		lazy = false,
 		config = function()
 			require("gitsigns").setup({
+				signcolumn = true,
+				numhl = false,
+				linehl = false,
+				word_diff = false,
+				watch_gitdir = {
+					interval = 1000,
+					follow_files = true,
+				},
 				attach_to_untracked = true,
+				current_line_blame = false, -- Toggle with `:Gitsigns toggle_current_line_blame`
 				current_line_blame_opts = {
 					virt_text = true,
-					virt_text_pos = "right_align", -- 'eol' | 'overlay' | 'right_align'
+					virt_text_pos = "eol", -- 'eol' | 'overlay' | 'right_align'
 					delay = 1000,
 					ignore_whitespace = false,
 				},
+				current_line_blame_formatter = "<author>, <author_time:%Y-%m-%d> - <summary>",
+				sign_priority = 6,
+				status_formatter = nil,
+				update_debounce = 200,
+				max_file_length = 40000,
+				preview_config = {
+					border = "rounded",
+					style = "minimal",
+					relative = "cursor",
+					row = 0,
+					col = 1,
+				},
 				on_attach = function(bufnr)
-					local gs = package.loaded.gitsigns
-
-					local function map(mode, l, r, opts)
-						opts = opts or {}
-						opts.buffer = bufnr
-						vim.keymap.set(mode, l, r, opts)
-					end
-
-					-- Navigation
-					map("n", "]h", function()
-						if vim.wo.diff then
-							return "]h"
-						end
-						vim.schedule(function()
-							gs.next_hunk()
-						end)
-						return "<Ignore>"
-					end, { expr = true, desc = "Gitsigns: next hunk" })
-
-					map("n", "[h", function()
-						if vim.wo.diff then
-							return "[h"
-						end
-						vim.schedule(function()
-							gs.prev_hunk()
-						end)
-						return "<Ignore>"
-					end, { expr = true, desc = "Gitsigns: prev hunk" })
-
-					-- Actions
-					map(
+					vim.keymap.set(
 						"n",
-						"<leader>gst",
-						gs.toggle_current_line_blame,
-						{ desc = "Gitsigns: toggle current line blame" }
+						"<leader>H",
+						require("gitsigns").preview_hunk,
+						{ buffer = bufnr, desc = "Preview git hunk" }
 					)
-					map("n", "<leader>gsd", gs.diffthis, { desc = "Gitsigns diff" })
-					map("n", "<leader>gsD", function()
-						gs.diffthis("~")
-					end, { desc = "Gitsigns diff ~" })
 
-					-- Text object
-					map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", { desc = "Gitsigns hunk text object" })
+					vim.keymap.set("n", "]]", require("gitsigns").next_hunk, { buffer = bufnr, desc = "Next git hunk" })
+
+					vim.keymap.set(
+						"n",
+						"[[",
+						require("gitsigns").prev_hunk,
+						{ buffer = bufnr, desc = "Previous git hunk" }
+					)
 				end,
 			})
 		end,
-	},
-	{
-		"isakbm/gitgraph.nvim",
-		dependencies = { "sindrets/diffview.nvim" },
 		keys = {
 			{
-				"<leader>gg",
+				"<leader>Gk",
 				function()
-					require("gitgraph").draw({}, { all = true, max_count = 5000 })
+					require("gitsigns").prev_hunk({ navigation_message = false })
 				end,
-				desc = "GitGraph - Draw",
+				desc = "Prev Hunk",
 			},
-		},
-		opts = {
-			hooks = {
-				-- Check diff of a commit
-				on_select_commit = function(commit)
-					vim.cmd(":DiffviewOpen " .. commit.hash .. "^!")
+			{
+				"<leader>Gl",
+				function()
+					require("gitsigns").blame_line()
 				end,
-				-- Check diff from commit a -> commit b
-				on_select_range_commit = function(from, to)
-					vim.cmd(":DiffviewOpen " .. from.hash .. "~1.." .. to.hash)
+				desc = "Blame",
+			},
+			{
+				"<leader>Gp",
+				function()
+					require("gitsigns").preview_hunk()
 				end,
+				desc = "Preview Hunk",
+			},
+			{
+				"<leader>Gr",
+				function()
+					require("gitsigns").reset_hunk()
+				end,
+				desc = "Reset Hunk",
+			},
+			{
+				"<leader>GR",
+				function()
+					require("gitsigns").reset_buffer()
+				end,
+				desc = "Reset Buffer",
+			},
+			{
+				"<leader>Gj",
+				function()
+					require("gitsigns").next_hunk({ navigation_message = false })
+				end,
+				desc = "Next Hunk",
+			},
+			{
+				"<leader>Gs",
+				function()
+					require("gitsigns").stage_hunk()
+				end,
+				desc = "Stage Hunk",
+			},
+			{
+				"<leader>Gu",
+				function()
+					require("gitsigns").undo_stage_hunk()
+				end,
+				desc = "Undo Stage Hunk",
+			},
+			{
+				"<leader>Gd",
+				function()
+					vim.cmd("Gitsigns diffthis HEAD")
+				end,
+				desc = "Git Diff HEAD",
 			},
 		},
 	},
@@ -94,7 +127,7 @@ return {
 			"LazyGitFilterCurrentFile",
 		},
 		keys = {
-			{ "<leader>gl", "<cmd>LazyGit<cr>", desc = "Open lazy git" },
+			{ "<leader>lg", "<cmd>LazyGit<cr>", desc = "Open lazy git" },
 		},
 	},
 }

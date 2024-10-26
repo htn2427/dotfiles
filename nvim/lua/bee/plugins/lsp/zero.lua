@@ -11,8 +11,8 @@ return {
 			},
 		},
 	},
-	{ "Bilal2453/luvit-meta", lazy = true }, -- `vim.uv` types
-	{ "justinsgithub/wezterm-types", lazy = true }, -- wezterm types
+	{ "Bilal2453/luvit-meta", lazy = true },
+	{ "justinsgithub/wezterm-types", lazy = true },
 	{ "LuaCATS/luassert", name = "luassert-types", lazy = true },
 	{ "LuaCATS/busted", name = "busted-types", lazy = true },
 
@@ -26,7 +26,7 @@ return {
 			vim.g.lsp_zero_extend_lspconfig = 0
 		end,
 	},
-	-- workspace/willRename
+
 	{
 		"antosha417/nvim-lsp-file-operations",
 		dependencies = {
@@ -37,6 +37,7 @@ return {
 			require("lsp-file-operations").setup()
 		end,
 	},
+
 	{
 		"williamboman/mason.nvim",
 		lazy = false,

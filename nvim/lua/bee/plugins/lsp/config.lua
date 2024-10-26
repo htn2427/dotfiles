@@ -11,28 +11,10 @@ return {
 		lsp_zero.extend_lspconfig()
 		lsp_zero.on_attach(function(client, bufnr)
 			if client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint ~= nil then
-				vim.keymap.set("n", "<leader>in", function()
-					vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = bufnr }), { bufnr = bufnr }) -- toggle
+				vim.keymap.set("n", "<leader><leader>h", function()
+					vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = bufnr }), { bufnr = bufnr })
 				end, { desc = "Lsp-Inlayhints Toggle", buffer = bufnr })
-				local inlay_hint_grp = vim.api.nvim_create_augroup("InlayHintsInInsert", {})
-				vim.api.nvim_create_autocmd("InsertLeave", {
-					group = inlay_hint_grp,
-					pattern = "*",
-					callback = function()
-						vim.lsp.inlay_hint.enable(false, { bufnr = bufnr })
-					end,
-					desc = "Hide inlay hints",
-				})
-				vim.api.nvim_create_autocmd("InsertEnter", {
-					group = inlay_hint_grp,
-					pattern = "*",
-					callback = function()
-						vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
-					end,
-					desc = "Show inlay hints",
-				})
 			end
-			-- function for shorter code
 			local function nmap(keys, func, desc, additionalMode)
 				if desc then
 					desc = "LSP: " .. desc
@@ -45,9 +27,12 @@ return {
 				end
 				vim.keymap.set(mode, keys, func, { buffer = bufnr, remap = false, desc = desc })
 			end
-
-			nmap("<S-m>", vim.lsp.buf.hover, "Hover Documentation")
-			nmap("<C-m>", vim.lsp.buf.signature_help, "Show function signature")
+			-- nmap("gd", vim.lsp.buf.definition, "Goto Definition")
+			-- nmap("gD", vim.lsp.buf.declaration, "Goto Declaration")
+			nmap("K", vim.lsp.buf.hover, "Hover Documentation")
+			nmap("J", vim.lsp.buf.signature_help, "Show function signature")
+			nmap("ga", vim.lsp.buf.code_action, "Code Action")
+			-- nmap("gr", vim.lsp.buf.references, "Goto Reference")
 			nmap("<leader>rn", vim.lsp.buf.rename, "Rename", "v")
 		end)
 
@@ -60,7 +45,6 @@ return {
 			require("lsp-file-operations").default_capabilities()
 		)
 
-		-- lspCapabilities.textDocument.completion.completionItem.snippetSupport = true
 		require("mason-lspconfig").setup({
 			handlers = {
 				lsp_zero.default_setup,
@@ -144,27 +128,9 @@ return {
 		})
 
 		vim.filetype.add({ extension = { pro = "prolog" } })
-		local luasnip = require("luasnip")
 		vim.filetype.add({ extension = { ejs = "ejs" } })
-		luasnip.filetype_set("ejs", { "html", "javascript", "ejs" })
-		local luasnip_fix_augroup = vim.api.nvim_create_augroup("LuaSnipHistory", { clear = true })
-
-		vim.api.nvim_create_autocmd("ModeChanged", {
-			pattern = "*",
-			callback = function()
-				if
-					((vim.v.event.old_mode == "s" and vim.v.event.new_mode == "n") or vim.v.event.old_mode == "i")
-					and luasnip.session.current_nodes[vim.api.nvim_get_current_buf()]
-					and not luasnip.session.jump_active
-				then
-					luasnip.unlink_current()
-				end
-			end,
-			group = luasnip_fix_augroup,
-		})
 		vim.diagnostic.config({
 			virtual_text = true,
-			-- for nightly builds
 			signs = {
 				text = {
 					[vim.diagnostic.severity.ERROR] = "",

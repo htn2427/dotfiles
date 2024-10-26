@@ -7,8 +7,7 @@ return {
 	},
 	event = "VeryLazy",
 	keys = {
-		-- { "<leader>e", ":Neotree toggle float<CR>", silent = true, desc = "Float File Explorer" },
-		{ "<leader>e", "<cmd>Neotree focus<CR>", silent = true, desc = "Focus File" },
+		{ "<leader>e", "<cmd>Neotree reveal<CR>", silent = true, desc = "Focus File" },
 		{ "<leader>n", "<cmd>Neotree toggle left<CR>", silent = true, desc = "Left File Explorer" },
 	},
 	config = function()
@@ -52,9 +51,12 @@ return {
 			},
 			window = {
 				position = "float",
-				width = 35,
+				width = 30,
 			},
 			filesystem = {
+				follow_current_file = {
+					enabled = true,
+				},
 				window = {
 					mappings = {
 						["f"] = "noop",

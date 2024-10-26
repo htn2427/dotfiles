@@ -17,9 +17,9 @@ return {
 		opts = {
 			provider = "copilot",
 			windows = {
-				wrap = true, -- similar to vim.o.wrap
+				wrap = true,
 				sidebar_header = {
-					align = "left", -- left, center, right for title
+					align = "left",
 					rounded = false,
 				},
 			},
@@ -41,7 +41,6 @@ return {
 						drag_and_drop = {
 							insert_mode = true,
 						},
-						-- required for Windows users
 						use_absolute_path = true,
 					},
 				},

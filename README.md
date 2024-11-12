@@ -38,19 +38,19 @@ sudo pacman -S ttf-nerd-fonts-symbols-mono ttf-jetbrains-mono-nerd ttf-noto-nerd
 ```
 
 ### Zen [zen](https://github.com/zen-browser/desktop?tab=readme-ov-file#arch-based-distributions)
+
 ```sh
 # for optimized version
 yay -S zen-browser-avx2-bin
 ```
 
-
 ### Node Version Manager [nvm](https://github.com/nvm-sh/nvm)
+
 ```sh
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
 command -v nvm
 nvm ls-remote
 nvm install node
-# backup file
 ```
 
 ### utils
@@ -60,10 +60,10 @@ sudo pacman -S fzf ripgrep neovim wezterm mpv tmux wl-clipboard zoxide stow lazy
 yay -S oh-my-posh
 ```
 
-
 ## Installation and setup
 
 First, check out the dotfiles repo in your $HOME directory using git
+
 ```sh
 # Backup zshrc
 mv ~/.zshrc ~/.zshrc.bak
@@ -83,6 +83,7 @@ sudo keyd reload
 ```
 
 ### Tmux
+
 ```sh
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 tmux
@@ -90,7 +91,7 @@ tmux source ~/.tmux.conf
 # Ctrl+A I
 ```
 
-### Razer 
+### Razer
 
 ```sh
 sudo pacman -S linux-headers
@@ -116,12 +117,14 @@ nvim /etc/xdg/reflector/reflector.conf
 ```
 
 Enable and start reflector systemd timer
+
 ```sh
 sudo systemctl enable reflector.timer
 sudo systemctl start reflector.timer
 ```
 
 By default, it will start `reflector.service` once in a week. If you don't want to wait for the scheduled time, you can start the reflector.service to immediately update the pacman's mirror list:
+
 ```sh
 sudo systemctl start reflector.service
 ```
@@ -133,11 +136,14 @@ ls -al ~/.ssh
 ssh-keygen -t ed25519 -C "xxx@gmail.com"
 cat ~/.ssh/id_ed25519.pub
 ```
+
 [Add SSH keys](https://github.com/settings/keys)
+
 ```sh
 git config --global user.name "xxx"
 git config --global user.email "xxx@gmail.com"
 ```
+
 ### mount filesystem
 
 ```sh
@@ -159,10 +165,11 @@ sudo -u postgres initdb -D /var/lib/postgres/data
 ```
 
 The output will show the data directory and subdirectories being created:
+
 ```
 The files belonging to this database system will be owned by user "postgres".
 ...
-creating directory /var/lib/postgres/data ... ok   
+creating directory /var/lib/postgres/data ... ok
 creating subdirectories ... ok
 selecting dynamic shared memory implementation ... posix
 selecting default max_connections ... 100

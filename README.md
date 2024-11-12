@@ -73,6 +73,14 @@ cd dotfiles
 stow .
 ```
 
+### Tmux
+```sh
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+tmux
+tmux source ~/.tmux.conf
+# Ctrl+A I
+```
+
 ### Keyd
 
 ```sh
@@ -137,4 +145,38 @@ sudo mkdir -p /mnt/data
 sudo nvim /etc/fstab
 # /etc/fstab
 LABEL=hpd /mnt/data ext4 defaults 0 2
+```
+
+## Postgres
+
+```sh
+sudo pacman -S postgresql
+postgres --version
+sudo -u postgres initdb -D /var/lib/postgres/data
+```
+
+The output will show the data directory and subdirectories being created:
+```
+The files belonging to this database system will be owned by user "postgres".
+...
+creating directory /var/lib/postgres/data ... ok   
+creating subdirectories ... ok
+selecting dynamic shared memory implementation ... posix
+selecting default max_connections ... 100
+selecting default shared_buffers ... 128MB
+...
+Performing post-bootstrap initialization ... ok
+syncing data to disk ... ok
+
+Success. You can now start the database server using:
+
+pg_ctl -D /var/lib/postgres/data -l logfile start
+```
+
+```sh
+sudo systemctl enable postgresql
+sudo systemctl start postgresql
+sudo systemctl status postgresql
+# reboot
+sudo su - postgres
 ```

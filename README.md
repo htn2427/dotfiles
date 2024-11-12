@@ -13,6 +13,18 @@ echo $SHELL
 $SHELL --version
 ```
 
+### remove Vim
+
+```sh
+sudo pacman -Rns vim
+```
+
+### Git
+
+```sh
+sudo pacman -S git
+```
+
 ### Yay
 
 ```sh
@@ -31,46 +43,43 @@ sudo pacman -S ttf-nerd-fonts-symbols-mono ttf-jetbrains-mono-nerd ttf-noto-nerd
 yay -S zen-browser-avx2-bin
 ```
 
-### remove Vim
-
-```sh
-sudo pacman -Rns vim
-```
 
 ### Node Version Manager [nvm](https://github.com/nvm-sh/nvm)
 ```sh
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
 command -v nvm
 nvm ls-remote
 nvm install node
 # backup file
-mv ~/.zshrc ~/.zshrc.bak
-```
-
-### Git
-
-```sh
-sudo pacman -S git
-```
-
-### Stow
-
-```sh
-sudo pacman -S stow
 ```
 
 ### utils
 
 ```sh
-sudo pacman -S fzf ripgrep neovim wezterm mpv tmux wl-clipboard
+sudo pacman -S fzf ripgrep neovim wezterm mpv tmux wl-clipboard zoxide stow lazygit
+yay -S oh-my-posh
 ```
+
 
 ## Installation and setup
 
 First, check out the dotfiles repo in your $HOME directory using git
 ```sh
+# Backup zshrc
+mv ~/.zshrc ~/.zshrc.bak
 git clone https://github.com/htn2427/dotfiles
-cd dotfiles
+cd ~/dotfiles
 stow .
+```
+
+### Keyd
+
+```sh
+cd ~/Downloads && git clone https://github.com/rvaiya/keyd && cd keyd
+make && sudo make install
+sudo systemctl enable keyd && sudo systemctl start keyd
+sudo cp ~/dotfiles/keyd.conf /etc/keyd/default.conf
+sudo keyd reload
 ```
 
 ### Tmux
@@ -79,17 +88,6 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 tmux
 tmux source ~/.tmux.conf
 # Ctrl+A I
-```
-
-### Keyd
-
-```sh
-git clone https://github.com/rvaiya/keyd
-cd keyd
-make && sudo make install
-sudo systemctl enable keyd && sudo systemctl start keyd
-sudo cp ~/dotfiles/keyd.conf /etc/keyd/default.conf
-sudo keyd reload
 ```
 
 ### Razer 
@@ -135,8 +133,11 @@ ls -al ~/.ssh
 ssh-keygen -t ed25519 -C "xxx@gmail.com"
 cat ~/.ssh/id_ed25519.pub
 ```
-[SSH keys](https://github.com/settings/keys)
-
+[Add SSH keys](https://github.com/settings/keys)
+```sh
+git config --global user.name "xxx"
+git config --global user.email "xxx@gmail.com"
+```
 ### mount filesystem
 
 ```sh
@@ -145,6 +146,8 @@ sudo mkdir -p /mnt/data
 sudo nvim /etc/fstab
 # /etc/fstab
 LABEL=hpd /mnt/data ext4 defaults 0 2
+sudo mount -a
+systemctl daemon-reload
 ```
 
 ## Postgres

@@ -144,6 +144,11 @@ git config --global user.name "xxx"
 git config --global user.email "xxx@gmail.com"
 ```
 
+```sh
+git remote -v
+git remote set-url origin git@github.com:htn2427/dotfiles.git
+```
+
 ### mount filesystem
 
 ```sh

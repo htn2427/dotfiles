@@ -1,0 +1,140 @@
+# dotfiles
+
+This directory contains the dotfiles for my system
+
+## Requirements
+
+### Zsh
+
+```sh
+chsh -s $(which zsh)
+# log out system
+echo $SHELL
+$SHELL --version
+```
+
+### Yay
+
+```sh
+cd ~/Downloads && sudo pacman -S --needed git base-devel && git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si
+```
+
+### fonts
+
+```sh
+sudo pacman -S ttf-nerd-fonts-symbols-mono ttf-jetbrains-mono-nerd ttf-noto-nerd ttf-cascadia-mono-nerd
+```
+
+### Zen [zen](https://github.com/zen-browser/desktop?tab=readme-ov-file#arch-based-distributions)
+```sh
+# for optimized version
+yay -S zen-browser-avx2-bin
+```
+
+### remove Vim
+
+```sh
+sudo pacman -Rns vim
+```
+
+### Node Version Manager [nvm](https://github.com/nvm-sh/nvm)
+```sh
+command -v nvm
+nvm ls-remote
+nvm install node
+# backup file
+mv ~/.zshrc ~/.zshrc.bak
+```
+
+### Git
+
+```sh
+sudo pacman -S git
+```
+
+### Stow
+
+```sh
+sudo pacman -S stow
+```
+
+### utils
+
+```sh
+sudo pacman -S fzf ripgrep neovim wezterm mpv tmux wl-clipboard
+```
+
+## Installation and setup
+
+First, check out the dotfiles repo in your $HOME directory using git
+```sh
+git clone https://github.com/htn2427/dotfiles
+cd dotfiles
+stow .
+```
+
+### Keyd
+
+```sh
+git clone https://github.com/rvaiya/keyd
+cd keyd
+make && sudo make install
+sudo systemctl enable keyd && sudo systemctl start keyd
+sudo cp ~/dotfiles/keyd.conf /etc/keyd/default.conf
+sudo keyd reload
+```
+
+### Razer 
+
+```sh
+sudo pacman -S linux-headers
+sudo pacman -S openrazer-daemon
+# reboot
+sudo gpasswd -a $USER plugdev
+yay -S polychromatic
+```
+
+### Reflector
+
+```sh
+reflector --list-countries
+```
+
+```sh
+cat /etc/pacman.d/mirrorlist
+cat /etc/xdg/reflector/reflector.conf
+sudo cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak
+nvim /etc/xdg/reflector/reflector.conf
+# Add this line to reflector.conf
+# --country VN,HK,SG,TH,JP
+```
+
+Enable and start reflector systemd timer
+```sh
+sudo systemctl enable reflector.timer
+sudo systemctl start reflector.timer
+```
+
+By default, it will start `reflector.service` once in a week. If you don't want to wait for the scheduled time, you can start the reflector.service to immediately update the pacman's mirror list:
+```sh
+sudo systemctl start reflector.service
+```
+
+### SSH Github
+
+```sh
+ls -al ~/.ssh
+ssh-keygen -t ed25519 -C "xxx@gmail.com"
+cat ~/.ssh/id_ed25519.pub
+```
+[SSH keys](https://github.com/settings/keys)
+
+### mount filesystem
+
+```sh
+sudo lsblk -o NAME,FSTYPE,LABEL,UUID,MOUNTPOINT
+sudo mkdir -p /mnt/data
+sudo nvim /etc/fstab
+# /etc/fstab
+LABEL=hpd /mnt/data ext4 defaults 0 2
+```

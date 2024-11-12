@@ -1,0 +1,90 @@
+set scrolloff=10
+set clipboard+=unnamed
+set highlightedyank
+set surround
+set showmode
+set showcmd
+set incsearch
+set hlsearch
+set visualbell
+set easymotion
+set linenumber
+set notimeout
+set sneak
+set smartcase
+set ignorecase
+set NERDTree
+set commentary 
+set multiple-cursors 
+map Q gq
+
+let mapleader = " "
+inoremap jk <Esc>
+inoremap jj <Esc>
+inoremap kk <Esc>
+inoremap kj <Esc>
+
+noremap <S-h> 0
+noremap <S-j> 5j
+noremap <S-k> 5k
+noremap <S-l> $
+noremap <C-j> :action MoveLineDown<CR>
+noremap <C-k> :action MoveLineUp<CR>
+
+" Remap multiple-cursors shortcuts to match vim-multiple-cursors
+xmap <C-d> <Plug>NextWholeOccurrence
+nmap <C-d> <Plug>NextWholeOccurrence
+nmap g<C-d> <Plug>NextOccurrence
+xmap g<C-d> <Plug>NextOccurrence
+xmap <C-x> <Plug>SkipOccurrence
+xmap <C-p> <Plug>RemoveOccurrence
+
+map \r <Action>(ReformatCode)
+map <leader>n :NERDTree<CR>
+map <tab> <Action>(NextTab)
+map <S-tab> <Action>(PreviousTab)
+map <leader>q <action>(CloseContent)
+map <leader>m <Action>(MoveEditorToOppositeTabGroup)
+map <leader>t <Action>()
+map <leader>h <C-W>h
+map <leader>l <C-W>l
+map <leader>sr <Action>(MoveTabRight)
+map <up> <nop>
+map <right> <nop>
+map <left> <nop>
+map <down> <nop>
+" sethandler
+sethandler <C-2> a:vim
+sethandler <C-S-2> a:vim
+sethandler <C-6> a:vim
+sethandler <C-S-6> a:vim
+sethandler <C-;> a:vim
+sethandler <C-S-;> a:vim
+sethandler <C-A> a:ide
+sethandler <C-B> a:vim
+sethandler <C-C> a:ide
+sethandler <C-D> a:vim
+sethandler <C-E> a:vim
+sethandler <C-F> a:vim
+sethandler <C-G> a:vim
+sethandler <C-H> a:vim
+sethandler <C-I> a:vim
+sethandler <C-J> a:vim
+sethandler <C-K> a:vim
+sethandler <C-L> a:vim
+sethandler <C-M> a:vim
+sethandler <C-N> a:vim
+sethandler <C-O> a:vim
+sethandler <C-P> a:vim
+sethandler <C-Q> a:vim
+sethandler <C-R> a:vim
+sethandler <C-S> a:ide
+sethandler <C-T> a:vim
+sethandler <C-U> a:vim
+sethandler <C-V> a:ide
+sethandler <C-W> a:vim
+sethandler <C-X> a:vim
+sethandler <C-Y> a:vim
+sethandler <C-[> a:vim
+sethandler <C-\> a:vim
+sethandler <C-]> a:vim

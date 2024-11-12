@@ -65,11 +65,12 @@ yay -S oh-my-posh
 First, check out the dotfiles repo in your $HOME directory using git
 
 ```sh
-# Backup zshrc
-mv ~/.zshrc ~/.zshrc.bak
 git clone https://github.com/htn2427/dotfiles
 cd ~/dotfiles
-stow .
+# Backup zshrc
+mv ~/.zshrc ~/.zshrc.bak
+
+stow -t ~ home
 ```
 
 ### Keyd
@@ -78,7 +79,9 @@ stow .
 cd ~/Downloads && git clone https://github.com/rvaiya/keyd && cd keyd
 make && sudo make install
 sudo systemctl enable keyd && sudo systemctl start keyd
-sudo cp ~/dotfiles/keyd.conf /etc/keyd/default.conf
+sudo cp /etc/keyd/default.conf /etc/keyd/default.conf.bak
+sudo cp ~/dotfiles/system/etc/keyd/default.conf /etc/keyd/
+cat /etc/keyd/default.conf
 sudo keyd reload
 ```
 

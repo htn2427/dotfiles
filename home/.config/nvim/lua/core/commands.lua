@@ -75,7 +75,7 @@ r.noremap("n", "<C-q>", "q", "Record Macro")
 
 -- Unmap
 r.noremap({ "i", "v", "n", "s" }, "<C-z>", "<nop>")
-r.noremap({ "n", "v", "s" }, "q", "<nop>")
+r.noremap("n", "q", "<nop>")
 r.noremap("n", "Q", "<nop>")
 
 -- remove trailing white space

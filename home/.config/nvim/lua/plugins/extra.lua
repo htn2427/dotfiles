@@ -29,7 +29,7 @@ return {
 					local bd = require("mini.bufremove").delete
 					if vim.bo.modified then
 						local choice =
-							vim.fn.confirm(("Save changes to %q?"):format(vim.fn.bufname()), "&Yes\n&No\n&Cancel")
+								vim.fn.confirm(("Save changes to %q?"):format(vim.fn.bufname()), "&Yes\n&No\n&Cancel")
 						if choice == 1 then -- Yes
 							vim.cmd.write()
 							bd(0)
@@ -69,7 +69,7 @@ return {
 	{
 
 		"rcarriga/nvim-notify",
-		enabled = true,
+		enabled = false,
 		event = "VeryLazy",
 		config = function()
 			local notify = require("notify")
@@ -241,10 +241,10 @@ return {
 			"TmuxNavigatePrevious",
 		},
 		keys = {
-			{ "<c-h>", "<cmd><C-U>TmuxNavigateLeft<cr>" },
-			{ "<c-j>", "<cmd><C-U>TmuxNavigateDown<cr>" },
-			{ "<c-k>", "<cmd><C-U>TmuxNavigateUp<cr>" },
-			{ "<c-l>", "<cmd><C-U>TmuxNavigateRight<cr>" },
+			{ "<c-h>",  "<cmd><C-U>TmuxNavigateLeft<cr>" },
+			{ "<c-j>",  "<cmd><C-U>TmuxNavigateDown<cr>" },
+			{ "<c-k>",  "<cmd><C-U>TmuxNavigateUp<cr>" },
+			{ "<c-l>",  "<cmd><C-U>TmuxNavigateRight<cr>" },
 			{ "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
 		},
 	},
@@ -353,8 +353,8 @@ return {
 	{
 		"ggandor/leap.nvim",
 		keys = {
-			{ "s", mode = { "n", "x", "o" }, desc = "Leap forward to" },
-			{ "S", mode = { "n", "x", "o" }, desc = "Leap backward to" },
+			{ "s",  mode = { "n", "x", "o" }, desc = "Leap forward to" },
+			{ "S",  mode = { "n", "x", "o" }, desc = "Leap backward to" },
 			{ "gs", mode = { "n", "x", "o" }, desc = "Leap from windows" },
 		},
 		config = function(_, opts)

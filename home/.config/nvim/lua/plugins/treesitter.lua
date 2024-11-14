@@ -1,10 +1,12 @@
 return {
 	"nvim-treesitter/nvim-treesitter",
+	version = false,
+	build = ":TSUpdate",
+	event = { "BufReadPost", "BufNewFile" },
 	dependencies = {
 		"RRethy/nvim-treesitter-textsubjects",
 		"nvim-treesitter/nvim-treesitter-textobjects",
 	},
-	event = { "BufReadPost", "BufNewFile" },
 	config = function()
 		require("nvim-treesitter.configs").setup({
 			ensure_installed = {
@@ -97,8 +99,5 @@ return {
 				},
 			},
 		})
-	end,
-	build = function()
-		vim.cmd(":TSUpdate")
 	end,
 }

@@ -56,7 +56,7 @@ nvm install node
 ### utils
 
 ```sh
-sudo pacman -S fzf ripgrep neovim wezterm mpv tmux wl-clipboard zoxide stow lazygit chafa
+sudo pacman -S fzf ripgrep neovim wezterm mpv tmux wl-clipboard zoxide stow lazygit chafa yazi ffmpegthumbnailer p7zip jq poppler fd imagemagick
 yay -S oh-my-posh
 ```
 
@@ -115,7 +115,7 @@ cat /etc/xdg/reflector/reflector.conf
 sudo cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak
 nvim /etc/xdg/reflector/reflector.conf
 # Add this line to reflector.conf
-# --country VN,HK,SG,TH,JP
+# --country HK,SG,TH,JP,VN
 ```
 
 Enable and start reflector systemd timer

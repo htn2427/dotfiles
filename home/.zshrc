@@ -14,7 +14,7 @@ autoload -Uz _zinit
 ### End of Zinit's installer chunk
 
 # Add in zsh plugins
-zinit light zsh-users/zsh-syntax-highlighting 
+zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-autosuggestions
 zinit light zsh-users/zsh-completions
 zinit light Aloxaf/fzf-tab

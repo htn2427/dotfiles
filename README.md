@@ -56,7 +56,7 @@ nvm install node
 ### utils
 
 ```sh
-sudo pacman -S fzf ripgrep neovim wezterm mpv tmux wl-clipboard zoxide stow lazygit
+sudo pacman -S fzf ripgrep neovim wezterm mpv tmux wl-clipboard zoxide stow lazygit chafa
 yay -S oh-my-posh
 ```
 
@@ -70,7 +70,7 @@ cd ~/dotfiles
 # Backup zshrc
 mv ~/.zshrc ~/.zshrc.bak
 
-stow -t ~ home
+stow -d ~/dotfiles -t ~ home
 ```
 
 ### Keyd

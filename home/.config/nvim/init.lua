@@ -1,2 +1,4 @@
-require("bee.core")
-require("bee.lazy")
+require("core.general")
+require("core.ui")
+require("core.commands")
+require("core.lazy")

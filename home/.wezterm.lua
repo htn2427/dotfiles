@@ -6,8 +6,8 @@ local config = wezterm.config_builder()
 
 config.font = wezterm.font_with_fallback({
   {
-    family = "CaskaydiaMono Nerd Font",
-    weight = "Regular", -- https://www.programmingfonts.org/#jetbrainsmono
+    family = "FiraCode Nerd Font",
+    weight = "Regular",
     harfbuzz_features = { "calt=0", "clig=0", "liga=0" },
   },
   {
@@ -16,14 +16,18 @@ config.font = wezterm.font_with_fallback({
     harfbuzz_features = { "calt=0", "clig=0", "liga=0" },
   },
   {
-    family = "FiraCode Nerd Font Mono",
-    weight = "Medium",
+    family = "CaskaydiaMono Nerd Font",
+    weight = "Regular", -- https://www.programmingfonts.org/#jetbrainsmono
     harfbuzz_features = { "calt=0", "clig=0", "liga=0" },
   },
-  "MesloLGS NF",
+  {
+    family = "MesloLGS NF",
+    weight = "Regular", -- https://www.programmingfonts.org/#jetbrainsmono
+    harfbuzz_features = { "calt=0", "clig=0", "liga=0" },
+  },
 })
 -- config.window_background_opacity = 0.4
-config.font_size = 12
+config.font_size = 11.5
 config.cell_width = 1
 config.line_height = 1.1
 config.enable_tab_bar = false

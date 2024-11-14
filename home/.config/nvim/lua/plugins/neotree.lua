@@ -7,10 +7,11 @@ return {
 	},
 	event = "VeryLazy",
 	keys = {
-		{ "<leader>e", "<cmd>Neotree reveal<CR>", silent = true, desc = "Focus File" },
-		{ "<leader>n", "<cmd>Neotree toggle left<CR>", silent = true, desc = "Left File Explorer" },
+		-- { "<leader>e", "<cmd>Neotree reveal<CR>", silent = true, desc = "Focus File" },
+		{ "<leader>n", "<cmd>Neotree left<CR>", silent = true, desc = "Left File Explorer" },
 	},
 	config = function()
+		local icons = require("utils.icons")
 		require("neo-tree").setup({
 			close_if_last_window = true,
 			popup_border_style = "single",
@@ -24,29 +25,12 @@ return {
 					with_expanders = true,
 				},
 				modified = {
-					symbol = " ",
+					symbol = icons.dot,
 					highlight = "NeoTreeModified",
 				},
-			--	icon = {
-			--		folder_closed = "",
-			--		folder_open = "",
-			--		folder_empty = "",
-			--		folder_empty_open = "",
-			--	},
+				icon = icons.neotree.folder,
 				git_status = {
-					symbols = {
-						-- Change type
-						added = "",
-						deleted = "",
-						modified = "",
-						renamed = "",
-						-- Status type
-						untracked = "",
-						ignored = "",
-						unstaged = "",
-						staged = "",
-						conflict = "",
-					},
+					symbols = icons.git
 				},
 			},
 			window = {
@@ -78,9 +62,9 @@ return {
 			source_selector = {
 				winbar = true,
 				sources = {
-					{ source = "filesystem", display_name = "   Files " },
-					{ source = "buffers", display_name = "   Bufs " },
-					{ source = "git_status", display_name = "   Git " },
+					{ source = "filesystem", display_name = icons.neotree.source.filesystem .. "Files" },
+					{ source = "buffers",    display_name = icons.neotree.source.buffers .. "Bufs" },
+					{ source = "git_status", display_name = icons.neotree.source.git .. "Git" },
 				},
 			},
 			event_handlers = {

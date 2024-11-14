@@ -23,6 +23,7 @@ return {
 				},
 			},
 		})
+		local r = require("utils.remaps")
 		---@param lhs string
 		---@param rhs string
 		---@param desc string
@@ -30,7 +31,7 @@ return {
 		local function fzf(lhs, rhs, desc, modes)
 			desc = "FzfLua: " .. desc
 			modes = modes or { "n" }
-			vim.keymap.set(modes, lhs, string.format("<cmd>FzfLua %s<cr>", rhs), { desc = desc })
+			r.noremap(modes, lhs, string.format("<cmd>FzfLua %s<cr>", rhs), desc)
 		end
 
 		-- find files
@@ -52,7 +53,7 @@ return {
 		-- fzf("gi", "lsp_implementations", "Search Implementations")
 		-- fzf("gr", "lsp_references", "Search References")
 
-		fzf("<leader>sk", "keymaps", "Keymaps") -- key
+		fzf("<leader>sk", "keymaps", "Keymaps")    -- key
 		fzf("<leader>sh", "helptags", "Search Help") -- help tabs
 	end,
 }

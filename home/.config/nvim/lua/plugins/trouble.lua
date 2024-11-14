@@ -60,6 +60,9 @@ return {
 			},
 			auto_jump = {},
 			use_diagnostic_signs = true,
+			warn_no_results = false,
+			-- stylua: ignore
+			icons = require("utils.icons").trouble,
 		})
 	end,
 }

@@ -6,6 +6,7 @@ return function(on_attach)
 		end,
 		cmd = { "tailwindcss-language-server", "--stdio" },
 		filetypes = {
+			"typescriptreact",
 			"astro",
 			"astro-markdown",
 			"blade",

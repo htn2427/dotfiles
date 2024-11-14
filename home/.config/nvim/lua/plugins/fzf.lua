@@ -46,14 +46,7 @@ return {
 		fzf("fw", "grep_cword", "Grep cword")
 		fzf("fW", "grep_cWORD", "Grep cWORD")
 
-		-- lsp
-		-- fzf("ga", "lsp_code_actions", "Code Actions")
-		-- fzf("gd", "lsp_definitions", "Goto Definitions")
-		-- fzf("gD", "diagnostics_document", "Search Diagnostics")
-		-- fzf("gi", "lsp_implementations", "Search Implementations")
-		-- fzf("gr", "lsp_references", "Search References")
-
-		fzf("<leader>sk", "keymaps", "Keymaps")    -- key
+		fzf("<leader>sk", "keymaps", "Keymaps") -- key
 		fzf("<leader>sh", "helptags", "Search Help") -- help tabs
 	end,
 }

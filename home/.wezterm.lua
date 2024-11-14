@@ -5,26 +5,26 @@ local wezterm = require("wezterm")
 local config = wezterm.config_builder()
 
 config.font = wezterm.font_with_fallback({
-  {
-    family = "FiraCode Nerd Font",
-    weight = "Regular",
-    harfbuzz_features = { "calt=0", "clig=0", "liga=0" },
-  },
-  {
-    family = "JetBrainsMono Nerd Font",
-    weight = "Regular", -- https://www.programmingfonts.org/#jetbrainsmono
-    harfbuzz_features = { "calt=0", "clig=0", "liga=0" },
-  },
-  {
-    family = "CaskaydiaMono Nerd Font",
-    weight = "Regular", -- https://www.programmingfonts.org/#jetbrainsmono
-    harfbuzz_features = { "calt=0", "clig=0", "liga=0" },
-  },
-  {
-    family = "MesloLGS NF",
-    weight = "Regular", -- https://www.programmingfonts.org/#jetbrainsmono
-    harfbuzz_features = { "calt=0", "clig=0", "liga=0" },
-  },
+	{
+		family = "FiraCode Nerd Font",
+		weight = "Regular",
+		harfbuzz_features = { "calt=0", "clig=0", "liga=0" },
+	},
+	{
+		family = "JetBrainsMono Nerd Font",
+		weight = "Regular", -- https://www.programmingfonts.org/#jetbrainsmono
+		harfbuzz_features = { "calt=0", "clig=0", "liga=0" },
+	},
+	{
+		family = "CaskaydiaMono Nerd Font",
+		weight = "Regular", -- https://www.programmingfonts.org/#jetbrainsmono
+		harfbuzz_features = { "calt=0", "clig=0", "liga=0" },
+	},
+	{
+		family = "MesloLGS NF",
+		weight = "Regular", -- https://www.programmingfonts.org/#jetbrainsmono
+		harfbuzz_features = { "calt=0", "clig=0", "liga=0" },
+	},
 })
 -- config.window_background_opacity = 0.4
 config.font_size = 11.5
@@ -39,10 +39,10 @@ config.window_close_confirmation = "AlwaysPrompt"
 -- config.window_background_opacity = 0.75
 -- config.macos_window_background_blur = 10
 config.window_padding = {
-  left = 0,
-  right = 0,
-  top = 0,
-  bottom = 0,
+	left = 0,
+	right = 0,
+	top = 0,
+	bottom = 0,
 }
 
 config.color_scheme = "Japanesque"
@@ -50,12 +50,12 @@ config.initial_rows = 40
 config.initial_cols = 150
 config.warn_about_missing_glyphs = false
 config.keys = {
-  {
-    key = "x",
-    mods = "META",
-    -- action = wezterm.action.CloseCurrentTab({ confirm = true }),
-    action = wezterm.action.CloseCurrentPane({ confirm = true }),
-  },
+	{
+		key = "x",
+		mods = "META",
+		-- action = wezterm.action.CloseCurrentTab({ confirm = true }),
+		action = wezterm.action.CloseCurrentPane({ confirm = true }),
+	},
 }
 config.audible_bell = "Disabled"
 config.enable_wayland = false

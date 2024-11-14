@@ -14,10 +14,7 @@ return {
 		},
 	},
 	config = function()
-		-- local lsp_zero = require("lsp-zero")
-		-- lsp_zero.extend_cmp()
 		local cmp = require("cmp")
-		-- local cmp_action = lsp_zero.cmp_action()
 		local cmp_select_opts = { behavior = cmp.SelectBehavior.Select }
 
 		require("luasnip.loaders.from_vscode").lazy_load()

@@ -6,13 +6,7 @@ vim.g.loaded_netrw = 1
 
 vim.opt.laststatus = 3
 
--- prettier colors
-vim.opt.termguicolors = true
-
 vim.opt.clipboard = "unnamedplus"
--- highlight current line number
-vim.opt.cursorline = true
-vim.opt.cursorlineopt = "number"
 
 -- line numbering
 vim.opt.number = true
@@ -81,3 +75,30 @@ vim.opt.softtabstop = 2
 
 -- enable auto indentation
 vim.opt.autoindent = true
+
+vim.opt.showmatch = true
+
+-- disable startup message
+vim.opt.shortmess:append("sI")
+
+-- cmd display (set to zero to autohide)
+vim.opt.cmdheight = 1
+
+-- gutter sizing
+vim.opt.signcolumn = "auto:2"
+
+-- syntax highlighting
+vim.opt.termguicolors = true
+vim.opt.synmaxcol = 512
+
+-- show line numbers
+vim.opt.number = true
+
+-- default no line wrapping
+vim.opt.wrap = false
+
+-- set indents when wrapped
+vim.opt.breakindent = true
+
+-- highlight cursor
+vim.opt.cursorline = true

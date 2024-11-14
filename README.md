@@ -166,34 +166,30 @@ systemctl daemon-reload
 ## Postgres
 
 ```sh
-sudo pacman -S postgresql
-postgres --version
+# Sync package database and install PostgreSQL
+sudo pacman -Sy postgresql
+
+# Create the postgres data directory with CoW disabled
+sudo mkdir -p /var/lib/postgres
+sudo chattr +C /var/lib/postgres
+sudo mkdir /var/lib/postgres/data
+
+# Set correct ownership and permissions
+sudo chown postgres:postgres /var/lib/postgres
+sudo chown postgres:postgres /var/lib/postgres/data
+sudo chmod 750 /var/lib/postgres
+sudo chmod 750 /var/lib/postgres/data
+
+# Initialize the database as postgres user
 sudo -u postgres initdb -D /var/lib/postgres/data
-```
 
-The output will show the data directory and subdirectories being created:
-
-```
-The files belonging to this database system will be owned by user "postgres".
-...
-creating directory /var/lib/postgres/data ... ok
-creating subdirectories ... ok
-selecting dynamic shared memory implementation ... posix
-selecting default max_connections ... 100
-selecting default shared_buffers ... 128MB
-...
-Performing post-bootstrap initialization ... ok
-syncing data to disk ... ok
-
-Success. You can now start the database server using:
-
-pg_ctl -D /var/lib/postgres/data -l logfile start
-```
-
-```sh
+# Start and enable PostgreSQL service
 sudo systemctl enable postgresql
 sudo systemctl start postgresql
+
+# Verify the service is running
 sudo systemctl status postgresql
+
 # reboot
 sudo su - postgres
 ```

@@ -34,7 +34,7 @@ cd ~/Downloads && sudo pacman -S --needed git base-devel && git clone https://au
 ### fonts
 
 ```sh
-sudo pacman -S ttf-nerd-fonts-symbols-mono ttf-jetbrains-mono-nerd ttf-noto-nerd ttf-cascadia-mono-nerd
+sudo pacman -S ttf-nerd-fonts-symbols-mono ttf-jetbrains-mono-nerd ttf-noto-nerd ttf-cascadia-mono-nerd ttf-firacode-nerd
 ```
 
 ### Zen [zen](https://github.com/zen-browser/desktop?tab=readme-ov-file#arch-based-distributions)
@@ -79,8 +79,7 @@ stow -d ~/dotfiles -t ~ home
 cd ~/Downloads && git clone https://github.com/rvaiya/keyd && cd keyd
 make && sudo make install
 sudo systemctl enable keyd && sudo systemctl start keyd
-sudo cp /etc/keyd/default.conf /etc/keyd/default.conf.bak
-sudo cp ~/dotfiles/system/etc/keyd/default.conf /etc/keyd/
+sudo stow -D -d ~/dotfiles -t / system
 cat /etc/keyd/default.conf
 sudo keyd reload
 ```

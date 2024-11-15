@@ -27,7 +27,7 @@ config.font = wezterm.font_with_fallback({
 	},
 })
 -- config.window_background_opacity = 0.4
-config.font_size = 11.5
+config.font_size = 11
 config.cell_width = 1
 config.line_height = 1.1
 config.enable_tab_bar = false

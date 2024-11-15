@@ -79,7 +79,8 @@ stow -d ~/dotfiles -t ~ home
 cd ~/Downloads && git clone https://github.com/rvaiya/keyd && cd keyd
 make && sudo make install
 sudo systemctl enable keyd && sudo systemctl start keyd
-sudo stow -D -d ~/dotfiles -t / system
+# sudo stow -D -d ~/dotfiles -t / system
+sudo cp ~/dotfiles/system/etc/keyd/default.conf /etc/keyd/.
 cat /etc/keyd/default.conf
 sudo keyd reload
 ```

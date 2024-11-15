@@ -17,12 +17,12 @@ config.font = wezterm.font_with_fallback({
 	},
 	{
 		family = "CaskaydiaMono Nerd Font",
-		weight = "Regular", -- https://www.programmingfonts.org/#jetbrainsmono
+		weight = "Regular",
 		harfbuzz_features = { "calt=0", "clig=0", "liga=0" },
 	},
 	{
 		family = "MesloLGS NF",
-		weight = "Regular", -- https://www.programmingfonts.org/#jetbrainsmono
+		weight = "Regular",
 		harfbuzz_features = { "calt=0", "clig=0", "liga=0" },
 	},
 })
@@ -35,9 +35,6 @@ config.use_fancy_tab_bar = false
 config.window_decorations = "TITLE | RESIZE"
 config.window_close_confirmation = "AlwaysPrompt"
 
--- config.window_decorations = "RESIZE"
--- config.window_background_opacity = 0.75
--- config.macos_window_background_blur = 10
 config.window_padding = {
 	left = 0,
 	right = 0,
@@ -59,18 +56,4 @@ config.keys = {
 }
 config.audible_bell = "Disabled"
 config.enable_wayland = false
--- wezterm.on("format-window-title", function(tab, pane, tabs, panes, config)
--- 	local zoomed = ""
--- 	if tab.active_pane.is_zoomed then
--- 		zoomed = "[Z] "
--- 	end
---
--- 	local index = ""
--- 	if #tabs > 1 then
--- 		index = string.format("[%d/%d] ", tab.tab_index + 1, #tabs)
--- 	end
---
--- 	return zoomed .. index .. tab.active_pane.title
--- end)
--- and finally, return the configuration to wezterm
 return config

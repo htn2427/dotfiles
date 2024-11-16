@@ -37,22 +37,6 @@ cd ~/Downloads && sudo pacman -S --needed git base-devel && git clone https://au
 sudo pacman -S ttf-nerd-fonts-symbols-mono ttf-jetbrains-mono-nerd ttf-noto-nerd ttf-cascadia-mono-nerd ttf-firacode-nerd
 ```
 
-### Zen [zen](https://github.com/zen-browser/desktop?tab=readme-ov-file#arch-based-distributions)
-
-```sh
-# for optimized version
-yay -S zen-browser-avx2-bin
-```
-
-### Node Version Manager [nvm](https://github.com/nvm-sh/nvm)
-
-```sh
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
-command -v nvm
-nvm ls-remote
-nvm install node
-```
-
 ### utils
 
 ```sh
@@ -73,18 +57,6 @@ mv ~/.zshrc ~/.zshrc.bak
 stow -d ~/dotfiles -t ~ home
 ```
 
-### Keyd
-
-```sh
-cd ~/Downloads && git clone https://github.com/rvaiya/keyd && cd keyd
-make && sudo make install
-sudo systemctl enable keyd && sudo systemctl start keyd
-# sudo stow -D -d ~/dotfiles -t / system
-sudo cp ~/dotfiles/system/etc/keyd/default.conf /etc/keyd/.
-cat /etc/keyd/default.conf
-sudo keyd reload
-```
-
 ### Tmux
 
 ```sh
@@ -92,16 +64,6 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 tmux
 tmux source ~/.tmux.conf
 # Ctrl+A I
-```
-
-### Razer
-
-```sh
-sudo pacman -S linux-headers
-sudo pacman -S openrazer-daemon
-# reboot
-sudo gpasswd -a $USER plugdev
-yay -S polychromatic
 ```
 
 ### Reflector

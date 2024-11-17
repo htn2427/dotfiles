@@ -1,12 +1,5 @@
 return {
 	{
-		"echasnovski/mini.icons",
-		version = false,
-		config = function()
-			require("mini.icons").setup()
-		end,
-	},
-	{
 		"echasnovski/mini.statusline",
 		version = false,
 		config = function()
@@ -29,7 +22,7 @@ return {
 					local bd = require("mini.bufremove").delete
 					if vim.bo.modified then
 						local choice =
-								vim.fn.confirm(("Save changes to %q?"):format(vim.fn.bufname()), "&Yes\n&No\n&Cancel")
+							vim.fn.confirm(("Save changes to %q?"):format(vim.fn.bufname()), "&Yes\n&No\n&Cancel")
 						if choice == 1 then -- Yes
 							vim.cmd.write()
 							bd(0)
@@ -91,7 +84,7 @@ return {
 	},
 	{
 		"goolord/alpha-nvim",
-		enabled = true,
+		enabled = false,
 		event = "VimEnter",
 		lazy = true,
 		opts = function()
@@ -170,57 +163,32 @@ return {
 	},
 
 	{
-		"folke/which-key.nvim",
-		event = "VeryLazy",
-		opts = {
-			preset = "helix",
-			icons = {
-				mappings = false,
-			},
-
-			win = {
-				border = "single", -- none, single, double, shadow
-				title = false,
-			},
-		},
-		keys = {
-			{
-				"<leader>?",
-				function()
-					require("which-key").show({ global = false })
-				end,
-				desc = "Buffer Local Keymaps (which-key)",
-			},
-		},
-	},
-
-	{
 		"windwp/nvim-ts-autotag",
 		opts = {},
 	},
 
-	{
-		"windwp/nvim-autopairs",
-		event = { "InsertEnter" },
-		dependencies = {
-			"hrsh7th/nvim-cmp",
-		},
-		config = function()
-			local autopairs = require("nvim-autopairs")
-
-			autopairs.setup({
-				check_ts = true,
-				ts_config = {
-					lua = { "string" },
-					javascript = { "template_string" },
-					java = false,
-				},
-			})
-			local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-			local cmp = require("cmp")
-			cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
-		end,
-	},
+	-- {
+	-- 	"windwp/nvim-autopairs",
+	-- 	event = { "InsertEnter" },
+	-- 	dependencies = {
+	-- 		"hrsh7th/nvim-cmp",
+	-- 	},
+	-- 	config = function()
+	-- 		local autopairs = require("nvim-autopairs")
+	--
+	-- 		autopairs.setup({
+	-- 			check_ts = true,
+	-- 			ts_config = {
+	-- 				lua = { "string" },
+	-- 				javascript = { "template_string" },
+	-- 				java = false,
+	-- 			},
+	-- 		})
+	-- 		local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+	-- 		local cmp = require("cmp")
+	-- 		cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
+	-- 	end,
+	-- },
 
 	{
 		"kylechui/nvim-surround",
@@ -232,37 +200,16 @@ return {
 	},
 
 	{
-		"christoomey/vim-tmux-navigator",
-		cmd = {
-			"TmuxNavigateLeft",
-			"TmuxNavigateDown",
-			"TmuxNavigateUp",
-			"TmuxNavigateRight",
-			"TmuxNavigatePrevious",
-		},
-		keys = {
-			{ "<c-h>",  "<cmd><C-U>TmuxNavigateLeft<cr>" },
-			{ "<c-j>",  "<cmd><C-U>TmuxNavigateDown<cr>" },
-			{ "<c-k>",  "<cmd><C-U>TmuxNavigateUp<cr>" },
-			{ "<c-l>",  "<cmd><C-U>TmuxNavigateRight<cr>" },
-			{ "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
-		},
-	},
-
-	{
 		"brenoprata10/nvim-highlight-colors",
+		event = "VeryLazy",
 		config = function()
-			require("nvim-highlight-colors").setup({
-				---Render style
-				---@usage 'background'|'foreground'|'virtual'
-				render = "virtual",
+			local r = require("utils.remaps")
+			local c = require("nvim-highlight-colors")
+			c.setup({
+				render = "background",
 				virtual_symbol = require("utils.icons").dot,
 				virtual_symbol_prefix = "",
 				virtual_symbol_suffix = "",
-				---@usage 'inline'|'eol'|'eow'
-				---inline mimics VS Code style
-				---eol stands for `end of column` - Recommended to set `virtual_symbol_suffix = ''` when used.
-				---eow stands for `end of word` - Recommended to set `virtual_symbol_prefix = ' ' and virtual_symbol_suffix = ''` when used.
 				virtual_symbol_position = "inline",
 				enable_hex = true,
 				enable_short_hex = true,
@@ -271,13 +218,13 @@ return {
 				enable_var_usage = true,
 				enable_named_colors = true,
 				enable_tailwind = true,
-				-- custom_colors = {
-				-- 	{ label = "%-%-theme%-primary%-color", color = "#0f1219" },
-				-- 	{ label = "%-%-theme%-secondary%-color", color = "#5a5d64" },
-				-- },
 				exclude_filetypes = {},
 				exclude_buftypes = {},
 			})
+			r.noremap("n", "<leader><leader>c", function()
+				c.toggle()
+			end, "toggle colorizer")
+			r.map_virtual({ "<leader><leader>c", group = "colorizer", icon = { icon = "󰌁", hl = "Constant" } })
 		end,
 	},
 
@@ -331,40 +278,12 @@ return {
 	},
 
 	{
-		"nvim-pack/nvim-spectre",
-		config = true,
-		cmd = "Spectre",
-		keys = {
-			{ "<Leader>spp", "<cmd>lua require('spectre').toggle()<CR>", desc = "Toggle Spectre" },
-			{
-				"<Leader>spw",
-				"<cmd>lua require('spectre').open_visual({ select_word = true })<CR>",
-				desc = "Search current word in Spectre",
-			},
-			{
-				"<Leader>spw",
-				"<cmd>lua require('spectre').open_visual()<CR>",
-				desc = "Search current word in Spectre",
-				mode = "v",
-			},
-		},
-	},
-
-	{
-		"ggandor/leap.nvim",
-		keys = {
-			{ "s",  mode = { "n", "x", "o" }, desc = "Leap forward to" },
-			{ "S",  mode = { "n", "x", "o" }, desc = "Leap backward to" },
-			{ "gs", mode = { "n", "x", "o" }, desc = "Leap from windows" },
-		},
-		config = function(_, opts)
-			local leap = require("leap")
-			for k, v in pairs(opts) do
-				leap.opts[k] = v
-			end
-			leap.add_default_mappings(true)
-			vim.keymap.del({ "x", "o" }, "x")
-			vim.keymap.del({ "x", "o" }, "X")
+		"phaazon/hop.nvim",
+		event = "BufRead",
+		config = function()
+			require("hop").setup()
+			vim.api.nvim_set_keymap("n", "s", ":HopChar2<cr>", { silent = true })
+			vim.api.nvim_set_keymap("n", "S", ":HopWord<cr>", { silent = true })
 		end,
 	},
 }

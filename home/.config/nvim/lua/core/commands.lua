@@ -23,6 +23,7 @@ r.noremap("v", "<C-k>", ":m '<-2<CR>gv=gv", "Move Up")
 
 -- Save
 r.noremap({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", "Save File")
+r.noremap("n", "<leader>q", "<cmd>q<cr>", "Save File")
 
 -- Clear highlight
 r.noremap("n", "<esc><esc>", ":nohlsearch<cr>", "which_key_ignore", { silent = true })
@@ -33,6 +34,15 @@ r.noremap("n", "<leader>bp", "<cmd>bprevious<cr>", "Prev buffer")
 r.noremap("n", "<leader>bt", "<cmd>b#<cr>", "Previously opened Buffer")
 -- r.noremap("n", "<leader>bD", "<cmd>%bd|e#|bd#<cr>", "Close all but the current buffer")
 -- r.noremap("n", "<leader>bd", "<cmd>bdelete<cr>", "Close buffer")
+
+-- Tabs
+r.noremap("n", "<leader><tab>l", "<cmd>tablast<cr>", "last tab")
+r.noremap("n", "<leader><tab>f", "<cmd>tabfirst<cr>", "first tab")
+r.noremap("n", "<leader><tab>a", "<cmd>tabnew<cr>", "new tab")
+r.noremap("n", "<leader><tab>n", "<cmd>tabnext<cr>", "next tab")
+r.noremap("n", "<leader><tab>d", "<cmd>tabclose<cr>", "close tab")
+r.noremap("n", "<leader><tab>p", "<cmd>tabprevious<cr>", "previous tab")
+r.map_virtual({ "<leader><tab>", group = "tabs", icon = { icon = " ", hl = "Constant" } })
 
 -- Better indenting
 r.noremap("v", "<", "<gv")

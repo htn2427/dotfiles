@@ -58,7 +58,7 @@ function X.set_default_on_buffer(client, bufnr)
 	end
 
 	if cap.hoverProvider then
-		buf_set_keymap("n", "K", vim.lsp.buf.hover, "hover docs")
+		buf_set_keymap("n", "M", vim.lsp.buf.hover, "hover docs")
 	end
 
 	if cap.codeActionProvider then
@@ -106,7 +106,7 @@ function X.set_default_on_buffer(client, bufnr)
 
 	buf_set_keymap("n", "<leader>lI", ":LspInfo<CR>", "lsp info")
 	buf_set_keymap("n", "<leader>ls", vim.lsp.buf.signature_help, "show signature")
-	buf_set_keymap("n", "<leader>lE", vim.diagnostic.open_float, "show line diagnostics")
+	buf_set_keymap("n", "<C-m>", vim.diagnostic.open_float, "show line diagnostics")
 	buf_set_keymap("n", "<leader>lt", function()
 		LspToggle()
 	end, "toggle lsp")

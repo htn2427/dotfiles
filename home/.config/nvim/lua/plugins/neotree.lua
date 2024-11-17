@@ -7,13 +7,12 @@ return {
 	},
 	event = "VeryLazy",
 	keys = {
-		-- { "<leader>e", "<cmd>Neotree reveal<CR>", silent = true, desc = "Focus File" },
 		{ "<leader>n", "<cmd>Neotree left<CR>", silent = true, desc = "Left File Explorer" },
 	},
 	config = function()
 		local icons = require("utils.icons")
 		require("neo-tree").setup({
-			close_if_last_window = true,
+			close_if_last_window = false,
 			popup_border_style = "single",
 			enable_git_status = true,
 			enable_modified_markers = true,
@@ -30,7 +29,7 @@ return {
 				},
 				icon = icons.neotree.folder,
 				git_status = {
-					symbols = icons.git
+					symbols = icons.git,
 				},
 			},
 			window = {
@@ -63,7 +62,7 @@ return {
 				winbar = true,
 				sources = {
 					{ source = "filesystem", display_name = icons.neotree.source.filesystem .. "Files" },
-					{ source = "buffers",    display_name = icons.neotree.source.buffers .. "Bufs" },
+					{ source = "buffers", display_name = icons.neotree.source.buffers .. "Bufs" },
 					{ source = "git_status", display_name = icons.neotree.source.git .. "Git" },
 				},
 			},

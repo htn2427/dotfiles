@@ -6,13 +6,13 @@ local config = wezterm.config_builder()
 
 config.font = wezterm.font_with_fallback({
 	{
-		family = "FiraCode Nerd Font",
-		weight = "Regular",
+		family = "JetBrainsMono Nerd Font",
+		weight = "Regular", -- https://www.programmingfonts.org/#jetbrainsmono
 		harfbuzz_features = { "calt=0", "clig=0", "liga=0" },
 	},
 	{
-		family = "JetBrainsMono Nerd Font",
-		weight = "Regular", -- https://www.programmingfonts.org/#jetbrainsmono
+		family = "FiraCode Nerd Font",
+		weight = "Regular",
 		harfbuzz_features = { "calt=0", "clig=0", "liga=0" },
 	},
 	{
@@ -29,7 +29,7 @@ config.font = wezterm.font_with_fallback({
 -- config.window_background_opacity = 0.4
 config.font_size = 11
 config.cell_width = 1
-config.line_height = 1.1
+config.line_height = 1.2
 config.enable_tab_bar = false
 config.use_fancy_tab_bar = false
 config.window_decorations = "TITLE | RESIZE"

@@ -62,7 +62,7 @@ return {
 	{
 
 		"rcarriga/nvim-notify",
-		enabled = false,
+		enabled = true,
 		event = "VeryLazy",
 		config = function()
 			local notify = require("notify")
@@ -76,7 +76,7 @@ return {
 				end
 				notify(table.concat(print_safe_args, " "), "info")
 			end
-			vim.keymap.set("n", "<leader><leader>o", function()
+			vim.keymap.set("n", "<leader><leader>h", function()
 				---@diagnostic disable-next-line: missing-fields
 				require("notify").dismiss({ silent = true })
 			end, { desc = "Notify: Close All Notifications" })
@@ -167,28 +167,28 @@ return {
 		opts = {},
 	},
 
-	-- {
-	-- 	"windwp/nvim-autopairs",
-	-- 	event = { "InsertEnter" },
-	-- 	dependencies = {
-	-- 		"hrsh7th/nvim-cmp",
-	-- 	},
-	-- 	config = function()
-	-- 		local autopairs = require("nvim-autopairs")
-	--
-	-- 		autopairs.setup({
-	-- 			check_ts = true,
-	-- 			ts_config = {
-	-- 				lua = { "string" },
-	-- 				javascript = { "template_string" },
-	-- 				java = false,
-	-- 			},
-	-- 		})
-	-- 		local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-	-- 		local cmp = require("cmp")
-	-- 		cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
-	-- 	end,
-	-- },
+	{
+		"windwp/nvim-autopairs",
+		event = { "InsertEnter" },
+		dependencies = {
+			"hrsh7th/nvim-cmp",
+		},
+		config = function()
+			local autopairs = require("nvim-autopairs")
+
+			autopairs.setup({
+				check_ts = true,
+				ts_config = {
+					lua = { "string" },
+					javascript = { "template_string" },
+					java = false,
+				},
+			})
+			local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+			local cmp = require("cmp")
+			cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
+		end,
+	},
 
 	{
 		"kylechui/nvim-surround",

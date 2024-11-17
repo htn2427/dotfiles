@@ -8,7 +8,9 @@ vim.opt.showmatch = true
 vim.opt.cmdheight = 1
 
 -- gutter sizing
-vim.opt.signcolumn = "auto:2"
+-- vim.opt.signcolumn = "auto:2"
+-- vim.opt.signcolumn = "auto:2"
+vim.opt.signcolumn = "number"
 
 -- syntax highlighting
 vim.opt.termguicolors = true

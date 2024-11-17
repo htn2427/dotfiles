@@ -12,7 +12,6 @@ return {
 			"hrsh7th/cmp-nvim-lua",
 			"hrsh7th/cmp-cmdline",
 			"zbirenbaum/copilot-cmp",
-			"windwp/nvim-autopairs",
 		},
 	},
 	config = function()
@@ -134,11 +133,5 @@ return {
 				completion = cmp.config.window.bordered(),
 			},
 		})
-
-		local presentAutopairs, cmp_autopairs = pcall(require, "nvim-autopairs.completion.cmp")
-		if not presentAutopairs then
-			return
-		end
-		cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done({ map_char = { tex = "" } }))
 	end,
 }

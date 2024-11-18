@@ -33,7 +33,7 @@ return {
 				"prettierd",
 				"python-lsp-server",
 				"rust-analyzer",
-				-- "shellcheck",
+				"shellcheck",
 				-- "shellharden",
 				"shfmt",
 				"standardjs",

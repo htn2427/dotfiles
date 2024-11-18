@@ -33,6 +33,7 @@ require("lazy").setup({
 		require("plugins.tmux"),
 		require("plugins.treesitter"),
 		require("plugins.trouble"),
+		require("plugins.vim-fugitive"),
 		require("plugins.which-key"),
 	},
 	checker = {

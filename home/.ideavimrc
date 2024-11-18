@@ -14,15 +14,12 @@ set sneak
 set smartcase
 set ignorecase
 set NERDTree
-set commentary 
-set multiple-cursors 
+set commentary
+set multiple-cursors
 map Q gq
 
 let mapleader = " "
 inoremap jk <Esc>
-inoremap jj <Esc>
-inoremap kk <Esc>
-inoremap kj <Esc>
 
 noremap <S-h> 0
 noremap <S-j> 5j
@@ -53,6 +50,7 @@ map <up> <nop>
 map <right> <nop>
 map <left> <nop>
 map <down> <nop>
+
 " sethandler
 sethandler <C-2> a:vim
 sethandler <C-S-2> a:vim

@@ -24,6 +24,7 @@ require("lazy").setup({
 		require("plugins.dadbod"),
 		require("plugins.extra"),
 		require("plugins.fzf"),
+		require("plugins.gitsigns"),
 		require("plugins.mason"),
 		require("plugins.neotree"),
 		require("plugins.nvim-cmp"),

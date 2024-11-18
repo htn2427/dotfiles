@@ -6,8 +6,7 @@ return {
 		"lewis6991/gitsigns.nvim",
 		event = { "BufReadPre", "BufNewFile" },
 		config = function()
-			local gitsigns = require("gitsigns")
-			gitsigns.setup({
+			require("gitsigns").setup({
 				signs = {
 					add = { text = "┃" },
 					change = { text = "┃" },
@@ -56,6 +55,34 @@ return {
 					row = 0,
 					col = 1,
 				},
+				on_attach = function(bufnr)
+					local gitsigns = require("gitsigns")
+
+					local function map(mode, l, r, opts)
+						opts = opts or {}
+						opts.buffer = bufnr
+						vim.keymap.set(mode, l, r, opts)
+					end
+
+					-- Navigation
+					map("n", "]g", function()
+						if vim.wo.diff then
+							vim.cmd.normal({ "]g", bang = true })
+						else
+							gitsigns.nav_hunk("next")
+						end
+					end)
+
+					map("n", "[g", function()
+						if vim.wo.diff then
+							vim.cmd.normal({ "[g", bang = true })
+						else
+							gitsigns.nav_hunk("prev")
+						end
+					end)
+					map("n", "<leader>hp", gitsigns.preview_hunk, { desc = "preview_hunk" })
+					map("n", "<leader>hs", gitsigns.reset_hunk, { desc = "reset_hunk" })
+				end,
 			})
 		end,
 	},

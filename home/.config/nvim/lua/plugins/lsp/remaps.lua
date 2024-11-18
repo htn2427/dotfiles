@@ -73,7 +73,10 @@ function X.set_default_on_buffer(client, bufnr)
 	end
 
 	if cap.renameProvider then
-		buf_set_keymap("n", "<leader>rr", ":IncRename ", "rename")
+		-- buf_set_keymap("n", "<leader>rr", ":IncRename ", "rename")
+		buf_set_keymap("n", "<leader>rr", function()
+			vim.lsp.buf.rename()
+		end, "rename")
 	end
 
 	if cap.documentSymbolProvider then

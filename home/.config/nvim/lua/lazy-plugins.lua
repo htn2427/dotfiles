@@ -24,7 +24,7 @@ require("lazy").setup({
 		require("plugins.dadbod"),
 		require("plugins.extra"),
 		require("plugins.fzf"),
-		require("plugins.gitsigns"),
+		require("plugins.git"),
 		require("plugins.mason"),
 		require("plugins.neotree"),
 		require("plugins.nvim-cmp"),
@@ -33,7 +33,6 @@ require("lazy").setup({
 		require("plugins.tmux"),
 		require("plugins.treesitter"),
 		require("plugins.trouble"),
-		require("plugins.vim-fugitive"),
 		require("plugins.which-key"),
 	},
 	checker = {

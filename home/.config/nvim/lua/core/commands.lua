@@ -52,8 +52,8 @@ r.noremap("v", ">", ">gv")
 -- r.noremap("n", "<leader>q", "<cmd>q<cr>", "Close file")
 
 -- New Windows
-r.noremap("n", [[<leader>%]], "<CMD>split<CR>", "split")
-r.noremap("n", [[<leader>"]], "<CMD>vsplit<CR>", "vsplit")
+r.noremap("n", [[<leader>"]], "<CMD>split<CR>", "split")
+r.noremap("n", [[<leader>%]], "<CMD>vsplit<CR>", "vsplit")
 
 -- Resize Windows
 -- r.noremap("n", "<C-Left>", "<C-w><")

@@ -1,7 +1,7 @@
 local wezterm = require("wezterm")
 local config = wezterm.config_builder()
 
-config.color_scheme = "Japanesque"
+config.color_scheme = "Hacktober"
 config.font = wezterm.font("JetbrainsMono Nerd Font", { weight = "Regular", stretch = "Normal" })
 config.font_size = 11.5
 config.cell_width = 1

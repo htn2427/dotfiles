@@ -1,4 +1,4 @@
-let &t_SI = "\e[6 q"
+let &t_SI = "\e[11 q"
 let &t_EI = "\e[2 q"
 
 set clipboard=unnamedplus

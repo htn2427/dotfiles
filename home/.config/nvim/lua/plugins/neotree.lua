@@ -12,7 +12,7 @@ return {
 	config = function()
 		local icons = require("utils.icons")
 		require("neo-tree").setup({
-			close_if_last_window = false,
+			close_if_last_window = true,
 			popup_border_style = "single",
 			enable_git_status = true,
 			enable_modified_markers = true,
@@ -34,7 +34,7 @@ return {
 			},
 			window = {
 				position = "float",
-				width = 30,
+				width = 35,
 			},
 			filesystem = {
 				follow_current_file = {

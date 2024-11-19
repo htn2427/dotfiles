@@ -1,10 +1,22 @@
+vim.opt.showmatch = true
+vim.opt.cmdheight = 1
+vim.opt.signcolumn = "yes:1"
+vim.opt.termguicolors = true
+vim.opt.synmaxcol = 512
+vim.opt.wrap = false
+vim.opt.breakindent = true
+vim.opt.cursorline = true
+vim.opt.fillchars = { vert = "▒" }
+vim.opt.splitbelow = true
+vim.opt.splitright = true
+
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 vim.g.netrw_banner = 0
 vim.g.loaded_netrwPlugin = 1
 vim.g.loaded_netrw = 1
 
-vim.opt.laststatus = 3
+vim.opt.laststatus = 0
 
 vim.opt.clipboard = "unnamedplus"
 
@@ -59,7 +71,7 @@ vim.opt.backspace = "indent,eol,start"
 -- searching
 vim.opt.hlsearch = true
 vim.opt.incsearch = true
-vim.opt.inccommand = "split"
+-- vim.opt.inccommand = "split"
 
 -- use indents of 2
 vim.opt.shiftwidth = 2
@@ -75,3 +87,17 @@ vim.opt.softtabstop = 2
 
 -- enable auto indentation
 vim.opt.autoindent = true
+
+vim.filetype.add({
+	extension = {
+		env = "dotenv",
+	},
+	filename = {
+		[".env"] = "dotenv",
+		["env"] = "dotenv",
+	},
+	pattern = {
+		["[jt]sconfig.*.json"] = "jsonc",
+		["%.env%.[%w_.-]+"] = "dotenv",
+	},
+})

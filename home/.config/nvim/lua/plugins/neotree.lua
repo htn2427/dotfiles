@@ -7,7 +7,7 @@ return {
 	},
 	event = "VeryLazy",
 	keys = {
-		{ "<leader>n", "<cmd>Neotree left<CR>", silent = true, desc = "Left File Explorer" },
+		{ "<leader>n", "<cmd>Neotree float reveal<CR>", silent = true, desc = "File Explorer" },
 	},
 	config = function()
 		local icons = require("utils.icons")
@@ -34,7 +34,7 @@ return {
 			},
 			window = {
 				position = "float",
-				width = 35,
+				width = 30,
 			},
 			filesystem = {
 				follow_current_file = {

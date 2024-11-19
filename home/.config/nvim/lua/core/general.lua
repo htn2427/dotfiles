@@ -87,17 +87,3 @@ vim.opt.softtabstop = 2
 
 -- enable auto indentation
 vim.opt.autoindent = true
-
-vim.filetype.add({
-	extension = {
-		env = "dotenv",
-	},
-	filename = {
-		[".env"] = "dotenv",
-		["env"] = "dotenv",
-	},
-	pattern = {
-		["[jt]sconfig.*.json"] = "jsonc",
-		["%.env%.[%w_.-]+"] = "dotenv",
-	},
-})

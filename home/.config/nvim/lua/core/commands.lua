@@ -87,6 +87,8 @@ r.noremap("n", "<C-q>", "q", "Record Macro")
 r.noremap({ "i", "v", "n", "s" }, "<C-z>", "<nop>")
 r.noremap("n", "q", "<nop>")
 r.noremap("n", "Q", "<nop>")
+r.noremap("n", "<C-a>", "<nop>")
+r.noremap("n", "<C-x>", "<nop>")
 
 -- remove trailing white space
 f.cmd("Nows", "%s/\\s\\+$//e", { desc = "remove trailing whitespace" })
@@ -124,4 +126,9 @@ f.autocmd({ "BufEnter" }, {
 		---@diagnostic disable-next-line: param-type-mismatch
 		vim.opt.formatoptions:remove({ "c", "r", "o" })
 	end,
+})
+
+f.autocmd({ "BufEnter", "BufNewFile" }, {
+	pattern = ".env*",
+	command = "set filetype=conf",
 })

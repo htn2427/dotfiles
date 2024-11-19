@@ -33,6 +33,10 @@ return {
 						base0F = "#658594",
 					},
 				})
+				vim.cmd([[
+						highlight SignColumn guibg=NONE ctermbg=NONE
+						highlight LineNr guibg=NONE
+				]])
 			end,
 		},
 	},

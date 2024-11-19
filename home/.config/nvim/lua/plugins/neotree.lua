@@ -24,7 +24,7 @@ return {
 					with_expanders = true,
 				},
 				modified = {
-					symbol = icons.dot,
+					symbol = " ",
 					highlight = "NeoTreeModified",
 				},
 				icon = icons.neotree.folder,

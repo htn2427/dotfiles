@@ -1,31 +1,41 @@
+vim.g.mapleader = " "
+vim.g.maplocalleader = "\\"
+
+vim.g.netrw_banner = 0
+vim.g.loaded_netrwPlugin = 1
+vim.g.loaded_netrw = 1
+
 vim.opt.showmatch = true
 vim.opt.cmdheight = 1
-vim.opt.signcolumn = "yes:1"
 vim.opt.termguicolors = true
 vim.opt.synmaxcol = 512
 vim.opt.wrap = false
 vim.opt.breakindent = true
 vim.opt.cursorline = true
-vim.opt.fillchars = { vert = "▒" }
 vim.opt.splitbelow = true
 vim.opt.splitright = true
-
-vim.g.mapleader = " "
-vim.g.maplocalleader = "\\"
-vim.g.netrw_banner = 0
-vim.g.loaded_netrwPlugin = 1
-vim.g.loaded_netrw = 1
-
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+vim.opt.infercase = true
+vim.opt.backspace = "indent,eol,start"
+vim.opt.hlsearch = true
+vim.opt.incsearch = true
+vim.opt.shiftwidth = 2
+vim.opt.expandtab = false
+vim.opt.tabstop = 2
+vim.opt.softtabstop = 2
+vim.opt.autoindent = true
+vim.opt.modelines = 0
 vim.opt.laststatus = 0
-
 vim.opt.clipboard = "unnamedplus"
+vim.opt.mouse = "a"
+vim.o.scrolloff = 13
 
 -- line numbering
+vim.wo.number = true
+vim.wo.relativenumber = true
 vim.opt.number = true
-vim.opt.relativenumber = false
-
--- security
-vim.opt.modelines = 0
+vim.opt.signcolumn = "yes"
 
 -- hide buffers, not close them
 vim.opt.hidden = true
@@ -34,12 +44,6 @@ vim.opt.hidden = true
 vim.opt.swapfile = false
 vim.opt.undofile = true
 vim.opt.undodir = vim.fn.stdpath("data") .. "/undo"
-
--- scroll bounds
-vim.o.scrolloff = 13
-
--- ipad scrolling
-vim.opt.mouse = "a"
 
 -- fuzzy find
 vim.opt.path:append("**")
@@ -60,30 +64,10 @@ vim.opt.wildignore:append(".zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz,*.kgb")
 vim.opt.wildignore:append(".swp,.lock,.DS_Store,._*")
 vim.opt.wildignore:append(".,..")
 
--- case insensitive search
-vim.opt.ignorecase = true
-vim.opt.smartcase = true
-vim.opt.infercase = true
-
--- make backspace behave in a sane manner
-vim.opt.backspace = "indent,eol,start"
-
--- searching
-vim.opt.hlsearch = true
-vim.opt.incsearch = true
--- vim.opt.inccommand = "split"
-
--- use indents of 2
-vim.opt.shiftwidth = 2
-
--- tabs are tabs
-vim.opt.expandtab = false
-
--- an indentation every 2 columns
-vim.opt.tabstop = 2
-
--- let backspace delete indent
-vim.opt.softtabstop = 2
-
--- enable auto indentation
-vim.opt.autoindent = true
+vim.cmd([[
+  augroup numbertoggle
+    autocmd!
+    autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &nu && mode() != "i" | set rnu   | endif
+    autocmd BufLeave,FocusLost,InsertEnter,WinLeave   * if &nu                  | set nornu | endif
+  augroup END
+]]) -- h/t https://jeffkreeftmeijer.com/vim-number/

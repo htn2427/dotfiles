@@ -18,6 +18,7 @@ require("lazy").setup({
 	spec = {
 		require("plugins.lsp"),
 		require("plugins.barbecue"),
+		require("plugins.colorizer"),
 		require("plugins.comments"),
 		require("plugins.conform"),
 		require("plugins.copilot"),
@@ -25,6 +26,7 @@ require("lazy").setup({
 		require("plugins.extra"),
 		require("plugins.fzf"),
 		require("plugins.git"),
+		require("plugins.indent-blankline"),
 		require("plugins.mason"),
 		require("plugins.neotree"),
 		require("plugins.nvim-cmp"),

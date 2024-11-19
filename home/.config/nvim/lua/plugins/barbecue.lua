@@ -35,6 +35,8 @@ return {
 				})
 				vim.cmd([[
 						highlight SignColumn guibg=NONE ctermbg=NONE
+						highlight LineNrBelow guibg=NONE ctermbg=NONE
+						highlight LineNrAbove guibg=NONE ctermbg=NONE
 						highlight LineNr guibg=NONE
 				]])
 			end,

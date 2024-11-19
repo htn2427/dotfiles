@@ -1,5 +1,4 @@
 return {
-	dot = " ",
 	comment = {
 		fix = " ",
 		todo = " ",
@@ -71,7 +70,7 @@ return {
 		runtime = " ",
 		source = " ",
 		start = "",
-		task = "✔ ",
+		task = "",
 		list = {
 			"󱄰",
 			"➜",

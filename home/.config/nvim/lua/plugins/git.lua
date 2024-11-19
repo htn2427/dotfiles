@@ -83,6 +83,12 @@ return {
 					map("n", "<leader>hp", gitsigns.preview_hunk, { desc = "preview_hunk" })
 					map("n", "<leader>hs", gitsigns.reset_hunk, { desc = "reset_hunk" })
 				end,
+
+				vim.cmd([[
+					highlight GitSignsAdd guibg=NONE
+					highlight GitSignsChange guibg=NONE
+					highlight GitSignsDelete guibg=NONE
+				]]),
 			})
 		end,
 	},

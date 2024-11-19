@@ -16,6 +16,7 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
 	spec = {
+		require("plugins.colorscheme"),
 		require("plugins.lsp"),
 		require("plugins.barbecue"),
 		require("plugins.colorizer"),
@@ -37,8 +38,16 @@ require("lazy").setup({
 		require("plugins.trouble"),
 		require("plugins.which-key"),
 	},
-	checker = {
-		enabled = false,
-		notify = false,
+	install = { colorscheme = { "nightfly", "lua-embark" } },
+	checker = { enabled = false }, -- don't auto-check for plugin updates
+	change_detection = { enabled = false }, -- don't auto-check for config updates
+	ui = {
+		backdrop = 101,
+		border = "rounded",
+		custom_keys = {
+			["<localleader>l"] = false,
+			["<localleader>t"] = false,
+		},
 	},
+	debug = false,
 })

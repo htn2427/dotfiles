@@ -27,13 +27,13 @@ r.noremap("n", "<leader>q", "<cmd>q<cr>", "Save File")
 
 -- Clear highlight
 r.noremap("n", "<esc><esc>", ":nohlsearch<cr>", "which_key_ignore", { silent = true })
+
 -- Buffers
-r.noremap("n", "<leader>bc", "<cmd>tabclose<cr>", "Next buffer")
 r.noremap("n", "<leader>bn", "<cmd>bnext<cr>", "Next buffer")
 r.noremap("n", "<leader>bp", "<cmd>bprevious<cr>", "Prev buffer")
 r.noremap("n", "<leader>bt", "<cmd>b#<cr>", "Previously opened Buffer")
--- r.noremap("n", "<leader>bD", "<cmd>%bd|e#|bd#<cr>", "Close all but the current buffer")
--- r.noremap("n", "<leader>bd", "<cmd>bdelete<cr>", "Close buffer")
+r.noremap("n", "<leader>bD", "<cmd>%bd|e#|bd#<cr>", "Close all but the current buffer")
+r.noremap("n", "<leader>bd", "<cmd>bdelete<cr>", "Close buffer")
 
 -- Tabs
 r.noremap("n", "<leader><tab>l", "<cmd>tablast<cr>", "last tab")

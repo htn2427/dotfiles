@@ -51,6 +51,7 @@ return {
 					hide_dotfiles = false,
 					hide_gitignored = false,
 					hide_by_name = {
+						".git",
 						"node_modules",
 					},
 					never_show = {
@@ -62,9 +63,9 @@ return {
 			source_selector = {
 				winbar = true,
 				sources = {
-					{ source = "filesystem", display_name = icons.neotree.source.filesystem .. "Files" },
-					{ source = "buffers", display_name = icons.neotree.source.buffers .. "Bufs" },
-					{ source = "git_status", display_name = icons.neotree.source.git .. "Git" },
+					{ source = "filesystem", display_name = " 󰈔 Files" },
+					{ source = "buffers", display_name = " Bufs" },
+					{ source = "git_status", display_name = "󰊢 Git" },
 				},
 			},
 			event_handlers = {

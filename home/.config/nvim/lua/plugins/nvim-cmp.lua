@@ -12,14 +12,12 @@ return {
 			"hrsh7th/cmp-nvim-lua",
 			"hrsh7th/cmp-cmdline",
 			"zbirenbaum/copilot-cmp",
-			{ "roobert/tailwindcss-colorizer-cmp.nvim", opts = {} },
 		},
 	},
 	config = function()
 		local cmp = require("cmp")
 		require("copilot_cmp").setup()
 		local lspkind = require("lspkind")
-		local cmp_tailwind = require("tailwindcss-colorizer-cmp")
 		local cmp_select_opts = { behavior = cmp.SelectBehavior.Select }
 		require("luasnip.loaders.from_vscode").lazy_load()
 		local has_words_before = function()
@@ -108,7 +106,13 @@ return {
 							buffer = " buffer",
 						}
 						vim_item.menu = menuname_map[entry.source.name]
-						cmp_tailwind.formatter(entry, vim_item)
+
+						local color_item = require("nvim-highlight-colors").format(entry, { kind = vim_item.kind })
+						if color_item.abbr_hl_group then
+							vim_item.kind_hl_group = color_item.abbr_hl_group
+							vim_item.kind = color_item.abbr .. vim_item.kind
+						end
+						-- cmp_tailwind.formatter(entry, vim_item)
 						return vim_item
 					end,
 					-- menu = source_mapping,

@@ -22,11 +22,6 @@ return {
 			folder_empty = " ",
 			folder_empty_open = " ",
 		},
-		source = {
-			filesystem = "  ",
-			buffers = "  ",
-			git = "  ",
-		},
 	},
 	git = {
 		added = " ",

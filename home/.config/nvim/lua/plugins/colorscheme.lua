@@ -14,7 +14,23 @@ return {
 			dimInactive = false, -- dim inactive window `:h hl-NormalNC`
 			terminalColors = true, -- define vim.g.terminal_color_{0,17}
 			colors = { -- add/modify theme and palette colors
-				palette = {},
+				palette = {
+					-- Bg Shades
+					sumiInk0 = "#161616",
+					sumiInk1 = "#181818",
+					sumiInk2 = "#1a1a1a",
+					sumiInk3 = "#1f1f1f",
+					sumiInk4 = "#2a2a2a",
+					sumiInk5 = "#363636",
+					sumiInk6 = "#545454", -- fg
+					-- sumiInk0 = "#16161D",
+					-- sumiInk1 = "#181820",
+					-- sumiInk2 = "#1a1a22",
+					-- sumiInk3 = "#1F1F28",
+					-- sumiInk4 = "#2A2A37",
+					-- sumiInk5 = "#363646",
+					-- sumiInk6 = "#54546D", --fg
+				},
 				theme = {
 					wave = {},
 					lotus = {},

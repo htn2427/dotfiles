@@ -5,7 +5,7 @@ local config = wezterm.config_builder()
 -- config.color_scheme = "Horizon Dark (base16)"
 config.colors = {
 	foreground = "#dcd7ba",
-	background = "#1f1f28",
+	background = "#1f1f1f",
 
 	cursor_bg = "#c8c093",
 	cursor_fg = "#c8c093",

@@ -5,6 +5,7 @@ return {
 	dependencies = { "nvim-tree/nvim-web-devicons" },
 	config = function()
 		require("trouble").setup({
+			delay = 400,
 			modes = {
 				diagnostics = {
 					auto_open = false,
@@ -14,10 +15,6 @@ return {
 			warn_no_results = false,
 			-- stylua: ignore
 			icons = require("utils.icons").trouble,
-		})
-		require("utils.remaps").map_virtual({
-			{ "<leader>t", group = "trouble", icon = { icon = " ", hl = "Constant" } },
-			{ "<leader>ts", group = "symbols", icon = { icon = " ", hl = "Constant" } },
 		})
 	end,
 	keys = {

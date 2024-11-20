@@ -1,7 +1,6 @@
 return {
 	"neovim/nvim-lspconfig",
 	dependencies = {
-		-- "folke/neodev.nvim",
 		"b0o/schemastore.nvim",
 		"ravibrock/spellwarn.nvim",
 		"williamboman/mason-lspconfig.nvim",
@@ -10,7 +9,6 @@ return {
 	},
 	event = { "BufReadPre", "BufNewFile" },
 	config = function()
-		-- require("neodev").setup({})
 		require("lsp_lines").setup()
 		require("spellwarn").setup()
 		local lspconfig = require("lspconfig")
@@ -52,11 +50,9 @@ return {
 			underline = true,
 			severity_sort = true,
 			float = {
-				focus = false,
-				focusable = false,
+				source = "if_many",
 				style = "minimal",
-				border = "shadow",
-				source = "always",
+				border = "single",
 				header = "",
 				prefix = "",
 			},
@@ -65,8 +61,10 @@ return {
 		vim.diagnostic.config(config)
 
 		local border = {
-			border = "shadow",
+			-- border = "shadow",
+			border = "single",
 		}
+
 		vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.hover, border)
 		vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, border)
 
@@ -90,7 +88,6 @@ return {
 			html = {},
 			jsonls = {},
 			lua_ls = require("plugins.lsp.servers.luals")(on_attach),
-			-- intelephense = require("plugins.lsp.servers.phpls")(on_attach),
 			pylsp = {},
 			rust_analyzer = {},
 			tailwindcss = require("plugins.lsp.servers.tailwindcss")(on_attach),

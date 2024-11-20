@@ -5,9 +5,9 @@ return {
 		local f = require("utils.functions")
 		require("mason").setup({
 			ui = {
-				border = "shadow",
+				border = "single",
 				icons = require("utils.icons").mason,
-				zindex = 99,
+				-- zindex = 99,
 			},
 		})
 		f.cmd("MasonInstallAll", function()

@@ -27,7 +27,9 @@ require("lazy").setup({
 		require("plugins.extra"),
 		require("plugins.fzf"),
 		require("plugins.git"),
+		require("plugins.increname"),
 		require("plugins.indent-blankline"),
+		require("plugins.lazygit"),
 		require("plugins.mason"),
 		require("plugins.neotree"),
 		require("plugins.nvim-cmp"),
@@ -41,13 +43,5 @@ require("lazy").setup({
 	install = { colorscheme = { "nightfly", "lua-embark" } },
 	checker = { enabled = false }, -- don't auto-check for plugin updates
 	change_detection = { enabled = false }, -- don't auto-check for config updates
-	ui = {
-		backdrop = 101,
-		border = "rounded",
-		custom_keys = {
-			["<localleader>l"] = false,
-			["<localleader>t"] = false,
-		},
-	},
 	debug = false,
 })

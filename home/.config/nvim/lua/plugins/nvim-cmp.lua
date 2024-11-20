@@ -12,12 +12,14 @@ return {
 			"hrsh7th/cmp-nvim-lua",
 			"hrsh7th/cmp-cmdline",
 			"zbirenbaum/copilot-cmp",
+			{ "roobert/tailwindcss-colorizer-cmp.nvim", opts = {} },
 		},
 	},
 	config = function()
 		local cmp = require("cmp")
 		require("copilot_cmp").setup()
 		local lspkind = require("lspkind")
+		local cmp_tailwind = require("tailwindcss-colorizer-cmp")
 		local cmp_select_opts = { behavior = cmp.SelectBehavior.Select }
 		require("luasnip.loaders.from_vscode").lazy_load()
 		local has_words_before = function()
@@ -66,27 +68,13 @@ return {
 			completion = {
 				completeopt = "menu,menuone,noinsert",
 			},
-			formatting = {
-				format = lspkind.cmp_format({
-					mode = "symbol_text",
-					preset = "codicons",
-					ellipsis_char = "...",
-					show_labelDetails = true,
-					before = function(entry, vim_item)
-						local menuname_map = {
-							nvim_lsp = " LSP",
-							path = "󰙅 Path",
-							nvim_lsp_signature_help = "󰷼 Signature",
-							buffer = " Buffer",
-						}
-						vim_item.menu = menuname_map[entry.source.name]
-						return vim_item
-					end,
-				}),
-			},
 			window = {
-				completion = cmp.config.window.bordered(),
-				documentation = cmp.config.window.bordered(),
+				completion = cmp.config.window.bordered({
+					border = "single",
+				}),
+				documentation = cmp.config.window.bordered({
+					border = "single",
+				}),
 			},
 			experimental = {
 				ghost_text = false,
@@ -108,6 +96,24 @@ return {
 				{ name = "path", group_index = 2 },
 				{ name = "buffer", keyword_length = 2, max_item_count = 5, group_index = 2 },
 			}),
+			formatting = {
+				format = lspkind.cmp_format({
+					mode = "symbol_text",
+					ellipsis_char = "...",
+					before = function(entry, vim_item)
+						local menuname_map = {
+							nvim_lsp = " lsp",
+							path = " path",
+							nvim_lsp_signature_help = "󰷼 signature",
+							buffer = " buffer",
+						}
+						vim_item.menu = menuname_map[entry.source.name]
+						cmp_tailwind.formatter(entry, vim_item)
+						return vim_item
+					end,
+					-- menu = source_mapping,
+				}),
+			},
 		})
 
 		cmp.setup.cmdline(":", {
@@ -130,7 +136,9 @@ return {
 				{ name = "path" },
 			}),
 			window = {
-				completion = cmp.config.window.bordered(),
+				completion = cmp.config.window.bordered({
+					border = "single",
+				}),
 			},
 		})
 	end,

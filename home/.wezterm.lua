@@ -52,5 +52,6 @@ config.initial_cols = 150
 config.audible_bell = "Disabled"
 
 config.enable_wayland = false
+config.warn_about_missing_glyphs = false
 
 return config

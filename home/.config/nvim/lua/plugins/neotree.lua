@@ -7,7 +7,8 @@ return {
 	},
 	event = "VeryLazy",
 	keys = {
-		{ "<leader>n", "<cmd>Neotree float reveal<CR>", silent = true, desc = "File Explorer" },
+		{ "<leader>e", "<cmd>Neotree float reveal<CR>", silent = true, desc = "File Explorer" },
+		{ "<leader>n", "<cmd>Neotree left<CR>", silent = true, desc = "File Explorer" },
 	},
 	config = function()
 		local icons = require("utils.icons")

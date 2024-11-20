@@ -17,21 +17,6 @@ return {
 				enable_default_keybindings = false,
 			},
 		})
-		local zoom = function()
-			if vim.fn.winnr("$") > 1 then
-				if vim.g.zoomed ~= nil then
-					vim.cmd(vim.g.zoom_winrestcmd)
-					vim.g.zoomed = 0
-				else
-					vim.g.zoom_winrestcmd = vim.fn.winrestcmd()
-					vim.cmd("resize")
-					vim.cmd("vertical resize")
-					vim.g.zoomed = 1
-				end
-			else
-				vim.cmd("!tmux resize-pane -Z")
-			end
-		end
 		r.noremap("n", "<c-h>", tmux.move_left, "tmux focus left")
 		r.noremap("n", "<c-j>", tmux.move_bottom, "tmux focus bottom")
 		r.noremap("n", "<c-k>", tmux.move_top, "tmux focus top")
@@ -48,9 +33,5 @@ return {
 		r.noremap("t", "<c-down>", tmux.resize_bottom, "tmux resize bottom")
 		r.noremap("t", "<c-up>", tmux.resize_top, "tmux resize top")
 		r.noremap("t", "<c-right>", tmux.resize_right, "tmux resize right")
-		r.noremap("n", "<leader>z", zoom, "tmux zoom")
-		r.map_virtual({
-			{ "<leader>z", icon = { icon = " ", hl = "Constant" } },
-		})
 	end,
 }

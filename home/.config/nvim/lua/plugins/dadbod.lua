@@ -29,15 +29,6 @@ return {
 			end,
 		})
 	end,
-	init = function()
-		require("utils.remaps").map_virtual({
-			{ "<leader>T", group = "database", icon = { icon = " ", hl = "Constant" } },
-			{ "<leader>Tt", group = "toggle dadbod", icon = { icon = " ", hl = "Constant" } },
-			{ "<leader>Tf", group = "find buffer", icon = { icon = " ", hl = "Constant" } },
-			{ "<leader>Tr", group = "rename buffer", icon = { icon = "󰑕 ", hl = "Constant" } },
-			{ "<leader>Tq", group = "last query", icon = { icon = " ", hl = "Constant" } },
-		})
-	end,
 	keys = {
 		{ "<leader>Tt", "<cmd>DBUIToggle<cr>", desc = "toggle ui" },
 		{ "<leader>Tf", "<cmd>DBUIFindBuffer<cr>", desc = "find buffer" },

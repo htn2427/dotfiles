@@ -23,7 +23,6 @@ return {
 		r.noremap("n", "<leader><leader>c", function()
 			c.toggle()
 		end, "toggle colorizer")
-		r.map_virtual({ "<leader><leader>c", group = "colorizer", icon = { icon = "󰌁", hl = "Constant" } })
 		require("nvim-highlight-colors").turnOff()
 	end,
 }

@@ -2,7 +2,7 @@ local r = require("utils.remaps")
 local vim = vim
 local X = {}
 
-local function LspToggle()
+local function lsp_toggle()
 	if vim.diagnostic.is_enabled() == false then
 		vim.diagnostic.enable()
 		vim.diagnostic.config({ virtual_text = true })
@@ -52,13 +52,9 @@ function X.set_default_on_buffer(client, bufnr)
 	end
 
 	if cap.referencesProvider then
-		buf_set_keymap("n", "<leader>/lr", function()
+		buf_set_keymap("n", "<leader>lr", function()
 			require("fzf-lua").lsp_references()
 		end, "show references")
-	end
-
-	if cap.hoverProvider then
-		buf_set_keymap("n", "M", vim.lsp.buf.hover, "hover docs")
 	end
 
 	if cap.codeActionProvider then
@@ -73,10 +69,7 @@ function X.set_default_on_buffer(client, bufnr)
 	end
 
 	if cap.renameProvider then
-		-- buf_set_keymap("n", "<leader>rr", ":IncRename ", "rename")
-		buf_set_keymap("n", "<leader>rr", function()
-			vim.lsp.buf.rename()
-		end, "rename")
+		buf_set_keymap("n", "<leader>rn", ":IncRename ", "rename")
 	end
 
 	if cap.documentSymbolProvider then
@@ -107,11 +100,14 @@ function X.set_default_on_buffer(client, bufnr)
 		end, "ignore warnings")
 	end
 
+	if cap.hoverProvider then
+		buf_set_keymap("n", "M", vim.lsp.buf.hover, "hover docs")
+	end
+	buf_set_keymap("n", "<C-m>", vim.diagnostic.open_float, "show line diagnostics")
 	buf_set_keymap("n", "<leader>lI", ":LspInfo<CR>", "lsp info")
 	buf_set_keymap("n", "<leader>ls", vim.lsp.buf.signature_help, "show signature")
-	buf_set_keymap("n", "<C-m>", vim.diagnostic.open_float, "show line diagnostics")
 	buf_set_keymap("n", "<leader>lt", function()
-		LspToggle()
+		lsp_toggle()
 	end, "toggle lsp")
 	buf_set_keymap("n", "<leader>ll", function()
 		if vim.diagnostic.is_enabled() == false then
@@ -120,21 +116,6 @@ function X.set_default_on_buffer(client, bufnr)
 		end
 		require("lsp_lines").toggle()
 	end, "toggle lsp lines")
-	r.map_virtual({
-		{ "<leader>l", group = "lsp", icon = { icon = "", hl = "Constant" } },
-		{ "<leader>ll", group = "lsp lines", icon = { icon = "󱞽", hl = "Constant" } },
-		{ "<leader>lI", group = "lsp Info", icon = { icon = "", hl = "Constant" } },
-		{ "<leader>ls", group = "show signature", icon = { icon = "󰅨", hl = "Constant" } },
-		{ "<leader>lE", group = "show line diagnostics", icon = { icon = "󰅰", hl = "Constant" } },
-		{ "<leader>lD", group = "show definition", icon = { icon = "", hl = "Constant" } },
-		{ "<leader>/lr", group = "show references", icon = { icon = "", hl = "Constant" } },
-		{ "<leader>ra", group = "code actions (range)", icon = { icon = "", hl = "Constant" } },
-		{ "<leader>rr", group = "rename", icon = { icon = "", hl = "Constant" } },
-		{ "<leader>li", group = "ignore warning", icon = { icon = "", hl = "Constant" } },
-		{ "<leader>lo", group = "document symbols", icon = { icon = "", hl = "Constant" } },
-		{ "<leader>ld", group = "show declaration", icon = { icon = "", hl = "Constant" } },
-		{ "<leader>lt", group = "toggle lsp", icon = { icon = "", hl = "Constant" } },
-	})
 end
 
 return X

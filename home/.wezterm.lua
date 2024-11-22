@@ -1,5 +1,6 @@
 local wezterm = require("wezterm")
 local config = wezterm.config_builder()
+local mux = wezterm.mux
 
 -- config.color_scheme = "Harmonic16 Dark (base16)"
 -- config.color_scheme = "Horizon Dark (base16)"
@@ -46,12 +47,21 @@ config.window_padding = {
 	bottom = 0,
 }
 
-config.initial_rows = 40
-config.initial_cols = 150
+-- config.initial_rows = 40
+-- config.initial_cols = 150
+
+---@diagnostic disable-next-line
+wezterm.on("gui-startup", function(window)
+	---@diagnostic disable-next-line
+	local tab, pane, window = mux.spawn_window(cmd or {})
+	local gui_window = window:gui_window()
+	gui_window:maximize()
+end)
 
 config.audible_bell = "Disabled"
 
 config.enable_wayland = false
 config.warn_about_missing_glyphs = false
+config.native_macos_fullscreen_mode = true
 
 return config

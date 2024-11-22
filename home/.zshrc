@@ -107,3 +107,4 @@ bindkey '^y' autosuggest-accept
 bindkey '^?' backward-delete-char
 
 # test git
+# fetch something

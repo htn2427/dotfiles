@@ -61,13 +61,12 @@ alias c='clear'
 alias ll='ls -lah --color'
 alias ls='ls --color'
 alias open='xdg-open'
-alias vim='nvim'
-alias vimi='nvim $(fzf -m --preview="cat {}")'
+alias nvimi='nvim $(fzf -m --preview="cat {}")'
 
 # Shell integrations
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
-eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/zen.toml)"
+eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/pure.omp.json)"
 
 export EDITOR="nvim"
 
@@ -76,10 +75,14 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-
 # vi mode
 bindkey -v
 export KEYTIMEOUT=1
+
+# key map for vi mode
+bindkey '^?' backward-delete-char
+bindkey '^e' autosuggest-accept
+bindkey '^y' autosuggest-accept
 
 # Change cursor shape for different vi modes.
 function zle-keymap-select {
@@ -101,7 +104,3 @@ zle-line-init() {
 zle -N zle-line-init
 echo -ne '\e[5 q' # Use beam shape cursor on startup.
 preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
-
-bindkey '^e' autosuggest-accept
-bindkey '^y' autosuggest-accept
-bindkey '^?' backward-delete-char

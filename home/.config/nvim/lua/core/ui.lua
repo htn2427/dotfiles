@@ -63,7 +63,7 @@ function Tabline()
 		table.insert(tl, "%" .. i .. "T") -- mouse click target region
 		table.insert(tl, hi .. " " .. getname(tabpage) .. " ")
 		-- table.insert(tl, hiSep .. "▓▒░ " .. hi)
-		table.insert(tl, hiSep .. " | " .. hi)
+		-- table.insert(tl, hiSep .. "░" .. hi)
 	end
 	table.insert(tl, "%T") -- end mouse click region(s).
 	table.insert(tl, "%#TabLineFill#")

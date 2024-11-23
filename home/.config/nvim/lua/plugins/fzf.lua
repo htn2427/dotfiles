@@ -58,8 +58,8 @@ return {
 		end
 
 		-- find files
-		fzf("ff", "files", "Search Files")
-		fzf("fb", "buffers", "Search Buffers")
+		fzf("<leader>f", "files", "Search Files")
+		fzf("<leader>sb", "buffers", "Search Buffers")
 
 		-- search word
 		fzf("<leader>ss", "live_grep_native", "Live Grep")

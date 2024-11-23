@@ -7,8 +7,8 @@ return {
 	},
 	event = "VeryLazy",
 	keys = {
-		{ "<leader>e", "<cmd>Neotree float reveal<CR>", silent = true, desc = "File Explorer" },
-		{ "<leader>n", "<cmd>Neotree left<CR>", silent = true, desc = "File Explorer" },
+		{ "<leader>n", "<cmd>Neotree float reveal<CR>", silent = true, desc = "File Explorer" },
+		-- { "<leader>n", "<cmd>Neotree left<CR>", silent = true, desc = "File Explorer" },
 	},
 	config = function()
 		local icons = require("utils.icons")
@@ -44,6 +44,8 @@ return {
 				window = {
 					mappings = {
 						["f"] = "noop",
+						["<leader>n"] = "close_window",
+						["<esc>"] = "cancel", -- close preview or floating neo-tree window
 					},
 				},
 				use_libuv_file_watcher = true,

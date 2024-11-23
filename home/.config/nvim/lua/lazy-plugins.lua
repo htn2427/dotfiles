@@ -30,6 +30,7 @@ require("lazy").setup({
 		require("plugins.increname"),
 		require("plugins.indent-blankline"),
 		require("plugins.lazygit"),
+		require("plugins.markdown-preview"),
 		require("plugins.mason"),
 		require("plugins.neotree"),
 		require("plugins.nvim-cmp"),

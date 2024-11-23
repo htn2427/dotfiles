@@ -105,6 +105,3 @@ preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 bindkey '^e' autosuggest-accept
 bindkey '^y' autosuggest-accept
 bindkey '^?' backward-delete-char
-
-# test git
-# fetch something

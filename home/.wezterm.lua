@@ -28,10 +28,12 @@ config.colors = {
 -- 	"Source Code Pro",
 -- 	"Noto Color Emoji",
 -- })
-config.font = wezterm.font("HackGen Console NF", { weight = "Regular", stretch = "Normal" })
 
-config.font_size = 13
-config.cell_width = 1
+-- config.font = wezterm.font("HackGen Console NF", { weight = "Regular", stretch = "Normal" })
+config.font = wezterm.font("CartographCF Nerd Font", { weight = "Regular", stretch = "Normal" })
+
+config.font_size = 11
+config.cell_width = 0.9
 config.line_height = 1
 
 config.use_fancy_tab_bar = false

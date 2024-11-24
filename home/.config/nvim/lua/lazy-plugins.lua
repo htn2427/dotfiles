@@ -41,7 +41,7 @@ require("lazy").setup({
 		require("plugins.trouble"),
 		require("plugins.which-key"),
 	},
-	install = { colorscheme = { "nightfly", "lua-embark" } },
+	-- install = { colorscheme = { "nightfly", "lua-embark" } },
 	checker = { enabled = false }, -- don't auto-check for plugin updates
 	change_detection = { enabled = false }, -- don't auto-check for config updates
 	debug = false,

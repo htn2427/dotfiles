@@ -61,7 +61,6 @@ return {
 		vim.diagnostic.config(config)
 
 		local border = {
-			-- border = "shadow",
 			border = "single",
 		}
 

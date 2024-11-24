@@ -23,6 +23,6 @@ return {
 		r.noremap("n", "<leader><leader>c", function()
 			c.toggle()
 		end, "toggle colorizer")
-		require("nvim-highlight-colors").turnOff()
+		-- require("nvim-highlight-colors").turnOff()
 	end,
 }

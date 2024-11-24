@@ -2,14 +2,12 @@ local wezterm = require("wezterm")
 local config = wezterm.config_builder()
 local mux = wezterm.mux
 
--- config.color_scheme = "Harmonic16 Dark (base16)"
--- config.color_scheme = "Horizon Dark (base16)"
 config.colors = {
 	foreground = "#dcd7ba",
-	background = "#1f1f1f",
+	background = "#1a1a1a",
 
 	cursor_bg = "#c8c093",
-	cursor_fg = "#c8c093",
+	-- cursor_fg = "#c8c093",
 	cursor_border = "#c8c093",
 
 	selection_fg = "#c8c093",
@@ -22,15 +20,13 @@ config.colors = {
 	brights = { "#727169", "#e82424", "#98bb6c", "#e6c384", "#7fb4ca", "#938aa9", "#7aa89f", "#dcd7ba" },
 	indexed = { [16] = "#ffa066", [17] = "#ff5d62" },
 }
--- config.font = wezterm.font_with_fallback({
--- 	"JetBrainsMono Nerd Font",
--- 	"MesloLGS NF",
--- 	"Source Code Pro",
--- 	"Noto Color Emoji",
--- })
-
--- config.font = wezterm.font("HackGen Console NF", { weight = "Regular", stretch = "Normal" })
-config.font = wezterm.font("CartographCF Nerd Font", { weight = "Regular", stretch = "Normal" })
+config.font = wezterm.font_with_fallback({
+	"CartographCF Nerd Font",
+	"HackGen Console NF",
+	"JetBrainsMono Nerd Font",
+	"MesloLGS NF",
+	"Noto Color Emoji",
+})
 
 config.font_size = 11
 config.cell_width = 0.9
@@ -49,10 +45,6 @@ config.window_padding = {
 	bottom = 0,
 }
 
--- config.initial_rows = 40
--- config.initial_cols = 150
-
----@diagnostic disable-next-line
 wezterm.on("gui-startup", function(window)
 	---@diagnostic disable-next-line
 	local tab, pane, window = mux.spawn_window(cmd or {})
@@ -64,6 +56,6 @@ config.audible_bell = "Disabled"
 
 config.enable_wayland = false
 config.warn_about_missing_glyphs = false
-config.native_macos_fullscreen_mode = true
+-- config.native_macos_fullscreen_mode = true
 
 return config

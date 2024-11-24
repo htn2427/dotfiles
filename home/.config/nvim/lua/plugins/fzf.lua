@@ -3,23 +3,26 @@ return {
 	dependencies = { "nvim-tree/nvim-web-devicons" },
 	event = "VeryLazy",
 	config = function()
-		local function hl_match(t)
-			for _, h in ipairs(t) do
-				local ok, hl = pcall(vim.api.nvim_get_hl, 0, { name = h, link = false })
-				if ok and type(hl) == "table" and (hl.fg or hl.bg) then
-					return h
-				end
-			end
-		end
-		require("fzf-lua").setup({
-			hls = function()
-				return {
-					border = hl_match({ "FloatBorder", "LineNr" }),
-					preview_border = hl_match({ "FloatBorder", "LineNr" }),
-					cursorline = "Visual",
-					cursorlinenr = "Visual",
-				}
-			end,
+		local fzflua = require("fzf-lua")
+		local actions = require("fzf-lua.actions")
+		local hls = {
+			bg = "TabLineFill",
+			sel = "PmenuSel",
+			border = "FloatBorder",
+		}
+		fzflua.setup({
+			fzf_colors = {
+				["gutter"] = { "bg", hls.bg },
+				["bg"] = { "bg", hls.bg },
+				["bg+"] = { "bg", hls.sel },
+				["fg"] = { "fg", hls.sel },
+			},
+			hls = {
+				border = hls.border,
+				normal = "NONE",
+				preview_normal = "NONE",
+				preview_border = hls.border,
+			},
 			keymap = {
 				builtin = {
 					["<c-d>"] = "preview-page-down",
@@ -44,8 +47,42 @@ return {
 			winopts = {
 				border = "single",
 				backdrop = 100,
+				preview = {
+					layout = "horizontal",
+					scrollchars = { "┃", "" },
+				},
+			},
+			files = {
+				cwd_prompt = false,
+				actions = {
+					["alt-i"] = { actions.toggle_ignore },
+					["alt-h"] = { actions.toggle_hidden },
+				},
+			},
+			grep = {
+				actions = {
+					["alt-i"] = { actions.toggle_ignore },
+					["alt-h"] = { actions.toggle_hidden },
+				},
+			},
+			lsp = {
+				symbols = {
+					symbol_hl = function(s)
+						return "TroubleIcon" .. s
+					end,
+					symbol_fmt = function(s)
+						return s:lower() .. "\t"
+					end,
+					child_prefix = false,
+				},
+				code_actions = {
+					previewer = vim.fn.executable("delta") == 1 and "codeaction_native" or nil,
+				},
 			},
 		})
+
+		fzflua.register_ui_select()
+
 		local r = require("utils.remaps")
 		---@param lhs string
 		---@param rhs string
@@ -59,7 +96,7 @@ return {
 
 		-- find files
 		fzf("<leader>f", "files", "Search Files")
-		fzf("<leader>sb", "buffers", "Search Buffers")
+		fzf("<leader>b", "buffers", "Search Buffers")
 
 		-- search word
 		fzf("<leader>ss", "live_grep_native", "Live Grep")

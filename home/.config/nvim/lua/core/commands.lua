@@ -28,11 +28,11 @@ r.noremap({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", "Save File")
 r.noremap("n", "<esc><esc>", ":nohlsearch<cr>", "which_key_ignore", { silent = true })
 
 -- Buffers
-r.noremap("n", "<leader>bn", "<cmd>bnext<cr>", "Next buffer")
-r.noremap("n", "<leader>bp", "<cmd>bprevious<cr>", "Prev buffer")
-r.noremap("n", "<leader>bt", "<cmd>b#<cr>", "Previously opened Buffer")
-r.noremap("n", "<leader>bD", "<cmd>%bd|e#|bd#<cr>", "Close all but the current buffer")
-r.noremap("n", "<leader>bd", "<cmd>bdelete<cr>", "Close buffer")
+r.noremap("n", "<leader>Bn", "<cmd>bnext<cr>", "Next buffer")
+r.noremap("n", "<leader>Bp", "<cmd>bprevious<cr>", "Prev buffer")
+r.noremap("n", "<leader>Bt", "<cmd>b#<cr>", "Previously opened Buffer")
+r.noremap("n", "<leader>BD", "<cmd>%bd|e#|bd#<cr>", "Close all but the current buffer")
+r.noremap("n", "<leader>Bd", "<cmd>bdelete<cr>", "Close buffer")
 r.noremap("n", "<leader>q", "<cmd>bdelete<cr>", "Close buffer")
 
 -- Tabs
@@ -111,7 +111,7 @@ f.autocmd({ "TextYankPost" }, {
 	group = vim.api.nvim_create_augroup("aucmdsStarterPack", { clear = true }),
 	pattern = "*",
 	callback = function()
-		vim.highlight.on_yank({ higroup = "PmenuThumb", timeout = 250 })
+		vim.highlight.on_yank({ higroup = "PmenuKindSel", timeout = 250 })
 	end,
 })
 

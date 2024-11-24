@@ -33,7 +33,7 @@ vim.opt.scrolloff = 13
 
 -- line numbering
 vim.wo.number = true
-vim.wo.relativenumber = true
+vim.wo.relativenumber = false
 vim.opt.number = true
 vim.opt.signcolumn = "yes"
 

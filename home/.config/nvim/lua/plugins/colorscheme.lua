@@ -1,35 +1,28 @@
 return {
 	"rebelot/kanagawa.nvim",
+	enabled = true,
 	priority = 1000,
 	config = function()
 		require("kanagawa").setup({
-			compile = false, -- enable compiling the colorscheme
-			undercurl = true, -- enable undercurls
+			compile = false,
+			undercurl = true,
 			commentStyle = { italic = true },
 			functionStyle = {},
 			keywordStyle = { italic = true },
 			statementStyle = { bold = true },
 			typeStyle = {},
-			transparent = false, -- do not set background color
-			dimInactive = false, -- dim inactive window `:h hl-NormalNC`
-			terminalColors = true, -- define vim.g.terminal_color_{0,17}
-			colors = { -- add/modify theme and palette colors
+			transparent = false,
+			dimInactive = false,
+			terminalColors = true,
+			colors = {
 				palette = {
-					-- Bg Shades
-					sumiInk0 = "#161616",
-					sumiInk1 = "#181818",
-					sumiInk2 = "#1a1a1a",
-					sumiInk3 = "#1f1f1f",
-					sumiInk4 = "#2a2a2a",
-					sumiInk5 = "#363636",
-					sumiInk6 = "#545454", -- fg
-					-- sumiInk0 = "#16161D",
-					-- sumiInk1 = "#181820",
-					-- sumiInk2 = "#1a1a22",
-					-- sumiInk3 = "#1F1F28",
-					-- sumiInk4 = "#2A2A37",
-					-- sumiInk5 = "#363646",
-					-- sumiInk6 = "#54546D", --fg
+					sumiInk0 = "#131313",
+					sumiInk1 = "#161616",
+					sumiInk2 = "#181818",
+					sumiInk3 = "#1a1a1a",
+					sumiInk4 = "#1f1f1f",
+					sumiInk5 = "#2a2a2a",
+					sumiInk6 = "#363636",
 				},
 				theme = {
 					wave = {},
@@ -72,7 +65,6 @@ return {
 				light = "lotus",
 			},
 		})
-
 		vim.opt.background = "dark"
 		vim.cmd("colorscheme kanagawa")
 	end,

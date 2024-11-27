@@ -16,6 +16,7 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
 	spec = {
+		require("plugins.avante"),
 		require("plugins.colorscheme"),
 		require("plugins.lsp"),
 		require("plugins.barbecue"),
@@ -29,7 +30,6 @@ require("lazy").setup({
 		require("plugins.git"),
 		require("plugins.increname"),
 		require("plugins.indent-blankline"),
-		require("plugins.lazygit"),
 		require("plugins.markdown-preview"),
 		require("plugins.mason"),
 		require("plugins.neotree"),

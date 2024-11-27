@@ -26,7 +26,7 @@ vim.opt.tabstop = 2
 vim.opt.softtabstop = 2
 vim.opt.autoindent = true
 vim.opt.modelines = 0
-vim.opt.laststatus = 0
+vim.opt.laststatus = 3
 vim.opt.clipboard:append("unnamedplus")
 vim.opt.mouse = "a"
 vim.opt.scrolloff = 13

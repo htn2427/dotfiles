@@ -22,8 +22,8 @@ config.colors = {
 }
 config.font = wezterm.font_with_fallback({
 	"CartographCF Nerd Font",
-	"HackGen Console NF",
 	"JetBrainsMono Nerd Font",
+	"HackGen Console NF",
 	"MesloLGS NF",
 	"Noto Color Emoji",
 })

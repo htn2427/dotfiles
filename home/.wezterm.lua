@@ -30,7 +30,7 @@ config.font = wezterm.font_with_fallback({
 
 config.font_size = 11
 config.cell_width = 0.9
-config.line_height = 1
+config.line_height = 0.9
 
 config.use_fancy_tab_bar = false
 config.tab_bar_at_bottom = false

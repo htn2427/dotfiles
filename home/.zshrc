@@ -62,6 +62,8 @@ alias ll='ls -lah --color'
 alias ls='ls --color'
 alias open='xdg-open'
 alias nvimi='nvim $(fzf -m --preview="cat {}")'
+alias yt='ytfzf -t --pages=2 --async-thumbnails --preview-side=right'
+# alias yt='ytfzf -t --preview-side=right'
 
 # Shell integrations
 eval "$(fzf --zsh)"
@@ -83,6 +85,8 @@ export KEYTIMEOUT=1
 bindkey '^?' backward-delete-char
 bindkey '^e' autosuggest-accept
 bindkey '^y' autosuggest-accept
+bindkey '^p' history-search-backward
+bindkey '^n' history-search-forward
 
 # Change cursor shape for different vi modes.
 function zle-keymap-select {
@@ -104,3 +108,6 @@ zle-line-init() {
 zle -N zle-line-init
 echo -ne '\e[5 q' # Use beam shape cursor on startup.
 preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
+
+# Created by `pipx` on 2024-12-01 05:30:41
+export PATH="$PATH:/home/htn/.local/bin"

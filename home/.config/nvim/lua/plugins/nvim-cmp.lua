@@ -11,12 +11,12 @@ return {
 			"saadparwaiz1/cmp_luasnip",
 			"hrsh7th/cmp-nvim-lua",
 			"hrsh7th/cmp-cmdline",
-			"zbirenbaum/copilot-cmp",
+			-- "zbirenbaum/copilot-cmp",
 		},
 	},
 	config = function()
 		local cmp = require("cmp")
-		require("copilot_cmp").setup()
+		-- require("copilot_cmp").setup()
 		local lspkind = require("lspkind")
 		local cmp_select_opts = { behavior = cmp.SelectBehavior.Select }
 		require("luasnip.loaders.from_vscode").lazy_load()
@@ -78,7 +78,7 @@ return {
 				ghost_text = false,
 			},
 			sources = cmp.config.sources({
-				{ name = "copilot", group_index = 2 },
+				-- { name = "copilot", group_index = 2 },
 				{ name = "luasnip", max_item_count = 5, group_index = 1 },
 				{
 					name = "nvim_lsp",

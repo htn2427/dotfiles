@@ -24,7 +24,7 @@ return {
 			},
 			ask = {
 				floating = false,
-				start_insert = true,
+				start_insert = false,
 				border = "rounded",
 			},
 			panel = { enabled = false }, -- Disable panel

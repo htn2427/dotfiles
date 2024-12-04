@@ -361,7 +361,7 @@ if settings.system == "windows" then
 	if ffiok then
 		ffi.cdef([[
       int MultiByteToWideChar(unsigned int CodePage, unsigned long dwFlags, const char *lpMultiByteStr, int cbMultiByte, wchar_t *lpWideCharStr, int cchWideChar);
-      int StrCmpLogicalW(const wchar_t * psz1, const wchar_t * psz2);        
+      int StrCmpLogicalW(const wchar_t * psz1, const wchar_t * psz2);
     ]])
 
 		local shlwapi = ffi.load("shlwapi.dll")
@@ -1740,4 +1740,3 @@ bind_keys(settings.key_peek_at_playlist, "peek_at_playlist", handle_complex_play
 mp.register_event("start-file", on_start_file)
 mp.register_event("file-loaded", on_file_loaded)
 mp.register_event("end-file", on_end_file)
-

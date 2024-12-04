@@ -16,6 +16,7 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
 	spec = {
+		require("plugins.alpha"),
 		require("plugins.avante"),
 		require("plugins.colorscheme"),
 		require("plugins.lsp"),

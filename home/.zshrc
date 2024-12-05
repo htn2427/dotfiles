@@ -62,7 +62,7 @@ alias ll='ls -lah --color'
 alias ls='ls --color'
 alias open='xdg-open'
 alias nvimi='nvim $(fzf -m --preview="cat {}")'
-alias yt='ytfzf -t --pages=2 --async-thumbnails --preview-side=right'
+alias yt='ytfzf -t --pages=1 --async-thumbnails --preview-side=right'
 # alias yt='ytfzf -t --preview-side=right'
 
 # Shell integrations

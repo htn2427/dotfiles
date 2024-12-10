@@ -26,7 +26,7 @@ vim.opt.tabstop = 2
 vim.opt.softtabstop = 2
 vim.opt.autoindent = true
 vim.opt.modelines = 0
-vim.opt.laststatus = 3
+vim.opt.laststatus = 2
 vim.opt.clipboard:append("unnamedplus")
 vim.opt.mouse = "a"
 vim.opt.scrolloff = 13
@@ -71,3 +71,24 @@ vim.cmd([[
     autocmd BufLeave,FocusLost,InsertEnter,WinLeave   * if &nu                  | set nornu | endif
   augroup END
 ]]) -- h/t https://jeffkreeftmeijer.com/vim-number/
+
+-- local crosshairAugroup = vim.api.nvim_create_augroup("BufferCrosshair", {})
+-- vim.api.nvim_create_autocmd("WinLeave", {
+-- 	pattern = "*",
+-- 	group = crosshairAugroup,
+-- 	callback = function()
+-- 		vim.opt.cursorline = false
+-- 		vim.opt.colorcolumn = ""
+-- 	end,
+-- 	desc = "Window crosshair: Remove cursorline and colorcolumn when buffer loses focus",
+-- })
+--
+-- vim.api.nvim_create_autocmd({ "WinEnter", "BufEnter", "BufNewFile" }, {
+-- 	pattern = "*",
+-- 	group = crosshairAugroup,
+-- 	callback = function()
+-- 		vim.opt.cursorline = true
+-- 		vim.opt.colorcolumn = "+1"
+-- 	end,
+-- 	desc = "Window crosshair: Restore cursorline and colorcolumn when buffer gains focus",
+-- })

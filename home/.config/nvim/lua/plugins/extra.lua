@@ -1,5 +1,24 @@
 return {
 	{
+		"uga-rosa/translate.nvim",
+		config = function()
+			require("translate").setup({
+				default = {
+					command = "translate_shell",
+				},
+				preset = {
+					output = {
+						split = {
+							append = false,
+						},
+					},
+				},
+			})
+			local r = require("utils.remaps")
+			r.noremap({ "n", "v" }, "mm", ":Translate vi<cr><esc>", "Translate")
+		end,
+	},
+	{
 		"windwp/nvim-ts-autotag",
 		opts = {},
 	},

@@ -7,7 +7,6 @@ config.colors = {
 	background = "#1a1a1a",
 
 	cursor_bg = "#c8c093",
-	-- cursor_fg = "#c8c093",
 	cursor_border = "#c8c093",
 
 	selection_fg = "#c8c093",
@@ -33,8 +32,8 @@ config.cell_width = 0.9
 config.line_height = 0.9
 
 config.use_fancy_tab_bar = false
-config.tab_bar_at_bottom = false
 config.enable_tab_bar = false
+config.tab_bar_at_bottom = false
 
 config.window_close_confirmation = "NeverPrompt"
 config.window_decorations = "TITLE | RESIZE"
@@ -55,7 +54,7 @@ end)
 config.audible_bell = "Disabled"
 
 config.enable_wayland = false
-config.warn_about_missing_glyphs = false
+-- config.warn_about_missing_glyphs = false
 -- config.native_macos_fullscreen_mode = true
 
 return config

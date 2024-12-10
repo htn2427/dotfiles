@@ -48,6 +48,7 @@ return {
 				"yamlfmt",
 				"yamllint",
 				"prisma-language-server",
+				"emmet-language-server",
 			}
 			vim.cmd("MasonInstall " .. table.concat(ensure_installed, " "))
 		end, { desc = "install all lsp tools" })

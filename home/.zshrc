@@ -62,8 +62,8 @@ alias ll='ls -lah --color'
 alias ls='ls --color'
 alias open='xdg-open'
 alias nvimi='nvim $(fzf -m --preview="cat {}")'
-alias yt='ytfzf -t --pages=1 --async-thumbnails --preview-side=right'
-# alias yt='ytfzf -t --preview-side=right'
+alias yt='ytfzf -t --pages=1 --preview-side=right --ii=https://inv.nadeko.net' # --async-thumbnails
+alias transa="trans --speak -player mpv"
 
 # Shell integrations
 eval "$(fzf --zsh)"

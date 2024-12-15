@@ -2,7 +2,7 @@ return {
 	{
 		"uga-rosa/translate.nvim",
 		keys = {
-			{ mode = { "n", "v" }, "M", ":Translate vi<cr><esc>", "Translate" },
+			{ mode = { "n", "v" }, "M", ":Translate vi<cr><esc>", desc = "Translate" },
 		},
 		opts = {
 			default = {

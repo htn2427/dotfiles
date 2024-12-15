@@ -5,18 +5,22 @@ return {
 		{
 			"<leader>tt",
 			"<cmd>Trouble diagnostics toggle<cr>",
-			desc = "trouble diagnostics",
+			desc = "Trouble Diagnostics",
 		},
-		{ "<leader>tb", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", desc = "Buffer Diagnostics (Trouble)" },
+		{
+			"<leader>tb",
+			"<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
+			desc = "Buffer Diagnostics (Trouble)",
+		},
 		{
 			"<leader>tT",
 			"<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
-			desc = "buffer diagnostics",
+			desc = "Buffer Diagnostics",
 		},
 		{
 			"<leader>ts",
 			"<cmd>Trouble symbols toggle focus=false<cr>",
-			desc = "symbols",
+			desc = "Symbols",
 		},
 	},
 	opts = {

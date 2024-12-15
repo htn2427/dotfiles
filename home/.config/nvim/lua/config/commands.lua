@@ -6,6 +6,9 @@ local function map(type, input, output, description, additional_options)
 	vim.keymap.set(type, input, output, options)
 end
 
+-- Exit on jk
+map("i", "jk", "<esc>", "Normal mode")
+
 -- better up/down
 map({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", "Down", { expr = true })
 map({ "n", "x" }, "<Down>", "v:count == 0 ? 'gj' : 'j'", "Down", { expr = true })

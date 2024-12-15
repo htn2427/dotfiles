@@ -7,7 +7,7 @@ return {
 			function()
 				require("nvim-highlight-colors").toggle()
 			end,
-			"toggle colorizer",
+			desc = "toggle colorizer",
 		},
 	},
 	opts = {

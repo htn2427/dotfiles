@@ -5,7 +5,7 @@ return {
 		---@diagnostic disable-next-line: missing-fields
 		require("mason").setup({
 			ui = {
-				border = "single",
+				border = "rounded",
 				icons = {
 					package_installed = "✓",
 					package_pending = "➜",

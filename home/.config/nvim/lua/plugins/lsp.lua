@@ -5,7 +5,7 @@ return {
 		{ "j-hui/fidget.nvim", opts = {
 			notification = {
 				window = {
-					border = "single",
+					border = "rounded",
 				},
 			},
 		} },
@@ -16,7 +16,7 @@ return {
 	},
 	event = { "BufReadPre", "BufNewFile" },
 	config = function()
-		require("lspconfig.ui.windows").default_options.border = "single"
+		require("lspconfig.ui.windows").default_options.border = "rounded"
 		vim.api.nvim_create_autocmd("LspAttach", {
 			group = vim.api.nvim_create_augroup("UserLspConfig", {}),
 			callback = function(ev)
@@ -29,7 +29,7 @@ return {
 				map("n", "gd", "<cmd>FzfLua lsp_definitions<CR>", "Show LSP definitions")
 				map("n", "gr", "<cmd>FzfLua lsp_references<CR>", "Show LSP references")
 				map("n", "gi", "<cmd>FzfLua lsp_implementations<CR>", "Show LSP implementations")
-				map({ "n", "v" }, "ga", vim.lsp.buf.code_action, "See available code actions")
+				map({ "n", "v" }, "ga", "<cmd>FzfLua lsp_code_actions<CR>", "See available code actions")
 				map("n", "<leader>rn", vim.lsp.buf.rename, "Smart rename")
 				map("n", "J", vim.diagnostic.open_float, "Show line diagnostics")
 				map("n", "[d", vim.diagnostic.goto_prev, "Go to previous diagnostic")
@@ -81,7 +81,7 @@ return {
 			float = {
 				source = "if_many",
 				style = "minimal",
-				border = "single",
+				border = "rounded",
 				header = "",
 				prefix = "",
 			},
@@ -92,8 +92,8 @@ return {
 			local hl = "DiagnosticSign" .. type
 			vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 		end
-		vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "single" })
-		vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "single" })
+		-- vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
+		-- vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
 		vim.lsp.set_log_level("error")
 	end,
 }

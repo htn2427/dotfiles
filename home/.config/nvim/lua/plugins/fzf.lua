@@ -57,11 +57,14 @@ return {
 				},
 			},
 			winopts = {
-				border = "single",
+				border = "rounded",
 				backdrop = 100,
 				preview = {
-					layout = "horizontal",
-					scrollchars = { "┃", "" },
+					layout = "flex",
+					flip_columns = 120,
+					scrollbar = "float",
+					-- layout = "horizontal",
+					-- scrollchars = { "┃", "" },
 				},
 			},
 			files = {
@@ -88,7 +91,13 @@ return {
 					child_prefix = false,
 				},
 				code_actions = {
+					winopts = {
+						preview = {
+							layout = "vertical",
+						},
+					},
 					previewer = vim.fn.executable("delta") == 1 and "codeaction_native" or nil,
+					preview_pager = "delta --width=$COLUMNS --hunk-header-style='omit' --file-style='omit'",
 				},
 			},
 		})

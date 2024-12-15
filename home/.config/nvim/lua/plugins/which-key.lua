@@ -5,7 +5,7 @@ return {
 		preset = "helix",
 
 		win = {
-			border = "single", -- none, single, double, shadow
+			border = "rounded", -- none, single, double, shadow
 			title = false,
 		},
 	},

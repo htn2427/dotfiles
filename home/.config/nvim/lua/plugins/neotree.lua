@@ -7,12 +7,12 @@ return {
 	},
 	event = "VeryLazy",
 	keys = {
-		{ "<leader>n", "<cmd>Neotree float reveal<CR>", silent = true, desc = "File Explorer" },
+		{ "<leader>n", "<cmd>Neotree float reveal<CR>", desc = "File Explorer", silent = true },
 	},
 	config = function()
 		require("neo-tree").setup({
 			close_if_last_window = true,
-			popup_border_style = "single",
+			popup_border_style = "rounded",
 			enable_git_status = true,
 			enable_modified_markers = true,
 			enable_diagnostics = true,

@@ -5,11 +5,18 @@ return {
 		local r = require("utils.remaps")
 		local c = require("nvim-highlight-colors")
 		c.setup({
-			render = "background",
-			virtual_symbol = " ",
+			---Render style
+			---@usage 'background'|'foreground'|'virtual'
+			render = "virtual",
+			virtual_symbol = "",
 			virtual_symbol_prefix = "",
 			virtual_symbol_suffix = "",
-			virtual_symbol_position = "inline",
+			---Set virtual symbol position()
+			---@usage 'inline'|'eol'|'eow'
+			---inline mimics VS Code style
+			---eol stands for `end of column` - Recommended to set `virtual_symbol_suffix = ''` when used.
+			---eow stands for `end of word` - Recommended to set `virtual_symbol_prefix = ' ' and virtual_symbol_suffix = ''` when used.
+			virtual_symbol_position = "eow",
 			enable_hex = true,
 			enable_short_hex = true,
 			enable_rgb = true,

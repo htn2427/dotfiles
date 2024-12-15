@@ -7,7 +7,7 @@ return {
 			ui = {
 				border = "single",
 				icons = require("utils.icons").mason,
-				-- zindex = 99,
+				zindex = 99,
 			},
 		})
 		f.cmd("MasonInstallAll", function()

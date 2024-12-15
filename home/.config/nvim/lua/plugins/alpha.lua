@@ -1,5 +1,6 @@
 return {
 	"goolord/alpha-nvim",
+	enabled = false,
 	config = function()
 		local alpha = require("alpha")
 		local startify = require("alpha.themes.startify")

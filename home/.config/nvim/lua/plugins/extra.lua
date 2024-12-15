@@ -2,6 +2,7 @@ return {
 	{
 		"uga-rosa/translate.nvim",
 		config = function()
+			local r = require("utils.remaps")
 			require("translate").setup({
 				default = {
 					command = "translate_shell",
@@ -14,8 +15,7 @@ return {
 					},
 				},
 			})
-			local r = require("utils.remaps")
-			r.noremap({ "n", "v" }, "mm", ":Translate vi<cr><esc>", "Translate")
+			r.noremap({ "n", "v" }, "J", ":Translate vi<cr><esc>", "Translate")
 		end,
 	},
 	{
@@ -63,6 +63,7 @@ return {
 	{
 		"declancm/cinnamon.nvim",
 		version = "*", -- use latest release
+		enabled = true,
 		opts = {
 			-- change default options here
 		},
@@ -82,12 +83,22 @@ return {
 	},
 
 	{
-		"phaazon/hop.nvim",
-		event = "BufRead",
+		"aznhe21/hop.nvim",
+		branch = "fix-some-bugs", -- optional but strongly recommended
 		config = function()
+			local r = require("utils.remaps")
 			require("hop").setup()
-			vim.api.nvim_set_keymap("n", "S", ":HopChar2<cr>", { silent = true })
-			vim.api.nvim_set_keymap("n", "s", ":HopWord<cr>", { silent = true })
+
+			local function hop_key(lhs, rhs, desc, modes)
+				desc = "Hop: " .. desc
+				modes = modes or { "n" }
+				r.noremap(modes, lhs, string.format("<cmd>%s<cr>", rhs), desc)
+			end
+			hop_key("<leader>j", "HopLineStartAC", "HopLineStartAC")
+			hop_key("<leader>k", "HopLineStartBC", "HopLineStartBC")
+			hop_key("<leader>w", "HopWordAC", "HopWordAC")
+			hop_key("<leader>e", "HopWordCurrentLine", "HopWordCurrentLine")
+			hop_key("<leader>b", "HopWordBC", "HopWordBC")
 		end,
 	},
 }

@@ -1,7 +1,6 @@
 local r = require("utils.remaps")
 local vim = vim
 local X = {}
-
 local function lsp_toggle()
 	if vim.diagnostic.is_enabled() == false then
 		vim.diagnostic.enable()
@@ -21,7 +20,7 @@ local function generate_buf_keymapper(bufnr)
 		if extraOptions ~= nil then
 			options = vim.tbl_deep_extend("force", options, extraOptions)
 		end
-		r.noremap(type, input, output, description, options)
+		r.noremap(type, input, output, "Lsp: " .. description, options)
 	end
 end
 
@@ -37,35 +36,35 @@ function X.set_default_on_buffer(client, bufnr)
 	buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
 
 	if cap.definitionProvider then
-		buf_set_keymap("n", "<leader>lD", vim.lsp.buf.definition, "show definition")
+		buf_set_keymap("n", "<leader>lD", vim.lsp.buf.definition, "Show definition")
 	end
 
 	if cap.declarationProvider then
-		buf_set_keymap("n", "<leader>ld", "<cmd>lua vim.lsp.buf.declaration()<CR>", "show declaration")
+		buf_set_keymap("n", "<leader>ld", "<cmd>lua vim.lsp.buf.declaration()<CR>", "Show declaration")
 	end
 
 	if cap.implementationProvider then
-		buf_set_keymap("n", "gi", vim.lsp.buf.implementation, "go to implementation")
-		buf_set_keymap("n", "gI", function()
+		buf_set_keymap("n", "<leader>li", vim.lsp.buf.implementation, "Go to implementation")
+		buf_set_keymap("n", "<leader>lI", function()
 			require("fzf-lua").lsp_implementations()
-		end, "search implementations")
+		end, "Search implementations")
 	end
 
 	if cap.referencesProvider then
 		buf_set_keymap("n", "<leader>lr", function()
 			require("fzf-lua").lsp_references()
-		end, "show references")
+		end, "Show references")
 	end
 
 	if cap.codeActionProvider then
-		buf_set_keymap({ "n", "v" }, "ga", function()
+		buf_set_keymap({ "n", "v" }, "<leader>la", function()
 			local line_count = vim.api.nvim_buf_line_count(bufnr)
 			local range = {
 				start = { line = 1, character = 1 },
 				["end"] = { line = line_count, character = 1 },
 			}
 			vim.lsp.buf.code_action({ range = range.range })
-		end, "code actions")
+		end, "Code actions")
 	end
 
 	if cap.renameProvider then
@@ -75,12 +74,12 @@ function X.set_default_on_buffer(client, bufnr)
 	if cap.documentSymbolProvider then
 		buf_set_keymap("n", "<leader>lo", function()
 			require("fzf-lua").lsp_document_symbols()
-		end, "document symbols")
+		end, "Document symbols")
 	end
 
 	local ft = vim.bo[bufnr].filetype
 	if ft == "sh" or ft == "lua" then
-		buf_set_keymap("n", "<leader>li", function()
+		buf_set_keymap("n", "<leader>lw", function()
 			local row, _ = unpack(vim.api.nvim_win_get_cursor(0))
 			local msgs = vim.diagnostic.get(bufnr)
 			local last, result = unpack({ "error", "" })
@@ -101,21 +100,22 @@ function X.set_default_on_buffer(client, bufnr)
 	end
 
 	if cap.hoverProvider then
-		buf_set_keymap("n", "M", vim.lsp.buf.hover, "hover docs")
+		-- buf_set_keymap("n", "K", vim.lsp.buf.hover, "Hover docs")
+		r.noremap("n", "K", vim.lsp.buf.hover, "Hover docs")
 	end
-	buf_set_keymap("n", "<C-m>", vim.diagnostic.open_float, "show line diagnostics")
-	buf_set_keymap("n", "<leader>m", vim.lsp.buf.signature_help, "show signature")
-	buf_set_keymap("n", "<leader>lI", ":LspInfo<CR>", "lsp info")
+	buf_set_keymap("n", "<leader>ls", vim.lsp.buf.signature_help, "Show signature")
+	buf_set_keymap("n", "M", vim.diagnostic.open_float, "Show line diagnostics")
+	-- buf_set_keymap("n", "<leader>lI", ":LspInfo<CR>", "lsp info")
 	buf_set_keymap("n", "<leader>lt", function()
 		lsp_toggle()
-	end, "toggle lsp")
+	end, "Toggle lsp")
 	buf_set_keymap("n", "<leader>ll", function()
 		if vim.diagnostic.is_enabled() == false then
 			vim.diagnostic.enable()
 			vim.cmd([[LspStart]])
 		end
 		require("lsp_lines").toggle()
-	end, "toggle lsp lines")
+	end, "Toggle lsp lines")
 end
 
 return X

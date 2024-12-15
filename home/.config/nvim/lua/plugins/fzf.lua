@@ -95,18 +95,18 @@ return {
 		end
 
 		-- find files
-		fzf("<leader>f", "files", "Find Files")
-		fzf("<leader>b", "buffers", "Find Buffers")
+		fzf("<leader>ff", "files", "Find Files")
+		fzf("<leader>fb", "buffers", "Find Buffers")
 
 		-- search word
-		fzf("<leader>ss", "live_grep_native", "Live Grep")
-		fzf("<leader>sv", "grep_visual", "Grep Visual", { "v" })
-		fzf("<leader>sd", "diagnostics_workspace", "Search Diagnostics")
-		fzf("<leader>sg", "git_files", "Search Git Files") -- git
-		fzf("<leader>sw", "grep_cword", "Grep cword")
-		fzf("<leader>sW", "grep_cWORD", "Grep cWORD")
+		fzf("<leader>fs", "live_grep_native", "Live Grep")
+		fzf("<leader>fv", "grep_visual", "Grep Visual", { "v" })
+		fzf("<leader>fd", "diagnostics_workspace", "Search Diagnostics")
+		fzf("<leader>fg", "git_files", "Search Git Files") -- git
+		fzf("<leader>fw", "grep_cword", "Grep cword")
+		fzf("<leader>fW", "grep_cWORD", "Grep cWORD")
 
-		fzf("<leader>sk", "keymaps", "Keymaps") -- key
-		fzf("<leader>sh", "helptags", "Search Help") -- help tabs
+		fzf("<leader>fk", "keymaps", "Keymaps") -- key
+		fzf("<leader>fh", "helptags", "Search Help") -- help tabs
 	end,
 }

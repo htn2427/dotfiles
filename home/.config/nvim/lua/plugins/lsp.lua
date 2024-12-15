@@ -2,13 +2,7 @@ return {
 	"neovim/nvim-lspconfig",
 	dependencies = {
 		{ "folke/neodev.nvim", opts = {} },
-		{ "j-hui/fidget.nvim", opts = {
-			notification = {
-				window = {
-					border = "rounded",
-				},
-			},
-		} },
+		{ "j-hui/fidget.nvim", opts = {} },
 		{ "ravibrock/spellwarn.nvim", opts = {} },
 		{ "https://git.sr.ht/~whynothugo/lsp_lines.nvim", opts = {} },
 		"b0o/schemastore.nvim",
@@ -92,8 +86,8 @@ return {
 			local hl = "DiagnosticSign" .. type
 			vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 		end
-		-- vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
-		-- vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
+		vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
+		vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
 		vim.lsp.set_log_level("error")
 	end,
 }

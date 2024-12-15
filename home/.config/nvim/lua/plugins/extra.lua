@@ -10,6 +10,9 @@ return {
 			},
 			preset = {
 				output = {
+					floating = {
+						border = "rounded",
+					},
 					split = {
 						append = false,
 					},

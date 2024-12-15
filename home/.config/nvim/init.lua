@@ -1,3 +1,4 @@
-require("core.general")
-require("core.commands")
-require("lazy-plugins")
+require("config.generals")
+require("config.cmds")
+require("config.commands")
+require("config.lazy")

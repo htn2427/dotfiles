@@ -9,6 +9,12 @@ return {
 			require("cmp").setup.buffer({ sources = { { name = "vim-dadbod-completion" } } })
 		end,
 	},
+	keys = {
+		{ "<leader>Tt", "<cmd>DBUIToggle<cr>", desc = "toggle ui" },
+		{ "<leader>Tf", "<cmd>DBUIFindBuffer<cr>", desc = "find buffer" },
+		{ "<leader>Tr", "<cmd>DBUIRenameBuffer<cr>", desc = "rename buffer" },
+		{ "<leader>Tq", "<cmd>DBUILastQueryInfo<cr>", desc = "last query " },
+	},
 	config = function(_, opts)
 		-- vim.g.db_ui_save_location = vim.fn.stdpath("config") .. require("plenary.path").path.sep .. "db_ui"
 		vim.g.db_ui_save_location = "~/dev/db_ui"
@@ -29,10 +35,4 @@ return {
 			end,
 		})
 	end,
-	keys = {
-		{ "<leader>Tt", "<cmd>DBUIToggle<cr>", desc = "toggle ui" },
-		{ "<leader>Tf", "<cmd>DBUIFindBuffer<cr>", desc = "find buffer" },
-		{ "<leader>Tr", "<cmd>DBUIRenameBuffer<cr>", desc = "rename buffer" },
-		{ "<leader>Tq", "<cmd>DBUILastQueryInfo<cr>", desc = "last query " },
-	},
 }

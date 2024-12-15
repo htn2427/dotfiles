@@ -37,8 +37,8 @@ vim.opt.undodir = os.getenv("HOME") .. "/.local/state/nvim/undo"
 vim.opt.undofile = true
 
 -- spelling
-vim.opt.spell = false
-vim.opt.spelllang = { "en_us" }
+-- vim.opt.spell = false
+-- vim.opt.spelllang = { "en_us" }
 
 -- misc
 -- vim.opt.guicursor = ""
@@ -67,10 +67,3 @@ vim.wo.relativenumber = true
 vim.opt.number = true
 vim.opt.signcolumn = "yes"
 vim.opt.cursorline = true
-vim.cmd([[
-  augroup numbertoggle
-    autocmd!
-    autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &nu && mode() != "i" | set rnu   | endif
-    autocmd BufLeave,FocusLost,InsertEnter,WinLeave   * if &nu                  | set nornu | endif
-  augroup END
-]]) -- h/t https://jeffkreeftmeijer.com/vim-number/

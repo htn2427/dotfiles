@@ -2,15 +2,19 @@ return {
 	"williamboman/mason.nvim",
 	build = ":MasonInstallAll",
 	config = function()
-		local f = require("utils.functions")
+		---@diagnostic disable-next-line: missing-fields
 		require("mason").setup({
 			ui = {
 				border = "single",
-				icons = require("utils.icons").mason,
+				icons = {
+					package_installed = "✓",
+					package_pending = "➜",
+					package_uninstalled = "✗",
+				},
 				zindex = 99,
 			},
 		})
-		f.cmd("MasonInstallAll", function()
+		vim.api.nvim_create_user_command("MasonInstallAll", function()
 			vim.cmd("MasonUpdate")
 			local ensure_installed = {
 				"bash-language-server",

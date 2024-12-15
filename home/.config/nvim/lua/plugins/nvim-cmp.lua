@@ -5,30 +5,41 @@ return {
 		{
 			{ "L3MON4D3/LuaSnip", build = "make install_jsregexp" },
 			"rafamadriz/friendly-snippets",
-			"onsails/lspkind.nvim",
+			"saadparwaiz1/cmp_luasnip",
+
+			-- Adds LSP completion capabilities
+			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-buffer",
 			"hrsh7th/cmp-path",
-			"saadparwaiz1/cmp_luasnip",
 			"hrsh7th/cmp-nvim-lua",
 			"hrsh7th/cmp-cmdline",
-			-- "zbirenbaum/copilot-cmp",
+
+			"onsails/lspkind.nvim",
 		},
 	},
 	config = function()
 		local cmp = require("cmp")
-		-- require("copilot_cmp").setup()
 		local lspkind = require("lspkind")
+		local luasnip = require("luasnip")
 		local cmp_select_opts = { behavior = cmp.SelectBehavior.Select }
 		require("luasnip.loaders.from_vscode").lazy_load()
+		luasnip.config.setup({})
+
 		local has_words_before = function()
 			unpack = unpack or table.unpack
 			local line, col = unpack(vim.api.nvim_win_get_cursor(0))
 			return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 		end
 		cmp.setup({
+			snippet = {
+				expand = function(args)
+					luasnip.lsp_expand(args.body)
+				end,
+			},
+			completion = {
+				completeopt = "menu,menuone,noinsert",
+			},
 			mapping = {
-				-- ["<C-p>"] = cmp.mapping.select_prev_item(cmp_select_opts),
-				-- ["<C-n>"] = cmp.mapping.select_next_item(cmp_select_opts),
 				["<C-n>"] = cmp.mapping(function(fallback)
 					if cmp.visible() then
 						cmp.select_next_item()
@@ -63,9 +74,6 @@ return {
 				["<C-Space>"] = cmp.mapping.complete({}),
 			},
 			preselect = "item",
-			completion = {
-				completeopt = "menu,menuone,noinsert",
-			},
 			window = {
 				completion = cmp.config.window.bordered({
 					border = "single",
@@ -78,22 +86,14 @@ return {
 				ghost_text = false,
 			},
 			sources = cmp.config.sources({
-				-- { name = "copilot", group_index = 2 },
-				{ name = "luasnip", max_item_count = 5, group_index = 1 },
-				{
-					name = "nvim_lsp",
-					max_item_count = 20,
-					group_index = 1,
-
-					entry_filter = function(entry, _)
-						return require("cmp").lsp.CompletionItemKind.Snippet ~= entry:get_kind()
-					end,
-				},
-				{ name = "nvim_lua", group_index = 1 },
-				{ name = "vim-dadbod-completion", group_index = 1 },
-				{ name = "path", group_index = 2 },
-				{ name = "buffer", keyword_length = 2, max_item_count = 5, group_index = 2 },
+				{ name = "nvim_lsp" },
+				{ name = "nvim_lua" },
+				{ name = "luasnip" },
+				{ name = "buffer" },
+				{ name = "path" },
+				{ name = "vim-dadbod-completion" },
 			}),
+			---@diagnostic disable-next-line: missing-fields
 			formatting = {
 				format = lspkind.cmp_format({
 					mode = "symbol_text",
@@ -106,16 +106,13 @@ return {
 							buffer = " buffer",
 						}
 						vim_item.menu = menuname_map[entry.source.name]
-
 						local color_item = require("nvim-highlight-colors").format(entry, { kind = vim_item.kind })
 						if color_item.abbr_hl_group then
 							vim_item.kind_hl_group = color_item.abbr_hl_group
 							vim_item.kind = color_item.abbr .. vim_item.kind
 						end
-						-- cmp_tailwind.formatter(entry, vim_item)
 						return vim_item
 					end,
-					-- menu = source_mapping,
 				}),
 			},
 		})

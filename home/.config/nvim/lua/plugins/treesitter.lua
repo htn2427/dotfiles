@@ -7,8 +7,8 @@ return {
 		"RRethy/nvim-treesitter-textsubjects",
 		"nvim-treesitter/nvim-treesitter-textobjects",
 	},
-	config = function()
-		require("nvim-treesitter.configs").setup({
+	opts = {
+		configs = {
 			ensure_installed = {
 				"bash",
 				"c",
@@ -98,6 +98,6 @@ return {
 					},
 				},
 			},
-		})
-	end,
+		},
+	},
 }

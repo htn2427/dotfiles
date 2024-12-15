@@ -8,10 +8,8 @@ return {
 	event = "VeryLazy",
 	keys = {
 		{ "<leader>n", "<cmd>Neotree float reveal<CR>", silent = true, desc = "File Explorer" },
-		-- { "<leader>n", "<cmd>Neotree left<CR>", silent = true, desc = "File Explorer" },
 	},
 	config = function()
-		local icons = require("utils.icons")
 		require("neo-tree").setup({
 			close_if_last_window = true,
 			popup_border_style = "single",
@@ -28,9 +26,24 @@ return {
 					symbol = " ",
 					highlight = "NeoTreeModified",
 				},
-				icon = icons.neotree.folder,
+				icon = {
+					folder_closed = "",
+					folder_open = "",
+					folder_empty = "",
+					folder_empty_open = "",
+				},
 				git_status = {
-					symbols = icons.git,
+					symbols = {
+						added = "",
+						deleted = "",
+						modified = "",
+						renamed = "",
+						untracked = "",
+						ignored = "",
+						unstaged = "",
+						staged = "",
+						conflict = "",
+					},
 				},
 			},
 			window = {

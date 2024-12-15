@@ -1,7 +1,19 @@
 return {
 	"ibhagwan/fzf-lua",
 	dependencies = { "nvim-tree/nvim-web-devicons" },
-	-- event = "VeryLazy",
+	version = false,
+	keys = {
+		{ "<leader>ff", ":FzfLua files<cr>", desc = "Find Files" },
+		{ "<leader>fb", ":FzfLua buffers<cr>", desc = "Find Buffers" },
+		{ "<leader>fs", ":FzfLua live_grep_native<cr>", desc = "Live Grep" },
+		{ "<leader>fd", ":FzfLua diagnostics_workspace<cr>", desc = "Search Diagnostics" },
+		{ "<leader>fg", ":FzfLua git_files<cr>", desc = "Search Git Files" },
+		{ "<leader>fw", ":FzfLua grep_cword<cr>", desc = "Grep cword" },
+		{ "<leader>fW", ":FzfLua grep_cWORD<cr>", desc = "Grep cWORD" },
+		{ "<leader>fk", ":FzfLua keymaps<cr>", desc = "Keymaps" },
+		{ "<leader>fh", ":FzfLua helptags<cr>", desc = "Search Help" },
+	},
+	lazy = true,
 	config = function()
 		local fzflua = require("fzf-lua")
 		local actions = require("fzf-lua.actions")
@@ -80,33 +92,6 @@ return {
 				},
 			},
 		})
-
 		fzflua.register_ui_select()
-
-		local r = require("utils.remaps")
-		---@param lhs string
-		---@param rhs string
-		---@param desc string
-		---@param modes? string[]
-		local function fzf(lhs, rhs, desc, modes)
-			desc = "FzfLua: " .. desc
-			modes = modes or { "n" }
-			r.noremap(modes, lhs, string.format("<cmd>FzfLua %s<cr>", rhs), desc)
-		end
-
-		-- find files
-		fzf("<leader>ff", "files", "Find Files")
-		fzf("<leader>fb", "buffers", "Find Buffers")
-
-		-- search word
-		fzf("<leader>fs", "live_grep_native", "Live Grep")
-		fzf("<leader>fv", "grep_visual", "Grep Visual", { "v" })
-		fzf("<leader>fd", "diagnostics_workspace", "Search Diagnostics")
-		fzf("<leader>fg", "git_files", "Search Git Files") -- git
-		fzf("<leader>fw", "grep_cword", "Grep cword")
-		fzf("<leader>fW", "grep_cWORD", "Grep cWORD")
-
-		fzf("<leader>fk", "keymaps", "Keymaps") -- key
-		fzf("<leader>fh", "helptags", "Search Help") -- help tabs
 	end,
 }

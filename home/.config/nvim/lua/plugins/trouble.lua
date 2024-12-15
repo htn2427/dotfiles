@@ -1,14 +1,13 @@
 return {
 	"folke/trouble.nvim",
-	cmd = "Trouble",
-	event = "VeryLazy",
-	dependencies = { "nvim-tree/nvim-web-devicons" },
+	cmd = { "Trouble" },
 	keys = {
 		{
 			"<leader>tt",
 			"<cmd>Trouble diagnostics toggle<cr>",
 			desc = "trouble diagnostics",
 		},
+		{ "<leader>tb", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", desc = "Buffer Diagnostics (Trouble)" },
 		{
 			"<leader>tT",
 			"<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
@@ -21,13 +20,10 @@ return {
 		},
 	},
 	opts = {
-		delay = 400,
 		modes = {
-			diagnostics = {
-				auto_open = false,
-				auto_close = true,
+			lsp = {
+				win = { position = "right" },
 			},
 		},
-		warn_no_results = false,
 	},
 }

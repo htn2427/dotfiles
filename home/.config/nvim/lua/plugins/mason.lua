@@ -38,7 +38,7 @@ return {
 				"python-lsp-server",
 				"rust-analyzer",
 				"shellcheck",
-				-- "shellharden",
+				"shellharden",
 				"shfmt",
 				"standardjs",
 				"stylelint",

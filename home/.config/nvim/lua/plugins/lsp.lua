@@ -2,7 +2,13 @@ return {
 	"neovim/nvim-lspconfig",
 	dependencies = {
 		{ "folke/neodev.nvim", opts = {} },
-		{ "j-hui/fidget.nvim", opts = {} },
+		{ "j-hui/fidget.nvim", opts = {
+			notification = {
+				window = {
+					border = "single",
+				},
+			},
+		} },
 		{ "ravibrock/spellwarn.nvim", opts = {} },
 		{ "https://git.sr.ht/~whynothugo/lsp_lines.nvim", opts = {} },
 		"b0o/schemastore.nvim",

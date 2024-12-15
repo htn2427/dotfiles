@@ -1,77 +1,68 @@
-local map = vim.keymap.set
+local function map(type, input, output, description, additional_options)
+	local options = { noremap = true, silent = true, desc = description }
+	if additional_options then
+		options = vim.tbl_deep_extend("force", options, additional_options)
+	end
+	vim.keymap.set(type, input, output, options)
+end
 
 -- better up/down
-map({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true, silent = true })
-map({ "n", "x" }, "<Down>", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true, silent = true })
-map({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { desc = "Up", expr = true, silent = true })
-map({ "n", "x" }, "<Up>", "v:count == 0 ? 'gk' : 'k'", { desc = "Up", expr = true, silent = true })
+map({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", "Down", { expr = true })
+map({ "n", "x" }, "<Down>", "v:count == 0 ? 'gj' : 'j'", "Down", { expr = true })
+map({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", "Up", { expr = true })
+map({ "n", "x" }, "<Up>", "v:count == 0 ? 'gk' : 'k'", "Up", { expr = true })
 
 -- Keep cursor centered when scrolling
-map("n", "<C-d>", "<C-d>zz", { desc = "Scroll down and center", noremap = true, silent = true })
-map("n", "<C-u>", "<C-u>zz", { desc = "Scroll up and center", noremap = true, silent = true })
+map("n", "<C-d>", "<C-d>zz", "Scroll down and center")
+map("n", "<C-u>", "<C-u>zz", "Scroll up and center")
 
 -- Save
-map({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save File" })
+map({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", "Save File")
 
 -- focus highlight searches
-map("n", "n", "nzzzv", { desc = "Next search result", noremap = true, silent = true })
-map("n", "N", "Nzzzv", { desc = "Previous search result", noremap = true, silent = true })
-map("n", "*", "*zzv", { desc = "Search word under cursor forward", noremap = true, silent = true })
-map("n", "#", "#zzv", { desc = "Search word under cursor backward", noremap = true, silent = true })
-map("n", "g*", "g*zz", { desc = "Search partial word under cursor forward", noremap = true, silent = true })
-map("n", "g#", "g#zz", { desc = "Search partial word under cursor backward", noremap = true, silent = true })
+map("n", "n", "nzzzv", "Next search result")
+map("n", "N", "Nzzzv", "Previous search result")
+map("n", "*", "*zzv", "Search word under cursor forward")
+map("n", "#", "#zzv", "Search word under cursor backward")
+map("n", "g*", "g*zz", "Search partial word under cursor forward")
+map("n", "g#", "g#zz", "Search partial word under cursor backward")
 
 -- Move block
-map("v", "<C-k>", ":m '<-2<CR>gv=gv", { desc = "Move block up", noremap = true, silent = true })
-map("v", "<C-j>", ":m '>+1<CR>gv=gv", { desc = "Move block down", noremap = true, silent = true })
+map("v", "<C-k>", ":m '<-2<CR>gv=gv", "Move block up")
+map("v", "<C-j>", ":m '>+1<CR>gv=gv", "Move block down")
 
 -- Clear highlight
-map("n", "<esc><esc>", ":nohlsearch<cr>", { desc = "Clear search highlights", noremap = true, silent = true })
+map("n", "<esc><esc>", ":nohlsearch<cr>", "Clear search highlights")
 
 -- Buffers
-map("n", "<leader>Bn", "<cmd>bnext<cr>", { desc = "Next buffer", noremap = true, silent = true })
-map("n", "<leader>Bp", "<cmd>bprevious<cr>", { desc = "Previous buffer", noremap = true, silent = true })
-map("n", "<leader>Bt", "<cmd>b#<cr>", { desc = "Switch to alternate buffer", noremap = true, silent = true })
-map(
-	"n",
-	"<leader>BD",
-	"<cmd>%bd|e#|bd#<cr>",
-	{ desc = "Delete all buffers except current", noremap = true, silent = true }
-)
-map("n", "<leader>Bd", "<cmd>bdelete<cr>", { desc = "Delete current buffer", noremap = true, silent = true })
-map("n", "<leader>q", "<cmd>bdelete<cr>", { desc = "Delete current buffer", noremap = true, silent = true })
+map("n", "<leader>Bn", "<cmd>bnext<cr>", "Next buffer")
+map("n", "<leader>Bp", "<cmd>bprevious<cr>", "Previous buffer")
+map("n", "<leader>Bt", "<cmd>b#<cr>", "Switch to alternate buffer")
+map("n", "<leader>BD", "<cmd>%bd|e#|bd#<cr>", "Delete all buffers except current")
+map("n", "<leader>Bd", "<cmd>bdelete<cr>", "Delete current buffer")
+map("n", "<leader>q", "<cmd>bdelete<cr>", "Delete current buffer")
 
 -- Tabs
-map("n", "<leader><tab>l", "<cmd>tablast<cr>", { desc = "Go to last tab", noremap = true, silent = true })
-map("n", "<leader><tab>f", "<cmd>tabfirst<cr>", { desc = "Go to first tab", noremap = true, silent = true })
-map("n", "<leader><tab>a", "<cmd>tabnew<cr>", { desc = "Open new tab", noremap = true, silent = true })
-map("n", "<leader><tab>n", "<cmd>tabnext<cr>", { desc = "Go to next tab", noremap = true, silent = true })
-map("n", "<leader><tab>d", "<cmd>tabclose<cr>", { desc = "Close current tab", noremap = true, silent = true })
-map("n", "<leader><tab>p", "<cmd>tabprevious<cr>", { desc = "Go to previous tab", noremap = true, silent = true })
+map("n", "<leader><tab>l", "<cmd>tablast<cr>", "Go to last tab")
+map("n", "<leader><tab>f", "<cmd>tabfirst<cr>", "Go to first tab")
+map("n", "<leader><tab>a", "<cmd>tabnew<cr>", "Open new tab")
+map("n", "<leader><tab>n", "<cmd>tabnext<cr>", "Go to next tab")
+map("n", "<leader><tab>d", "<cmd>tabclose<cr>", "Close current tab")
+map("n", "<leader><tab>p", "<cmd>tabprevious<cr>", "Go to previous tab")
 
 -- Better indenting
-map("v", "<", "<gv", { desc = "Indent left and reselect", noremap = true, silent = true })
-map("v", ">", ">gv", { desc = "Indent right and reselect", noremap = true, silent = true })
+map("v", "<", "<gv", "Indent left and reselect")
+map("v", ">", ">gv", "Indent right and reselect")
 
 -- New Windows
-map("n", [[<leader>"]], "<cmd>split<CR>", { desc = "Horizontal split", noremap = true, silent = true })
-map("n", [[<leader>%]], "<cmd>vsplit<CR>", { desc = "Vertical split", noremap = true, silent = true })
+map("n", [[<leader>"]], "<cmd>split<CR>", "Horizontal split")
+map("n", [[<leader>%]], "<cmd>vsplit<CR>", "Vertical split")
 
 -- Add empty lines before and after cursor line
-map(
-	"n",
-	"<leader>O",
-	"<cmd>call append(line('.') - 1, repeat([''], v:count1))<cr>",
-	{ desc = "Add empty line above", noremap = true, silent = true }
-)
-map(
-	"n",
-	"<leader>o",
-	"<cmd>call append(line('.'), repeat([''], v:count1))<cr>",
-	{ desc = "Add empty line below", noremap = true, silent = true }
-)
+map("n", "<leader>O", "<cmd>call append(line('.') - 1, repeat([''], v:count1))<cr>", "Add empty line above")
+map("n", "<leader>o", "<cmd>call append(line('.'), repeat([''], v:count1))<cr>", "Add empty line below")
 
 -- paste over currently selected text without yanking it
-map("x", "<leader>p", [["_dP]], { desc = "Paste without yanking" })
-map({ "n", "v" }, "<leader>d", [["_d]], { desc = "Delete without yanking" })
-map({ "n", "v" }, "<leader>c", [["_c]], { desc = "Change without yanking" })
+map("v", "<leader>p", [["_dP]], "Paste without yanking")
+map({ "n", "v" }, "<leader>d", [["_d]], "Delete without yanking")
+map({ "n", "v" }, "<leader>c", [["_c]], "Change without yanking")

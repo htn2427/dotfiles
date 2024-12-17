@@ -16,11 +16,6 @@ return {
 			enable = false,
 		},
 		renderer = {
-			-- root_folder_label = ":~:s?$?/?",
-
-			root_folder_label = function(path)
-				return "./" .. vim.fn.fnamemodify(path, ":t")
-			end,
 			highlight_git = "name",
 			icons = {
 				symlink_arrow = " → ",

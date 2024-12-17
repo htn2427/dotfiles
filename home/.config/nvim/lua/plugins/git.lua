@@ -23,7 +23,7 @@ return {
 			},
 			auto_attach = true,
 			attach_to_untracked = false,
-			current_line_blame = true, -- Toggle with `:Gitsigns toggle_current_line_blame`
+			current_line_blame = false, -- Toggle with `:Gitsigns toggle_current_line_blame`
 			current_line_blame_opts = {
 				virt_text = true,
 				virt_text_pos = "eol", -- 'eol' | 'overlay' | 'right_align'
@@ -57,21 +57,21 @@ return {
 				-- Navigation
 				map("n", "]h", function()
 					if vim.wo.diff then
-						vim.cmd.normal({ "]g", bang = true })
+						vim.cmd.normal({ "]h", bang = true })
 					else
 						gitsigns.nav_hunk("next")
 					end
-				end)
+				end, { desc = "Next Hunk" })
 
 				map("n", "[h", function()
 					if vim.wo.diff then
-						vim.cmd.normal({ "[g", bang = true })
+						vim.cmd.normal({ "[h", bang = true })
 					else
 						gitsigns.nav_hunk("prev")
 					end
-				end)
+				end, { desc = "Prev Hunk" })
 				map("n", "<leader>hp", gitsigns.preview_hunk, { desc = "preview_hunk" })
-				map("n", "<leader>hs", gitsigns.reset_hunk, { desc = "reset_hunk" })
+				map("n", "<leader>hr", gitsigns.reset_hunk, { desc = "reset_hunk" })
 			end,
 		},
 	},

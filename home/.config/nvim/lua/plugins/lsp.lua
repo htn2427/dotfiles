@@ -19,16 +19,14 @@ return {
 					opts.desc = desc
 					vim.keymap.set(mode, l, r, opts)
 				end
-				map("n", "gD", vim.lsp.buf.declaration, "Go to declaration")
-				map("n", "gd", "<cmd>FzfLua lsp_definitions<CR>", "Show LSP definitions")
-				map("n", "gr", "<cmd>FzfLua lsp_references<CR>", "Show LSP references")
-				map("n", "gi", "<cmd>FzfLua lsp_implementations<CR>", "Show LSP implementations")
-				map({ "n", "v" }, "ga", "<cmd>FzfLua lsp_code_actions<CR>", "See available code actions")
+				map("n", "<leader>lD", vim.lsp.buf.declaration, "Go to declaration")
+				map("n", "<leader>le", "<cmd>FzfLua lsp_definitions<CR>", "Show LSP definitions")
+				map("n", "<leader>lr", "<cmd>FzfLua lsp_references<CR>", "Show LSP references")
+				map("n", "<leader>li", "<cmd>FzfLua lsp_implementations<CR>", "Show LSP implementations")
 				map("n", "<leader>rn", vim.lsp.buf.rename, "Smart rename")
-				map("n", "J", vim.diagnostic.open_float, "Show line diagnostics")
-				map("n", "[d", vim.diagnostic.goto_prev, "Go to previous diagnostic")
-				map("n", "]d", vim.diagnostic.goto_next, "Go to next diagnostic")
-				map("n", "K", vim.lsp.buf.hover, "Show documentation for what is under cursor")
+				map({ "n", "v" }, "<leader>la", "<cmd>FzfLua lsp_code_actions<CR>", "See available code actions")
+				map("n", "<leader>ld", vim.diagnostic.open_float, "Show line diagnostics")
+				map("n", "<leader>lh", vim.lsp.buf.hover, "Show documentation for what is under cursor")
 				map("n", "<leader>ll", function()
 					if vim.diagnostic.is_enabled() == false then
 						vim.diagnostic.enable()
@@ -36,6 +34,8 @@ return {
 					end
 					require("lsp_lines").toggle()
 				end, "Toggle lsp lines")
+				map("n", "[d", vim.diagnostic.goto_prev, "Go to previous diagnostic")
+				map("n", "]d", vim.diagnostic.goto_next, "Go to next diagnostic")
 			end,
 		})
 

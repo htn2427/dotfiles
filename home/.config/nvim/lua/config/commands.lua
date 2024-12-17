@@ -14,6 +14,10 @@ map({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", "Down", { expr = true })
 map({ "n", "x" }, "<Down>", "v:count == 0 ? 'gj' : 'j'", "Down", { expr = true })
 map({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", "Up", { expr = true })
 map({ "n", "x" }, "<Up>", "v:count == 0 ? 'gk' : 'k'", "Up", { expr = true })
+map({ "n", "x" }, "H", "^", "Move to beginning of line")
+map({ "n", "x" }, "J", "5jzz", "Move down 5 lines")
+map({ "n", "x" }, "K", "5kzz", "Move up 5 lines")
+map({ "n", "x" }, "L", "$", "Move to end of line")
 
 -- Keep cursor centered when scrolling
 map("n", "<C-d>", "<C-d>zz", "Scroll down and center")

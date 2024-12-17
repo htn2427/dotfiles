@@ -1,13 +1,13 @@
 return {
 	{
 		"tpope/vim-fugitive",
-		cmd = { "Git" },
-		keys = {
-			{
-				"<leader>hd",
-				":Gvdiffsplit HEAD<cr>",
-				desc = "Git diff HEAD",
-			},
+	},
+	{
+		"rbong/vim-flog",
+		lazy = true,
+		cmd = { "Flog", "Flogsplit", "Floggit" },
+		dependencies = {
+			"tpope/vim-fugitive",
 		},
 	},
 	{
@@ -33,7 +33,6 @@ return {
 				virt_text_priority = 100,
 				use_focus = true,
 			},
-			current_line_blame_formatter = " 󰊢 <author>, <author_time:%R> - <summary>",
 			sign_priority = 6,
 			update_debounce = 100,
 			status_formatter = nil, -- Use default
@@ -71,8 +70,8 @@ return {
 						gitsigns.nav_hunk("prev")
 					end
 				end, { desc = "Prev Hunk" })
-				map("n", "<leader>hp", gitsigns.preview_hunk, { desc = "preview_hunk" })
-				map("n", "<leader>hr", gitsigns.reset_hunk, { desc = "reset_hunk" })
+				map("n", "<leader>hp", gitsigns.preview_hunk, { desc = "Preview Hunk" })
+				map("n", "<leader>hr", gitsigns.reset_hunk, { desc = "Reset Hunk" })
 			end,
 		},
 	},

@@ -91,7 +91,7 @@ return {
 				{ name = "luasnip" },
 				{ name = "buffer" },
 				{ name = "path" },
-				{ name = "vim-dadbod-completion" },
+				-- { name = "vim-dadbod-completion" },
 			}),
 			---@diagnostic disable-next-line: missing-fields
 			formatting = {

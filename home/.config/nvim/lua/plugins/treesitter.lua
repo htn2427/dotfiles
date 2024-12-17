@@ -36,6 +36,7 @@ return {
 			"vim",
 			"vimdoc",
 			"yaml",
+			"prisma",
 		},
 		highlight = {
 			enable = true,

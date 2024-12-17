@@ -17,6 +17,10 @@ return {
 	config = function()
 		local fzflua = require("fzf-lua")
 		local actions = require("fzf-lua.actions")
+		local img_prev_bin = vim.fn.executable("ueberzug") == 1 and { "ueberzug" }
+			or vim.fn.executable("chafa") == 1 and { "chafa" }
+			or vim.fn.executable("viu") == 1 and { "viu", "-b" }
+			or nil
 		local hls = {
 			bg = "TabLineFill",
 			sel = "PmenuSel",
@@ -49,10 +53,16 @@ return {
 			},
 			previewers = {
 				builtin = {
+					title_fnamemodify = function(s)
+						return s
+					end,
+					ueberzug_scaler = "cover",
 					extensions = {
-						["png"] = { "chafa", "{file}" },
-						["svg"] = { "chafa", "{file}" },
-						["jpg"] = { "chafa", "{file}" },
+						["gif"] = img_prev_bin,
+						["png"] = img_prev_bin,
+						["jpg"] = img_prev_bin,
+						["jpeg"] = img_prev_bin,
+						["svg"] = { "chafa" },
 					},
 				},
 			},

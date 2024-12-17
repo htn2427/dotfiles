@@ -73,3 +73,6 @@ map("n", "<leader>o", "<cmd>call append(line('.'), repeat([''], v:count1))<cr>",
 map("v", "<leader>p", [["_dP]], "Paste without yanking")
 map({ "n", "v" }, "<leader>d", [["_d]], "Delete without yanking")
 map({ "n", "v" }, "<leader>c", [["_c]], "Change without yanking")
+
+-- Unmap
+map("n", "Q", "<nop>", "")

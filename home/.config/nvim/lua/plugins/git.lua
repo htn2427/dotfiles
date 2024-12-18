@@ -1,10 +1,12 @@
 return {
 	{
 		"tpope/vim-fugitive",
+		cmd = { "Git", "G", "Gitvdiffsplit" },
 		keys = {
-			{ "<leader>gg", ":Git<cr>", { desc = "Git" } },
-			{ "<leader>gs", ":Git status<cr>", { desc = "Git Status" } },
-			{ "<leader>gc", ":Git commit | startinsert<cr>", { desc = "Git Commit" } },
+			{ "<leader>gg", ":Git<cr>", desc = "Git" },
+			{ "<leader>gs", ":Git status<cr>", desc = "Git Status" },
+			{ "<leader>gc", ":Git commit | startinsert<cr>", desc = "Git Commit" },
+			{ "<leader>gd", ":Gvdiffsplit HEAD<cr>", desc = "Git Diff" },
 		},
 	},
 	{
@@ -43,32 +45,39 @@ return {
 				col = 1,
 			},
 			on_attach = function(bufnr)
-				local gitsigns = require("gitsigns")
-
-				local function map(mode, l, r, opts)
-					opts = opts or {}
-					opts.buffer = bufnr
-					vim.keymap.set(mode, l, r, opts)
+				local function map(mode, lhs, rhs, opts)
+					opts = vim.tbl_extend("force", { noremap = true, silent = true }, opts or {})
+					vim.api.nvim_buf_set_keymap(bufnr, mode, lhs, rhs, opts)
 				end
 
 				-- Navigation
-				map("n", "]h", function()
-					if vim.wo.diff then
-						vim.cmd.normal({ "]h", bang = true })
-					else
-						gitsigns.nav_hunk("next")
-					end
-				end, { desc = "Next Hunk" })
+				map(
+					"n",
+					"<leader>gj",
+					"&diff ? '<leader>gj' : '<cmd>Gitsigns next_hunk<CR>'",
+					{ expr = true, desc = "Next hunk" }
+				)
+				map(
+					"n",
+					"<leader>gk",
+					"&diff ? '<leader>gk' : '<cmd>Gitsigns prev_hunk<CR>'",
+					{ expr = true, desc = "Previous hunk" }
+				)
 
-				map("n", "[h", function()
-					if vim.wo.diff then
-						vim.cmd.normal({ "[h", bang = true })
-					else
-						gitsigns.nav_hunk("prev")
-					end
-				end, { desc = "Prev Hunk" })
-				map("n", "<leader>hp", gitsigns.preview_hunk, { desc = "Preview Hunk" })
-				map("n", "<leader>hr", gitsigns.reset_hunk, { desc = "Reset Hunk" })
+				-- Actions
+				map("n", "<leader>hs", ":Gitsigns stage_hunk<CR>")
+				map("v", "<leader>hs", ":Gitsigns stage_hunk<CR>")
+				map("n", "<leader>hr", ":Gitsigns reset_hunk<CR>")
+				map("v", "<leader>hr", ":Gitsigns reset_hunk<CR>")
+				map("n", "<leader>hS", "<cmd>Gitsigns stage_buffer<CR>")
+				map("n", "<leader>hu", "<cmd>Gitsigns undo_stage_hunk<CR>")
+				map("n", "<leader>hR", "<cmd>Gitsigns reset_buffer<CR>")
+				map("n", "<leader>hp", "<cmd>Gitsigns preview_hunk<CR>")
+				map("n", "<leader>hb", '<cmd>lua require"gitsigns".blame_line{full=true}<CR>')
+				map("n", "<leader>tb", "<cmd>Gitsigns toggle_current_line_blame<CR>")
+				map("n", "<leader>hd", "<cmd>Gitsigns diffthis<CR>")
+				map("n", "<leader>hD", '<cmd>lua require"gitsigns".diffthis("~")<CR>')
+				map("n", "<leader>td", "<cmd>Gitsigns toggle_deleted<CR>")
 			end,
 		},
 	},

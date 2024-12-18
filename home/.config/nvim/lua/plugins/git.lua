@@ -1,6 +1,9 @@
 return {
 	{
 		"tpope/vim-fugitive",
+		keys = {
+			{ "<leader>gc", ":Git commit | startinsert<CR>", "Git Commit" },
+		},
 	},
 	{
 		"lewis6991/gitsigns.nvim",

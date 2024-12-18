@@ -1,7 +1,7 @@
 return {
 	{
 		"tpope/vim-fugitive",
-		cmd = { "Git", "G", "Gitvdiffsplit" },
+		cmd = { "Git", "G", "Gvdiffsplit" },
 		keys = {
 			{ "<leader>gg", ":Git<cr>", desc = "Git" },
 			{ "<leader>gs", ":Git status<cr>", desc = "Git Status" },
@@ -54,18 +54,8 @@ return {
 				end
 
 				-- Navigation
-				map(
-					"n",
-					"<leader>gj",
-					"&diff ? '<leader>gj' : '<cmd>Gitsigns next_hunk<CR>'",
-					{ expr = true, desc = "Next hunk" }
-				)
-				map(
-					"n",
-					"<leader>gk",
-					"&diff ? '<leader>gk' : '<cmd>Gitsigns prev_hunk<CR>'",
-					{ expr = true, desc = "Previous hunk" }
-				)
+				map("n", "]h", "&diff ? ']h' : '<cmd>Gitsigns next_hunk<CR>'", { expr = true, desc = "Next hunk" })
+				map("n", "[h", "&diff ? '[h' : '<cmd>Gitsigns prev_hunk<CR>'", { expr = true, desc = "Previous hunk" })
 
 				-- Actions
 				map("n", "<leader>hs", "<cmd>Gitsigns stage_hunk<cr>", { desc = "Stage hunk" })

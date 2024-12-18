@@ -72,12 +72,12 @@ return {
 		branch = "fix-some-bugs", -- optional but strongly recommended
 		keys = {
 			{ "<leader>j", "<cmd>HopLineStartAC<cr>", desc = "HopLineStartAC" },
-			{ "<leader>w", "<cmd>HopWordAC<cr>", desc = "HopWordAC" },
 			{ "<leader>k", "<cmd>HopLineStartBC<cr>", desc = "HopLineStartBC" },
-			{ "<leader>e", "<cmd>HopWordCurrentLine<cr>", desc = "HopWordCurrentLine" },
-			{ "<leader>b", "<cmd>HopWordBC<cr>", desc = "HopWordBC" },
-			-- { "s", "<cmd>HopChar2CurrentLine<cr>", desc = "HopChar Current Line" },
-			-- { "S", "<cmd>HopChar2<cr>", desc = "HopChar" },
+			-- { "<leader>e", "<cmd>HopWordCurrentLine<cr>", desc = "HopWordCurrentLine" },
+			-- { "<leader>w", "<cmd>HopWordAC<cr>", desc = "HopWordAC" },
+			-- { "<leader>b", "<cmd>HopWordBC<cr>", desc = "HopWordBC" },
+			{ "s", "<cmd>HopChar2CurrentLine<cr>", desc = "HopChar Current Line" },
+			{ "S", "<cmd>HopChar2<cr>", desc = "HopChar" },
 		},
 		opts = {},
 	},

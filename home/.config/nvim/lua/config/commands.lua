@@ -59,8 +59,8 @@ map("v", "<", "<gv", "Indent left and reselect")
 map("v", ">", ">gv", "Indent right and reselect")
 
 -- switch vertical and horizontal
-map("n", [[<C-w>"]], "<C-w>t<C-w>K", "Switch Horizontal Split")
-map("n", [[<C-w>%]], "<C-w>t<C-w>H", "Switch Vertical Split")
+map("n", [[<C-w>"]], "<C-w>K", "Switch Horizontal Split")
+map("n", [[<C-w>%]], "<C-w>H", "Switch Vertical Split")
 
 -- Add empty lines before and after cursor line
 map("n", "<leader>O", "<cmd>call append(line('.') - 1, repeat([''], v:count1))<cr>", "Add empty line above")

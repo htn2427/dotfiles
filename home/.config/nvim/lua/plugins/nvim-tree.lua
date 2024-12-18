@@ -1,5 +1,10 @@
 return {
 	"nvim-tree/nvim-tree.lua",
+	init = function()
+		vim.cmd([[
+        :hi NvimTreeIndentMarker gui=bold guifg=#363636
+    ]])
+	end,
 	keys = {
 		{ "<leader>n", "<cmd>NvimTreeFindFile<cr>", "nvim-tree current file" },
 	},
@@ -11,7 +16,7 @@ return {
 			width = 30,
 			side = "left",
 			float = {
-				enable = true,
+				enable = false,
 				quit_on_focus_loss = true,
 				open_win_config = {
 					relative = "editor",
@@ -27,12 +32,12 @@ return {
 			enable = false,
 		},
 		renderer = {
-			root_folder_label = false,
+			-- root_folder_label = false,
+			hidden_display = "all",
 			highlight_git = "name",
 			indent_markers = {
 				enable = true,
 				inline_arrows = true,
-				-- { "─", "│", "─", "│", "╭", "╮", "╯", "╰", "└"},
 				icons = {
 					corner = "╰", --"└"
 					edge = "│",
@@ -48,6 +53,36 @@ return {
 					folder = true,
 					folder_arrow = true,
 					git = false,
+					modified = true,
+					hidden = false,
+					diagnostics = true,
+					bookmarks = true,
+				},
+				glyphs = {
+					default = "",
+					symlink = "",
+					bookmark = "󰆤",
+					modified = "●",
+					hidden = "󰜌",
+					folder = {
+						arrow_closed = "",
+						arrow_open = "",
+						default = "",
+						open = "",
+						empty = "",
+						empty_open = "",
+						symlink = "",
+						symlink_open = "",
+					},
+					git = {
+						unstaged = "✗",
+						staged = "✓",
+						unmerged = "",
+						renamed = "➜",
+						untracked = "★",
+						deleted = "",
+						ignored = "◌",
+					},
 				},
 			},
 			special_files = {
@@ -84,7 +119,7 @@ return {
 				restrict_above_cwd = false,
 			},
 			open_file = {
-				quit_on_open = true,
+				quit_on_open = false,
 				resize_window = true,
 			},
 		},
@@ -96,9 +131,9 @@ return {
 			api.config.mappings.default_on_attach(bufnr)
 			vim.keymap.set("n", "<C-v>", api.node.open.vertical, opts("Open: Vertical Split"))
 			vim.keymap.set("n", "<C-s>", api.node.open.horizontal, opts("Open: Horizontal Split"))
+			vim.keymap.set("n", "<leader>n", api.tree.close, opts("Close"))
 			vim.keymap.set("n", "s", api.fs.copy.absolute_path, opts("Open: Horizontal Split"))
-			vim.keymap.set("n", "<esc>", api.tree.close, opts("Close"))
-			vim.keymap.set("n", "f", "<cmd>FzfLua files<cr>", opts("Fuzzy Find"))
+			vim.keymap.set("n", "f", "<cmd>FzfLua files<cr>", opts("Fuzzy Find Files"))
 		end,
 	},
 }

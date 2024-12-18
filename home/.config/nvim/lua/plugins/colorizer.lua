@@ -13,7 +13,7 @@ return {
 	opts = {
 		---Render style
 		---@usage 'background'|'foreground'|'virtual'
-		render = "virtual",
+		render = "background",
 		virtual_symbol = "",
 		virtual_symbol_prefix = "",
 		virtual_symbol_suffix = "",

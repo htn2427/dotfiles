@@ -19,7 +19,7 @@ return {
 			width = 40,
 			sidebar_header = {
 				enabled = true,
-				align = "left",
+				align = "right",
 				rounded = false,
 			},
 			ask = {

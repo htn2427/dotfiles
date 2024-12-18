@@ -24,10 +24,10 @@ require("lazy").setup({ import = "plugins" }, {
 		enabled = true,
 		notify = false,
 	},
-	ui = {
-		border = "rounded",
-		backdrop = 100,
-	},
+	-- ui = {
+	-- border = "rounded",
+	-- backdrop = 100,
+	-- },
 	performance = {
 		rtp = {
 			disabled_plugins = {

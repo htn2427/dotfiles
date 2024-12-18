@@ -2,7 +2,7 @@ return {
 	"nvim-tree/nvim-tree.lua",
 	-- cmd = { "NvimTreeToggle", "NvimTreeFindFileToggle" },
 	keys = {
-		{ "<leader>n", ":NvimTreeFindFile<cr>", "nvim-tree current file" },
+		{ "<leader>n", "<cmd>NvimTreeFindFile<cr>", "nvim-tree current file" },
 	},
 	opts = {
 		disable_netrw = true,
@@ -33,8 +33,9 @@ return {
 			indent_markers = {
 				enable = true,
 				inline_arrows = true,
+				-- { "─", "│", "─", "│", "╭", "╮", "╯", "╰", "└"},
 				icons = {
-					corner = "└",
+					corner = "╰", --"└"
 					edge = "│",
 					item = "│",
 					bottom = "─",
@@ -77,7 +78,7 @@ return {
 			timeout = 400,
 		},
 		actions = {
-			use_system_clipboard = false,
+			use_system_clipboard = true,
 			change_dir = {
 				enable = false,
 				global = false,
@@ -94,6 +95,10 @@ return {
 				return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
 			end
 			api.config.mappings.default_on_attach(bufnr)
+			vim.keymap.set("n", "<C-v>", api.node.open.vertical, opts("Open: Vertical Split"))
+			vim.keymap.set("n", "<C-s>", api.node.open.horizontal, opts("Open: Horizontal Split"))
+			vim.keymap.set("n", "s", api.fs.copy.absolute_path, opts("Open: Horizontal Split"))
+			vim.keymap.set("n", "<esc>", api.tree.close, opts("Close"))
 			vim.keymap.set("n", "f", ":lua require('fzf-lua').files()<cr>", opts("Fuzzy Find"))
 		end,
 	},

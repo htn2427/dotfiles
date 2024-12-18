@@ -2,7 +2,9 @@ return {
 	"nvim-tree/nvim-tree.lua",
 	init = function()
 		vim.cmd([[
-        :hi NvimTreeIndentMarker gui=bold guifg=#363636
+        :hi NvimTreeRootFolder guifg=#7e9cd8 gui=NONE
+        :hi NvimTreeIndentMarker guifg=#363636 gui=NONE
+        :hi NvimTreeHiddenDisplay guifg=#666666 gui=NONE
     ]])
 	end,
 	keys = {

@@ -2,7 +2,9 @@ return {
 	{
 		"tpope/vim-fugitive",
 		keys = {
-			{ "<leader>gc", ":Git commit | startinsert<CR>", "Git Commit" },
+			{ "<leader>gg", ":Git<cr>", { desc = "Git" } },
+			{ "<leader>gs", ":Git status<cr>", { desc = "Git Status" } },
+			{ "<leader>gc", ":Git commit | startinsert<cr>", { desc = "Git Commit" } },
 		},
 	},
 	{

@@ -6,9 +6,6 @@ local function map(type, input, output, description, additional_options)
 	vim.keymap.set(type, input, output, options)
 end
 
--- Exit on jk
-map("i", "jk", "<esc>", "Normal mode")
-
 -- better up/down
 map({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", "Down", { expr = true })
 map({ "n", "x" }, "<Down>", "v:count == 0 ? 'gj' : 'j'", "Down", { expr = true })
@@ -61,9 +58,9 @@ map("n", "<leader><tab>p", "<cmd>tabprevious<cr>", "Go to previous tab")
 map("v", "<", "<gv", "Indent left and reselect")
 map("v", ">", ">gv", "Indent right and reselect")
 
--- New Windows
-map("n", [[<leader>"]], "<cmd>split<CR>", "Horizontal split")
-map("n", [[<leader>%]], "<cmd>vsplit<CR>", "Vertical split")
+-- switch vertical and horizontal
+map("n", [[<C-w>"]], "<C-w>t<C-w>K", "Switch Horizontal Split")
+map("n", [[<C-w>%]], "<C-w>t<C-w>H", "Switch Vertical Split")
 
 -- Add empty lines before and after cursor line
 map("n", "<leader>O", "<cmd>call append(line('.') - 1, repeat([''], v:count1))<cr>", "Add empty line above")

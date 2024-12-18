@@ -98,7 +98,7 @@ return {
 			vim.keymap.set("n", "<C-s>", api.node.open.horizontal, opts("Open: Horizontal Split"))
 			vim.keymap.set("n", "s", api.fs.copy.absolute_path, opts("Open: Horizontal Split"))
 			vim.keymap.set("n", "<esc>", api.tree.close, opts("Close"))
-			vim.keymap.set("n", "f", ":lua require('fzf-lua').files()<cr>", opts("Fuzzy Find"))
+			vim.keymap.set("n", "f", "<cmd>FzfLua files<cr>", opts("Fuzzy Find"))
 		end,
 	},
 }

@@ -3,13 +3,6 @@ return {
 	event = "VeryLazy",
 	lazy = false,
 	version = false,
-	init = function()
-		vim.cmd([[
-        :hi AvanteTitle guifg=#131313 guibg=#666666
-        :hi AvanteSubtitle guifg=#98BB6C
-        :hi AvanteThirdTitle guifg=#957fb8
-    ]])
-	end,
 	opts = {
 		debug = false,
 		provider = "copilot",
@@ -26,7 +19,7 @@ return {
 			width = 40,
 			sidebar_header = {
 				enabled = true,
-				align = "right",
+				align = "left",
 				rounded = false,
 			},
 			ask = {

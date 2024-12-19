@@ -20,8 +20,9 @@ map({ "n", "x" }, "L", "$", "Move to end of line")
 map("n", "<C-d>", "<C-d>zz", "Scroll down and center")
 map("n", "<C-u>", "<C-u>zz", "Scroll up and center")
 
--- Save
+-- Save and quit
 map({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", "Save File")
+map("n", "<leader>q", ":q<cr>", "Quit file")
 
 -- focus highlight searches
 map("n", "n", "nzzzv", "Next search result")
@@ -44,7 +45,7 @@ map("n", "<leader>Bp", "<cmd>bprevious<cr>", "Previous buffer")
 map("n", "<leader>Bt", "<cmd>b#<cr>", "Switch to alternate buffer")
 map("n", "<leader>BD", "<cmd>%bd|e#|bd#<cr>", "Delete all buffers except current")
 map("n", "<leader>Bd", "<cmd>bdelete<cr>", "Delete current buffer")
-map("n", "<leader>q", "<cmd>bdelete<cr>", "Delete current buffer")
+-- map("n", "<leader>q", "<cmd>bdelete<cr>", "Delete current buffer")
 
 -- Tabs
 map("n", "<leader><tab>l", "<cmd>tablast<cr>", "Go to last tab")
@@ -57,10 +58,6 @@ map("n", "<leader><tab>p", "<cmd>tabprevious<cr>", "Go to previous tab")
 -- Better indenting
 map("v", "<", "<gv", "Indent left and reselect")
 map("v", ">", ">gv", "Indent right and reselect")
-
--- switch vertical and horizontal
-map("n", [[<C-w>"]], "<C-w>K", "Switch Horizontal Split")
-map("n", [[<C-w>%]], "<C-w>H", "Switch Vertical Split")
 
 -- Add empty lines before and after cursor line
 map("n", "<leader>O", "<cmd>call append(line('.') - 1, repeat([''], v:count1))<cr>", "Add empty line above")

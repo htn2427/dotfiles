@@ -1,18 +1,17 @@
 return {
 	"ibhagwan/fzf-lua",
 	dependencies = { "nvim-tree/nvim-web-devicons" },
-	cmd = { "FzfLua" },
 	version = false,
 	keys = {
-		{ "<leader>f", ":FzfLua files<cr>", desc = "Find Files" },
-		{ "<leader>b", ":FzfLua buffers<cr>", desc = "Find Buffers" },
-		{ "<leader>ss", ":FzfLua live_grep_native<cr>", desc = "Live Grep" },
-		{ "<leader>sd", ":FzfLua diagnostics_workspace<cr>", desc = "Search Diagnostics" },
-		{ "<leader>sg", ":FzfLua git_files<cr>", desc = "Search Git Files" },
-		{ "<leader>sw", ":FzfLua grep_cword<cr>", desc = "Grep cword" },
-		{ "<leader>sW", ":FzfLua grep_cWORD<cr>", desc = "Grep cWORD" },
-		{ "<leader>sk", ":FzfLua keymaps<cr>", desc = "Keymaps" },
-		{ "<leader>sh", ":FzfLua helptags<cr>", desc = "Search Help" },
+		{ "<leader>f", "<cmd>FzfLua files<cr>", desc = "Find Files" },
+		{ "<leader>b", "<cmd>FzfLua buffers<cr>", desc = "Find Buffers" },
+		{ "<leader>ss", "<cmd>FzfLua live_grep_native<cr>", desc = "Live Grep" },
+		{ "<leader>sd", "<cmd>FzfLua diagnostics_workspace<cr>", desc = "Search Diagnostics" },
+		{ "<leader>sg", "<cmd>FzfLua git_files<cr>", desc = "Search Git Files" },
+		{ "<leader>sw", "<cmd>FzfLua grep_cword<cr>", desc = "Grep cword" },
+		{ "<leader>sW", "<cmd>FzfLua grep_cWORD<cr>", desc = "Grep cWORD" },
+		{ "<leader>sk", "<cmd>FzfLua keymaps<cr>", desc = "Keymaps" },
+		{ "<leader>sh", "<cmd>FzfLua helptags<cr>", desc = "Search Help" },
 	},
 	lazy = true,
 	config = function()
@@ -22,23 +21,9 @@ return {
 			or vim.fn.executable("chafa") == 1 and { "chafa" }
 			or vim.fn.executable("viu") == 1 and { "viu", "-b" }
 			or nil
-		local hls = {
-			bg = "TabLineFill",
-			sel = "PmenuSel",
-			border = "FloatBorder",
-		}
 		fzflua.setup({
 			fzf_colors = {
-				["gutter"] = { "bg", hls.bg },
-				["bg"] = { "bg", hls.bg },
-				["bg+"] = { "bg", hls.sel },
-				["fg"] = { "fg", hls.sel },
-			},
-			hls = {
-				border = hls.border,
-				normal = "NONE",
-				preview_normal = "NONE",
-				preview_border = hls.border,
+				["gutter"] = { "bg", "Normal" },
 			},
 			keymap = {
 				builtin = {

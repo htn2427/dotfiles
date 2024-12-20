@@ -4,9 +4,7 @@ return {
 		cmd = { "Git", "G", "Gvdiffsplit" },
 		keys = {
 			{ "<leader>gg", ":Git<cr>", desc = "Git" },
-			{ "<leader>gs", ":Git status<cr>", desc = "Git Status" },
-			{ "<leader>gc", ":Git commit | startinsert<cr>", desc = "Git Commit" },
-			{ "<leader>gd", ":Gvdiffsplit HEAD<cr>", desc = "Git Diff" },
+			{ "<leader>gd", ":Gvdiffsplit HEAD<cr>", desc = "Git diff" },
 		},
 	},
 	{
@@ -64,22 +62,22 @@ return {
 				local function map(mode, lhs, rhs, opts)
 					opts = vim.tbl_extend("force", { noremap = true, silent = true }, opts or {})
 					if opts.desc then
-						opts.desc = "Gitsigns: " .. opts.desc
+						opts.desc = "Git " .. opts.desc
 					end
 					vim.api.nvim_buf_set_keymap(bufnr, mode, lhs, rhs, opts)
 				end
 
 				-- Navigation
-				map("n", "]h", "&diff ? ']h' : '<cmd>Gitsigns next_hunk<CR>'", { expr = true, desc = "Next hunk" })
-				map("n", "[h", "&diff ? '[h' : '<cmd>Gitsigns prev_hunk<CR>'", { expr = true, desc = "Previous hunk" })
+				map("n", "]g", "&diff ? ']g' : '<cmd>Gitsigns next_hunk<CR>'", { expr = true, desc = "next hunk" })
+				map("n", "[g", "&diff ? '[g' : '<cmd>Gitsigns prev_hunk<CR>'", { expr = true, desc = "previous hunk" })
 
 				-- Actions
-				map("n", "<leader>hs", "<cmd>Gitsigns stage_hunk<cr>", { desc = "Stage hunk" })
-				map("n", "<leader>hu", "<cmd>Gitsigns undo_stage_hunk<cr>", { desc = "Unstage hunk" })
-				map("n", "<leader>hr", "<cmd>Gitsigns reset_hunk<cr>", { desc = "Reset hunk" })
-				map("n", "<leader>hp", "<cmd>Gitsigns preview_hunk<cr>", { desc = "Preview hunk" })
-				map("n", "<leader>hS", "<cmd>Gitsigns stage_buffer<cr>", { desc = "State buffer" })
-				map("n", "<leader>hR", "<cmd>Gitsigns reset_buffer<cr>", { desc = "Reset Buffer" })
+				map("n", "<leader>gs", "<cmd>Gitsigns stage_hunk<cr>", { desc = "stage hunk" })
+				map("n", "<leader>gu", "<cmd>Gitsigns undo_stage_hunk<cr>", { desc = "unstage hunk" })
+				map("n", "<leader>gr", "<cmd>Gitsigns reset_hunk<cr>", { desc = "reset hunk" })
+				map("n", "<leader>gp", "<cmd>Gitsigns preview_hunk<cr>", { desc = "preview hunk" })
+				map("n", "<leader>gS", "<cmd>Gitsigns stage_buffer<cr>", { desc = "state buffer" })
+				map("n", "<leader>gR", "<cmd>Gitsigns reset_buffer<cr>", { desc = "reset buffer" })
 			end,
 		},
 	},

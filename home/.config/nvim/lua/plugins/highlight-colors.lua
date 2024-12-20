@@ -2,13 +2,7 @@ return {
 	"brenoprata10/nvim-highlight-colors",
 	event = "VeryLazy",
 	keys = {
-		{
-			"<leader><space>c",
-			function()
-				require("nvim-highlight-colors").toggle()
-			end,
-			desc = "toggle colorizer",
-		},
+		{ "<leader><leader>c", "<cmd>HighlightColors Toggle<cr>" },
 	},
 	opts = {
 		---Render style

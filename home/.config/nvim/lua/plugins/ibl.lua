@@ -1,8 +1,5 @@
 return {
 	"lukas-reineke/indent-blankline.nvim",
-	dependencies = {
-		"nmac427/guess-indent.nvim",
-	},
 	main = "ibl",
 	event = "VeryLazy",
 	config = function()
@@ -11,6 +8,10 @@ return {
 				show_start = false,
 			},
 			indent = {
+				highlight = {
+					"Comment",
+					"Type",
+				},
 				char = "┊",
 				tab_char = "┊",
 				smart_indent_cap = true,
@@ -19,6 +20,5 @@ return {
 				remove_blankline_trail = true,
 			},
 		})
-		require("guess-indent").setup({})
 	end,
 }

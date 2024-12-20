@@ -3,19 +3,9 @@ return {
 	event = "VeryLazy",
 	opts = {
 		preset = "helix",
-
 		win = {
-			border = "rounded", -- none, single, double, shadow
+			border = "rounded",
 			title = false,
-		},
-	},
-	keys = {
-		{
-			"<leader>?",
-			function()
-				require("which-key").show({ global = false })
-			end,
-			desc = "Buffer Local Keymaps (which-key)",
 		},
 	},
 }

@@ -133,13 +133,28 @@ return {
 				end, { "i", "s", "c" }),
 			}),
 			sources = cmp.config.sources({
-				{ name = "cmdline" },
 				{ name = "path" },
+				{ name = "cmdline" },
 			}),
-			window = {
-				completion = cmp.config.window.bordered({
-					border = "rounded",
-				}),
+		})
+
+		cmp.setup.cmdline("/", {
+			mapping = cmp.mapping.preset.cmdline({
+				["<Tab>"] = cmp.mapping(function(fallback)
+					if cmp.visible() then
+						local entry = cmp.get_selected_entry()
+						if not entry then
+							cmp.select_next_item({ cmp_select_opts })
+						else
+							cmp.confirm()
+						end
+					else
+						fallback()
+					end
+				end, { "i", "s", "c" }),
+			}),
+			sources = {
+				{ name = "buffer" },
 			},
 		})
 	end,

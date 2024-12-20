@@ -4,8 +4,9 @@ local mux = wezterm.mux
 
 config.colors = {
 	foreground = "#dcd7ba",
-	background = "#1a1a1a",
+	background = "#111111",
 	cursor_bg = "#AAC4F2",
+	cursor_border = "#AAC4F2",
 	selection_fg = "#c8c093",
 	selection_bg = "#2d4f67",
 	scrollbar_thumb = "#16161d",

@@ -52,7 +52,7 @@ return {
 				PmenuThumb = { bg = theme.ui.bg_p2 },
 				NormalDark = { fg = theme.ui.fg_dim, bg = theme.ui.bg_m3 },
 
-				LazyNormal = { fg = theme.ui.fg_dim, bg = theme.ui.bg_m1 },
+				LazyNormal = { fg = theme.ui.fg_dim, bg = "none" },
 				MasonNormal = { fg = theme.ui.fg_dim, bg = "none" },
 
 				DiagnosticVirtualTextHint = makeDiagnosticColor(theme.diag.hint),

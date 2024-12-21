@@ -1,6 +1,5 @@
 return {
 	"stevearc/oil.nvim",
-	version = false,
 	keys = {
 		{
 			"<leader>n",

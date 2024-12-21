@@ -1,6 +1,7 @@
 return {
 	"ibhagwan/fzf-lua",
 	dependencies = { "nvim-tree/nvim-web-devicons" },
+	lazy = true,
 	version = false,
 	keys = {
 		{ "<leader>ff", "<cmd>FzfLua files<cr>" },
@@ -13,7 +14,6 @@ return {
 		{ "<leader>fi", "<cmd>FzfLua lsp_implementations<cr>" },
 		{ "<leader>fr", "<cmd>FzfLua lsp_references<cr>" },
 	},
-	lazy = true,
 	opts = function()
 		local actions = require("fzf-lua.actions")
 		local img_prev_bin = vim.fn.executable("ueberzug") == 1 and { "ueberzug" }
